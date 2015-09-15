@@ -1,9 +1,13 @@
 public class Elfo {
     private String nome;
     private int flechas;
+    private experiencia = 0;
     
-    public Elfo(String n, int flech) {
+    public Elfo(String n) {
         nome = n;
-        flechas = flech;
+        flechas = 42;
+    }
+    public atirarFlechas(){
+    experiencia++;
     }
 }
