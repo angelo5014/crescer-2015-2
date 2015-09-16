@@ -13,5 +13,6 @@ public class Elfo {
     }
     public atirarFlechas(){
     experiencia++;
+    flechas--;
     }
 }
