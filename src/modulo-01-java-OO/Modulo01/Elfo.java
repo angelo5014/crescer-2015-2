@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class Elfo {
     private String nome;
     private int flechas;
@@ -16,8 +14,7 @@ public class Elfo {
     }
     
     public boolean acertar(){
-        Random gerador = new Random();
-        boolean acertou = gerador.nextBoolean();
+        boolean acertou = Math.random() * 100 < 50;
         return acertou;
     }
     
