@@ -21,7 +21,7 @@ public class Elfo {
         return acertou;
     }
     
-    public void atirarFlechas(Dwarve alvo){
+    public void atirarFlechas(Dwarf alvo){
         flechas--;
         if(acertar()){
             alvo.vida = alvo.vida - 10;
