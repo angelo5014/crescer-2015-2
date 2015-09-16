@@ -23,10 +23,10 @@ public class Elfo {
     
     public void atirarFlechas(Dwarf alvo){
         flechas--;
-        if(acertar()){
-            alvo.vida = alvo.vida - 10;
-	        experiencia++;
-	   }
+       // if(acertar()){
+            alvo.receberFlechada();
+            experiencia++;
+       //}
     }
     public String getNome(){
         return this.nome;
