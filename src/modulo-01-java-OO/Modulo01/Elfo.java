@@ -7,12 +7,20 @@ public class Elfo {
         nome = n;
         flechas = 42;
     }
+	
     public Elfo(String n, int flech){
         nome = n;
         flechas = flech;
     }
+	
     public atirarFlechas(){
-    experiencia++;
-    flechas--;
+		experiencia++;
+		flechas--;
     }
+	
+	public atirarFlechaRefactory(this.flechas, this.experiencia){
+		flechas--;
+		if(boolean acertar == true)
+			experiencia++;
+	}
 }
