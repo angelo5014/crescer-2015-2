@@ -21,7 +21,7 @@ public class Elfo {
     public void atirarFlechas(){
         flechas--;
         if(acertar())
-			experiencia++;
+	    experiencia++;
     }
     
     public void atirarFlechaRefactory(){
