@@ -1,5 +1,4 @@
 
-
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
@@ -18,7 +17,7 @@ public class DwarfTest
         Dwarf gimli = new Dwarf();
         assertEquals(110, gimli.getVida());
     }
-    
+
     @Test
     public void dwarfPerdeVidaComFlechada(){
         Dwarf gimli = new Dwarf();
