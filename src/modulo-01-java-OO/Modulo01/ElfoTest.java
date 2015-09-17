@@ -8,15 +8,16 @@ import org.junit.Test;
 /**
  * A classe de teste ElfoTest.
  *
- * @author  (seu nome)
- * @version (um número de versão ou data)
+ * @author  Angelo
+ * @version 4.2
  */
 public class ElfoTest
 {
     @Test
-    public void nomeNaoEhNulo(){
+    public void nomeNaoEhNuloOuBranco(){
         Elfo elfo = new Elfo("Roberto");
         assertNotNull(elfo.getNome());
+        assertNotSame(elfo.getNome(), "");
     }
     
     @Test

@@ -18,11 +18,13 @@ public class DwarfTest
         Dwarf gimli = new Dwarf();
         assertEquals(110, gimli.getVida());
     }
+    
     @Test
     public void dwarfPerdeVidaComFlechada(){
         Dwarf gimli = new Dwarf();
         int vidaOriginal = gimli.getVida();
         gimli.receberFlechada();
         assertNotSame(vidaOriginal, gimli.getVida());
+        assertTrue(gimli.getVida() < vidaOriginal);
     }
 }
