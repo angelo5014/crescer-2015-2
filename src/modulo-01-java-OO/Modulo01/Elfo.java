@@ -6,14 +6,13 @@ public class Elfo {
     private int flechas;
     private int experiencia = 0;
     
-    public Elfo(String n) {
-        nome = n;
-        flechas = 42;
+    public Elfo(String nome) {
+        this(nome, 42);
     }
     
-    public Elfo(String n, int flech){
-        nome = n;
-        flechas = flech;
+    public Elfo(String nome, int flechas){
+        this.nome = nome;
+        this.flechas = flechas;
     }
     
     public boolean acertar(){
@@ -28,10 +27,17 @@ public class Elfo {
             experiencia++;
        //}
     }
+    public String toString(){
+        return (this.nome + " possui " + this.flechas + " e " + 
+        this.experiencia + " niveis de experiência.");
+    }
     public String getNome(){
         return this.nome;
     }
     public int getFlechas(){
         return this.flechas;
+    }
+    public int getExperiencia(){
+        return this.experiencia;
     }
 }
