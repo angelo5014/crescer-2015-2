@@ -19,11 +19,17 @@ public class DwarfTest
     }
 
     @Test
+    public void dwarfNullTemAno111(){
+        Dwarf dwarf = new Dwarf();
+        DataTerceiraEra data = new DataTerceiraEra(1,1,1); 
+        assertEquals(data, dwarf.getDataNascimento());
+    }
+
+    @Test
     public void dwarfSemDataEh111(){
         Dwarf dwarf = new Dwarf("jose");
-        assertEquals(1, dwarf.getDataNascimento().getDia());
-        assertEquals(1, dwarf.getDataNascimento().getMes());
-        assertEquals(1, dwarf.getDataNascimento().getAno());
+        DataTerceiraEra data = new DataTerceiraEra(1,1,1); 
+        assertEquals(data, dwarf.getDataNascimento());
     }
 
     @Test
@@ -58,7 +64,7 @@ public class DwarfTest
         dwarf.receberFlechada();
         assertEquals(100 , dwarf.getVida());
     }
-    
+
     @Test
     public void dwarfEntre0E100NaoMudaNada(){
         DataTerceiraEra data = new DataTerceiraEra(10,5,2007);
@@ -67,6 +73,7 @@ public class DwarfTest
         assertEquals(110, dwarf.getVida());
         assertEquals(0, dwarf.getExperiencia());
     }
+
     @Test
     public void dwarfSortudoGanhaXP(){
         DataTerceiraEra data = new DataTerceiraEra(10,5,2008);
@@ -85,7 +92,7 @@ public class DwarfTest
         }
         assertEquals(Status.MORTO, dwarf.getStatus());
     }
-    
+
     @Test
     public void dwarfMorreTomando12FlechadasEVidaEh0(){
         Dwarf dwarf = new Dwarf("reginaldo");
