@@ -85,5 +85,15 @@ public class DwarfTest
         }
         assertEquals(Status.MORTO, dwarf.getStatus());
     }
+    
+    @Test
+    public void dwarfMorreTomando12FlechadasEVidaEh0(){
+        Dwarf dwarf = new Dwarf("reginaldo");
+        for(int i=0;i<12;i++){
+            dwarf.receberFlechada();
+        }
+        assertEquals(Status.MORTO, dwarf.getStatus());
+        assertEquals(0, dwarf.getVida());
+    }
 
 }
