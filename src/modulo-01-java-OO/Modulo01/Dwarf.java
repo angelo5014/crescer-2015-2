@@ -17,7 +17,7 @@ public class Dwarf{
     public void receberFlechada(){
         double numeroDaSorte = getNumeroSorte();
         if(numeroDaSorte < 0){
-            experiencia++;
+            experiencia += 2;
         }else if(numeroDaSorte > 100){
             this.vida -= 10;
         }
@@ -37,10 +37,18 @@ public class Dwarf{
     }
 
     public int getVida(){
-        return vida;
+        return this.vida;
     }
 
     public Status getStatus(){
         return this.status; 
     }
+    
+    public DataTerceiraEra getDataNascimento(){
+        return this.dataNascimento;
+    }
+    
+      public int getExperiencia(){
+        return this.experiencia;
+    }  
 }
