@@ -8,11 +8,12 @@ public class DataTerceiraEraTest
 {
     @Test
     public void valoresSaoDevidamenteArmazenados(){
-        DataTerceiraEra data = new DataTerceiraEra(1,1,1);
-        assertEquals(1, data.getDia());
-        assertEquals(1, data.getMes());
-        assertEquals(1, data.getAno());
+        DataTerceiraEra data = new DataTerceiraEra(21,11,1000);
+        assertEquals(21, data.getDia());
+        assertEquals(11, data.getMes());
+        assertEquals(1000, data.getAno());
     }
+    
 
     @Test
     public void anoRealmenteEhBissexto(){
