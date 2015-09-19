@@ -13,5 +13,14 @@ public class Inventario{
     public ArrayList<Item> getItens(){
         return this.itens;
     }
-
+    
+    public String getDescricoesItens(){
+        String retorno = "";
+        int cont = 1;
+            for(Item item : this.itens){
+                retorno += item.getDescricao() + (cont != this.itens.size() ? "," : "");
+                cont++;
+            }
+            return retorno;
+    }
 }
