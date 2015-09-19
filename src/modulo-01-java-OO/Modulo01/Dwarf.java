@@ -4,11 +4,12 @@ public class Dwarf{
     private String nome;
     private int experiencia;
     private DataTerceiraEra dataNascimento;
-    
+    private Inventario inventario = new Inventario();
+
     public Dwarf (){
         dataNascimento = new DataTerceiraEra(1,1,1);
     }
-    
+
     public Dwarf (String nome){
         this(nome, new DataTerceiraEra(1,1,1));
     }
@@ -38,6 +39,18 @@ public class Dwarf{
             return (101 * 33) % 100;
         }else
             return 101;
+    }
+
+    public void adicionarItem(Item item){
+        inventario.adicionarItem(item);
+    }
+
+    public void perderItem(Item item){
+        inventario.perderItem(item);
+    }
+    
+    public Inventario getInventario(){
+        return this.inventario;
     }
 
     public int getVida(){
