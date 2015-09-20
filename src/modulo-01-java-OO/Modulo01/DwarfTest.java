@@ -39,6 +39,12 @@ public class DwarfTest
         assertEquals(5, dwarf.getDataNascimento().getMes());
         assertEquals(2008, dwarf.getDataNascimento().getAno());
     }
+    
+    @Test
+    public void getNumeroSorteComNomeNull(){
+        Dwarf dwarf = new Dwarf();
+        assertEquals(101, dwarf.getNumeroSorte(), 0);
+    }
 
     @Test
     public void getNumeroSorteSeForBissextoEVidaEntre80E90(){
@@ -101,5 +107,43 @@ public class DwarfTest
         assertEquals(Status.MORTO, dwarf.getStatus());
         assertEquals(0, dwarf.getVida());
     }
+    
+    @Test
+    public void tentarSorteCom2ItemEConsegue(){
+        DataTerceiraEra data = new DataTerceiraEra(10,5,2008);
+        Dwarf dwarf = new Dwarf(null, data);
+        dwarf.receberFlechada();
+        dwarf.receberFlechada();
+        Item estrelaDaMorte = new Item(1, "Estrela da morte");
+        Item ring = new Item(12, "Anel");
+        dwarf.getInventario().adicionarItem(estrelaDaMorte);
+        dwarf.getInventario().adicionarItem(ring);
+        dwarf.tentarSorte();
+        assertEquals(1001, dwarf.getInventario().getItens().get(0).getQuantidade());
+        assertEquals(1012, dwarf.getInventario().getItens().get(1).getQuantidade());
+    }
+    
+    @Test
+    public void dwarfTentaASorteEFalha(){
+        Dwarf dwarf = new Dwarf();
+        Item item1 = new Item(500000,"Stormtrooper");
+        Item item2 = new Item(5,"LightSaber");
+        Item item3 = new Item(1,"DarthVader");
+        dwarf.getInventario().adicionarItem(item1);
+        dwarf.getInventario().adicionarItem(item2);
+        dwarf.getInventario().adicionarItem(item3);
+        
+        dwarf.receberFlechada();
+        dwarf.receberFlechada();
+
+        dwarf.tentarSorte();
+
+        assertEquals(500000,dwarf.getInventario().getItens().get(0).getQuantidade());
+        assertEquals(5,item2.getQuantidade());
+        assertEquals(1,item3.getQuantidade());
+    }
+    
+    /*@Test
+    public void itemMaisPopular*/
 
 }
