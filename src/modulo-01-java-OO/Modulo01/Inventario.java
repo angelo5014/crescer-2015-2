@@ -23,4 +23,16 @@ public class Inventario{
             }
             return retorno;
     }
+    
+    public Item getItemComMaiorQuantidade(){
+        int maior = 0;
+        Item preferido = new Item(1, "teste");
+        for(Item item : itens){
+            if(item.getQuantidade()>maior){
+                maior = item.getQuantidade();
+                preferido = item;
+            }
+       }
+       return preferido;
+    }
 }
