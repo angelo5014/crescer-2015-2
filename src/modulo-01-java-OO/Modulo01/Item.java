@@ -14,6 +14,10 @@ public class Item{
         return this.quantidade;
     }
     
+    public void setQuantidade(int quantidade){
+        this.quantidade = quantidade;
+    }
+    
     public boolean equals(Object obj){
         Item item = (Item)obj;
         return this.descricao.equals(item.getDescricao()) && this.quantidade == item.getQuantidade();

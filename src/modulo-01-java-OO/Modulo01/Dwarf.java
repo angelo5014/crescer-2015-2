@@ -40,6 +40,14 @@ public class Dwarf{
         }else
             return 101;
     }
+    
+    public void tentarSorte(){
+        if(getNumeroSorte() == -3333){
+            for(Item item : inventario.getItens()){
+                item.setQuantidade(item.getQuantidade()+1000);
+            }
+    }
+}
 
     public void adicionarItem(Item item){
         inventario.adicionarItem(item);
