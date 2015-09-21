@@ -114,8 +114,8 @@ public class DwarfTest
         Dwarf dwarf = new Dwarf(null, data);
         dwarf.receberFlechada();
         dwarf.receberFlechada();
-        Item estrelaDaMorte = new Item(1, "Estrela da morte");
-        Item ring = new Item(12, "Anel");
+        Item estrelaDaMorte = new Item("Estrela da morte",1);
+        Item ring = new Item("Anel",12);
         dwarf.getInventario().adicionarItem(estrelaDaMorte);
         dwarf.getInventario().adicionarItem(ring);
         dwarf.tentarSorte();
@@ -126,9 +126,9 @@ public class DwarfTest
     @Test
     public void dwarfTentaASorteEFalha(){
         Dwarf dwarf = new Dwarf();
-        Item item1 = new Item(500000,"Stormtrooper");
-        Item item2 = new Item(5,"LightSaber");
-        Item item3 = new Item(1,"DarthVader");
+        Item item1 = new Item("Stormtrooper",500000);
+        Item item2 = new Item("LightSaber",5);
+        Item item3 = new Item("DarthVader",1);
         dwarf.getInventario().adicionarItem(item1);
         dwarf.getInventario().adicionarItem(item2);
         dwarf.getInventario().adicionarItem(item3);
