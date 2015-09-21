@@ -1,7 +1,7 @@
 public class Item{
     String descricao;
     int quantidade;
-    public Item(int quantidade, String descricao){
+    public Item(String descricao, int quantidade){
         this.descricao = descricao;
         this.quantidade = quantidade;
     }
