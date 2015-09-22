@@ -1,10 +1,5 @@
-public class Dwarf{
-    protected int vida = 110;
-    protected Status status;
-    protected String nome;
-    protected int experiencia;
+public class Dwarf extends Personagem{
     protected DataTerceiraEra dataNascimento;
-    protected Inventario inventario = new Inventario();
 
     public Dwarf (){
         this(null);
@@ -16,9 +11,11 @@ public class Dwarf{
 
     public Dwarf (String nome, DataTerceiraEra dataNascimento){
         this.nome = nome;
+        this.vida = 110;
         this.dataNascimento = dataNascimento;
         this.status = Status.VIVO;
         this.experiencia = 0;
+        inventario = new Inventario();
     }
     
     public void darMachadada(Object obj){
