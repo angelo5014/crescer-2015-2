@@ -26,6 +26,7 @@ public class SnagaTest{
         Elfo elfo = new Elfo("Calvin");
         snaga.atacarInimigo(elfo);
         assertEquals(72, elfo.getVida());
+        assertEquals(4,snaga.getInventario().getItemPelaDescricao("Flecha").getQuantidade());
     }
     @Test
     public void snagaDaFlechadaEmDwarf(){

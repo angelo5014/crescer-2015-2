@@ -24,7 +24,7 @@ public class UrukHaiTest{
      public void urukHaiSemEscudoRecebeMachadadaDeDwarf(){
         UrukHai urukHai = new UrukHai();
         Dwarf dwarf = new Dwarf();
-        dwarf.getInventario().getItens().remove(dwarf.getInventario().getItens().indexOf(dwarf.getInventario().procurarItemPelaDescricao("Escudo Uruk-Hai")));
+        urukHai.getInventario().getItens().remove(urukHai.getInventario().retornarIndicePorNome("Escudo Uruk-Hai"));
         dwarf.darMachadada(urukHai);
         assertEquals(140, urukHai.getVida());
     }
