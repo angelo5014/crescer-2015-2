@@ -19,4 +19,11 @@ public class ElfoVerde extends Elfo{
         }
     }
     
+    public void adicionarItem(Item item){
+        boolean podeAdicionar = item.getDescricao().equals("Espada de aço valiriano")
+        ||
+        item.getDescricao().equals("Arco e flecha de vidro")
+        ;
+    }
+    
 }
