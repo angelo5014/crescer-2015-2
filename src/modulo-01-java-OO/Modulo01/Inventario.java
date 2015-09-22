@@ -48,7 +48,7 @@ public class Inventario{
         }
     }
 
-    public boolean procurarItemPelaDescricaoBoolean(String descricao){
+    public boolean existeItemComDescricao(String descricao){
         boolean teste = false;
         for(int x = 0; x < itens.size(); x++){
             if(itens.get(x).getDescricao().equals(descricao)){
@@ -59,7 +59,7 @@ public class Inventario{
     }
     
     
-    public Item procurarItemPelaDescricao(String descricao){
+    public Item getItemPelaDescricao(String descricao){
         Item teste = null;
         for(int x = 0; x < itens.size(); x++){
             if(itens.get(x).getDescricao().equals(descricao)){
@@ -68,7 +68,11 @@ public class Inventario{
         }
         return teste;
     }
-
+    
+    public int retornarIndicePorNome(String descricao){
+        return this.itens.indexOf(getItemPelaDescricao(descricao));
+    }
+    
     public boolean equals(Object obj) {
         Inventario outroInventario = (Inventario)obj;
         return this.itens.equals(outroInventario.getItens());
