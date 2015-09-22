@@ -4,12 +4,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * A classe de teste ElfoTest.
- *
- * @author  Angelo
- * @version 4.2
- */
 public class ElfoTest
 {
     @Test

@@ -1,21 +1,19 @@
 /**
  * Representa objetos do tipo Elfo.
  */
-public class Elfo {
-    private int vida = 80;
-    private String nome;
-    private int flechas;
-    private int experiencia = 0;
-    private Status status;
-
+public class Elfo extends Personagem{
+    protected int flechas;
+    
     public Elfo(String nome) {
         this(nome, 42);
     }
 
     public Elfo(String nome, int flechas){
+        this.vida = 80;
         this.nome = nome;
         this.flechas = flechas;
         this.status = Status.VIVO;
+        inventario = new Inventario();
     }
 
     public void atirarFlechas(Object obj){
@@ -55,7 +53,16 @@ public class Elfo {
             this.vida -= 8;
         }
     }
+    
+    
+    public void adicionarItem(Item item){
+        inventario.getItens().add(item);
+    }
 
+    public void perderItem(Item item){
+        inventario.getItens().remove(item);
+    }
+    
     public String getNome(){
         return this.nome;
     }
