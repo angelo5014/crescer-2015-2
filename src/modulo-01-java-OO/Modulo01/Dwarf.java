@@ -20,7 +20,11 @@ public class Dwarf{
         this.status = Status.VIVO;
         this.experiencia = 0;
     }
-
+    
+    public void receberDano(int dano){
+        this.vida -= dano;
+    }
+    
     public void receberFlechada(){
         double numeroDaSorte = this.getNumeroSorte();
         if(numeroDaSorte < 0){
