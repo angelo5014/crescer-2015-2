@@ -1,33 +1,29 @@
-
-/**
- * Escreva a descrição da classe Snaga aqui.
- * 
- * @author (seu nome) 
- * @version (número de versão ou data)
- */
-public class Snaga
-{
-    // variáveis de instância - substitua o exemplo abaixo pelo seu próprio
-    private int x;
-
-    /**
-     * COnstrutor para objetos da classe Snaga
-     */
-    public Snaga()
-    {
-        // inicializa variáveis de instância
-        x = 0;
+public class Snaga extends Orc{
+    Item arco = new Item ("Arco",1);
+    Item flecha = new Item ("Flecha",1);
+    public Snaga(){
+        super();
+        this.vida = 70;
+        this.status = Status.VIVO;
+        this.inventario.adicionarItem(arco);
+        this.inventario.adicionarItem(flecha);
     }
 
-    /**
-     * Exemplo de método - substitua este comentário pelo seu próprio
-     * 
-     * @param  y   exemplo de um parâmetro de método
-     * @return     a soma de x com y 
-     */
-    public int sampleMethod(int y)
-    {
-        // ponha seu código aqui
-        return x + y;
+    public void atacarInimigo(Object obj){
+        if(inventario.procurarItemPelaDescricaoBoolean("Arco")){
+            if(inventario.procurarItemPelaDescricaoBoolean("Flecha")&& 
+            inventario.procurarItemPelaDescricao("Flecha").getQuantidade()>0){
+                if(obj instanceof Elfo){
+                    Elfo elfo = (Elfo)obj;
+                    elfo.serAtacado(this);
+                }else if(obj instanceof Dwarf){
+                    Dwarf dwarf = (Dwarf)obj;
+                    dwarf.serAtacado(this);
+                }
+            }else{
+                this.status = Status.FUGINDO;
+            }
+        }
     }
+
 }
