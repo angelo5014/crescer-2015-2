@@ -37,6 +37,15 @@ public abstract class Personagem{
         inventario.getItens().remove(item);
     }
     
+    
+    public void receberDano(int dano){
+        this.vida -= dano;
+        if(vida<=10){
+            vida=0;
+            this.status = Status.MORTO;
+        }
+    }
+    
     public void serAtacado(Object obj){
     }
 }
