@@ -47,8 +47,29 @@ public class Inventario{
             }
         }
     }
+
+    public boolean procurarItemPelaDescricaoBoolean(String descricao){
+        boolean teste = false;
+        for(int x = 0; x < itens.size(); x++){
+            if(itens.get(x).getDescricao().equals(descricao)){
+                teste = true;
+            }
+        }
+        return teste;
+    }
     
-      public boolean equals(Object obj) {
+    
+    public Item procurarItemPelaDescricao(String descricao){
+        Item teste = null;
+        for(int x = 0; x < itens.size(); x++){
+            if(itens.get(x).getDescricao().equals(descricao)){
+                teste = itens.get(x);
+            }
+        }
+        return teste;
+    }
+
+    public boolean equals(Object obj) {
         Inventario outroInventario = (Inventario)obj;
         return this.itens.equals(outroInventario.getItens());
     }
