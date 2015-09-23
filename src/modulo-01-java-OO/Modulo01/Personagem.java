@@ -1,23 +1,19 @@
 public abstract class Personagem{
     protected String nome;
-    protected int vida;
+    protected double vida;
     protected int experiencia;
     protected Status status;
-    protected Inventario inventario;
+    protected final Inventario inventario;
 
     public Personagem(){
-        this(null);
-    }
-
-    public Personagem(String nome){
-        this.nome = nome;
+        inventario = new Inventario();
     }
 
     public Inventario getInventario(){
         return this.inventario;
     }
 
-    public int getVida(){
+    public double getVida(){
         return this.vida;
     }
 
@@ -70,4 +66,8 @@ public abstract class Personagem{
         int dano = orc.getDanoDeAtaque();
         this.vida -= dano;
     }
+    
+    public int hashCode(){
+        return this.nome.hashCode() + this.status.toString().hashCode() + new Integer(this.experiencia).hashCode();
+     }
 }

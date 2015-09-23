@@ -15,7 +15,6 @@ public class Dwarf extends Personagem{
         this.dataNascimento = dataNascimento;
         this.status = Status.VIVO;
         this.experiencia = 0;
-        inventario = new Inventario();
     }
 
     public void receberFlechada(){
@@ -62,7 +61,7 @@ public class Dwarf extends Personagem{
         return this.inventario;
     }
 
-    public int getVida(){
+    public double getVida(){
         return this.vida;
     }
 

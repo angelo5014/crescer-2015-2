@@ -65,8 +65,8 @@ public class ElfoTest
         Dwarf dwarf2 = new Dwarf("Balin");
         elfo.atacar(dwarf);
         elfo.atacar(dwarf2);
-        assertEquals(100, dwarf.getVida());
-        assertEquals(100, dwarf2.getVida());
+        assertEquals(100, dwarf.getVida(), 0);
+        assertEquals(100, dwarf2.getVida(),0);
         assertEquals(2 , elfo.getExperiencia());
         assertEquals(40, elfo.getFlechas());
     }
@@ -81,8 +81,8 @@ public class ElfoTest
         elfo1.atacar(dwarf2);
         elfo.atacar(dwarf);
         elfo1.atacar(dwarf2);
-        assertEquals(90, dwarf.getVida());
-        assertEquals(90, dwarf2.getVida());
+        assertEquals(90, dwarf.getVida(),0);
+        assertEquals(90, dwarf2.getVida(),0);
         assertEquals(2 , elfo.getExperiencia());
         assertEquals(40, elfo.getFlechas());
         assertEquals(2 , elfo1.getExperiencia());
@@ -102,7 +102,7 @@ public class ElfoTest
         Elfo elfo = new Elfo("José");
         Dwarf dwarf = new Dwarf("Bifur");
         elfo.atacar(dwarf);
-        assertEquals(100 , dwarf.getVida());
+        assertEquals(100 , dwarf.getVida(),0);
     }
 
     @Test

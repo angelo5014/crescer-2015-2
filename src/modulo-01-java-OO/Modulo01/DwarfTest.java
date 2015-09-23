@@ -8,7 +8,7 @@ public class DwarfTest
     @Test
     public void dwarfNasceCom110DeVida(){
         Dwarf dwarf = new Dwarf("jose");
-        assertEquals(110, dwarf.getVida());
+        assertEquals(110, dwarf.getVida(),0);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class DwarfTest
     public void dwarfAzaradoEComumPerdeVidaComFlechada(){
         Dwarf dwarf = new Dwarf("Macacoloko");
         dwarf.receberFlechada();
-        assertEquals(100 , dwarf.getVida());
+        assertEquals(100 , dwarf.getVida(),0);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class DwarfTest
         DataTerceiraEra data = new DataTerceiraEra(10,5,2007);
         Dwarf dwarf = new Dwarf("Seixas", data);
         dwarf.receberFlechada();
-        assertEquals(110, dwarf.getVida());
+        assertEquals(110, dwarf.getVida(),0);
         assertEquals(0, dwarf.getExperiencia());
     }
 
@@ -99,7 +99,7 @@ public class DwarfTest
             dwarf.receberFlechada();
         }
         assertEquals(Status.MORTO, dwarf.getStatus());
-        assertEquals(0, dwarf.getVida());
+        assertEquals(0, dwarf.getVida(),0);
     }
     
     @Test

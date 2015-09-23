@@ -9,7 +9,6 @@ public class Snaga extends Orc{
         this.vida = 70;
         this.experiencia = 0;
         this.status = Status.VIVO;
-        this.inventario = new Inventario();
         this.inventario.adicionarItem( new Item ("Arco",1));
         this.inventario.adicionarItem(new Item ("Flecha",5));
     }
