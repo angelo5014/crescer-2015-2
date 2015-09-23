@@ -2,15 +2,19 @@
  * Representa objetos do tipo Elfo.
  */
 public class Elfo extends Personagem{
+    public Elfo(){
+        this(null);
+    }
+    
       public Elfo(String nome) {
         this(nome, 42);
     }
 
     public Elfo(String nome, int flechas){
-        this.vida = 80;
+        this.vida = 100;
         this.nome = nome;
         this.status = Status.VIVO;
-        inventario = new Inventario();
+        this.experiencia = 0;
         inventario.getItens().add(new Item("Flecha", flechas));
     }
 
@@ -41,7 +45,7 @@ public class Elfo extends Personagem{
     
     public void atacar(Object obj){
         super.atacar(obj);
-        getItem("Flecha").debitarUmaUnidade();
+        super.getItem("Flecha").debitarUmaUnidade();
         this.experiencia++;
     }
     
@@ -57,7 +61,7 @@ public class Elfo extends Personagem{
         return this.nome;
     }
     
-    public int getVida(){
+    public double getVida(){
         return this.vida;
     }
 
