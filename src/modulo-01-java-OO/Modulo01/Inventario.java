@@ -52,7 +52,7 @@ public class Inventario{
         boolean teste = false;
         for(Item item : itens){
             if(item.getDescricao().equals(descricao)){
-                teste = item;
+                teste = true;
             }
         }
         return teste;
