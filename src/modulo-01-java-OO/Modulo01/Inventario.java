@@ -50,9 +50,9 @@ public class Inventario{
 
     public boolean existeItemComDescricao(String descricao){
         boolean teste = false;
-        for(int x = 0; x < itens.size(); x++){
-            if(itens.get(x).getDescricao().equals(descricao)){
-                teste = true;
+        for(Item item : itens){
+            if(item.getDescricao().equals(descricao)){
+                teste = item;
             }
         }
         return teste;
@@ -61,9 +61,9 @@ public class Inventario{
     
     public Item getItemPelaDescricao(String descricao){
         Item teste = null;
-        for(int x = 0; x < itens.size(); x++){
-            if(itens.get(x).getDescricao().equals(descricao)){
-                teste = itens.get(x);
+        for(Item item : itens){
+            if(item.getDescricao().equals(descricao)){
+                teste = item;
             }
         }
         return teste;

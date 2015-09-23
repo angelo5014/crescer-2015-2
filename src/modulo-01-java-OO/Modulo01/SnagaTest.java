@@ -10,21 +10,16 @@ public class SnagaTest{
     public void snagaRecebeFlechadaDeElfoEPerdeVida(){
         Snaga snaga = new Snaga();
         Elfo elfo = new Elfo("Calvin");
-        elfo.atirarFlechas(snaga);
-        assertEquals(62, snaga.getVida());
+        elfo.atacar(snaga);
+        assertEquals(60, snaga.getVida());
     }
+    
+    
     @Test
-    public void snagaRecebeMachadadaDeDwarf(){
-        Snaga snaga = new Snaga();
-        Dwarf dwarf = new Dwarf();
-        dwarf.darMachadada(snaga);
-        assertEquals(60,snaga.getVida());
-    }
-    @Test
-    public void snagaDaFlechadaEmElfo(){
+    public void snagaDaFlechadaEmElfoEPerdeFlecha(){
         Snaga snaga = new Snaga();
         Elfo elfo = new Elfo("Calvin");
-        snaga.atacarInimigo(elfo);
+        snaga.atacarElfo(elfo);
         assertEquals(72, elfo.getVida());
         assertEquals(4,snaga.getInventario().getItemPelaDescricao("Flecha").getQuantidade());
     }
@@ -32,7 +27,7 @@ public class SnagaTest{
     public void snagaDaFlechadaEmDwarf(){
         Snaga snaga = new Snaga();
         Dwarf dwarf = new Dwarf();
-        snaga.atacarInimigo(dwarf);
+        snaga.atacarDwarf(dwarf);
         assertEquals(102, dwarf.getVida());
     }
 }
