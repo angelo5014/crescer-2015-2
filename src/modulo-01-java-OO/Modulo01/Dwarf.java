@@ -17,28 +17,6 @@ public class Dwarf extends Personagem{
         this.experiencia = 0;
         inventario = new Inventario();
     }
-    
-    public void darMachadada(Object obj){
-        if(obj instanceof Elfo){
-            Elfo elfo = (Elfo)obj;
-            elfo.serAtacado(this);
-            experiencia++;
-        }else if(obj instanceof UrukHai){
-            UrukHai urukHai = (UrukHai)obj;
-            urukHai.serAtacado(this);
-        }else if(obj instanceof Snaga){
-            Snaga snaga = (Snaga)obj;
-            snaga.serAtacado(this);
-        }
-    }
-
-    public void serAtacado(Object obj){
-        if(obj instanceof UrukHai){
-            this.vida -= 12;
-        }else if(obj instanceof Snaga){
-            this.vida -= 8;
-        }
-    }
 
     public void receberFlechada(){
         double numeroDaSorte = this.getNumeroSorte();
@@ -67,6 +45,16 @@ public class Dwarf extends Personagem{
             for(Item item : inventario.getItens()){
                 item.setQuantidade(item.getQuantidade() + 1000);
             }
+        }
+    }
+
+    public void receberAtaque(Object obj){
+        if(obj instanceof Elfo){
+            receberFlechada();
+        }else if (obj instanceof Orc){
+            Orc orc = (Orc)obj;
+            int dano = orc.getDanoDeAtaque();
+            this.vida -= dano;
         }
     }
 

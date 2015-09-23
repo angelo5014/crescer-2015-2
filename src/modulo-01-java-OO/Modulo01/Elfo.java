@@ -2,42 +2,25 @@
  * Representa objetos do tipo Elfo.
  */
 public class Elfo extends Personagem{
-    protected int flechas;
-    
-    public Elfo(String nome) {
+      public Elfo(String nome) {
         this(nome, 42);
     }
 
     public Elfo(String nome, int flechas){
         this.vida = 80;
         this.nome = nome;
-        this.flechas = flechas;
         this.status = Status.VIVO;
         inventario = new Inventario();
-    }
-
-    public void atirarFlechas(Object obj){
-        if(obj instanceof Dwarf){
-            Dwarf dwarf = (Dwarf)obj;
-            flechas--;
-            dwarf.receberFlechada();
-            experiencia++;
-        }else if(obj instanceof UrukHai){
-            UrukHai urukHai = (UrukHai)obj;
-            urukHai.serAtacado(this);
-        }else if(obj instanceof Snaga){
-            Snaga snaga = (Snaga)obj;
-            snaga.serAtacado(this);
-        }
+        inventario.getItens().add(new Item("Flecha", flechas));
     }
 
     public String toString(){
-        boolean flechaNoSingular = this.flechas != 1;
+        boolean flechaNoSingular = getItem("Flecha").getQuantidade() != 1;
         boolean nivelNoSingular = this.experiencia != 1;
 
         String textoFormatado = String.format("%s possui %d %s e %d %s de experiencia", 
                 this.nome,
-                this.flechas,
+                this.getItem("Flecha").getQuantidade(),
                 flechaNoSingular ? "flechas" : "flecha",
                 this.experiencia,
                 nivelNoSingular ? "níveis" : "nível"
@@ -45,15 +28,22 @@ public class Elfo extends Personagem{
 
         return textoFormatado;//this.nome + " possui " + this.flechas + " " + textoFlechas + " e " + this.experiencia + " " +textoNiveis + " de experiencia";
     }
-
-    public void serAtacado(Object obj){
-        if(obj instanceof UrukHai){
-            this.vida -= 12;
-        }else if(obj instanceof Snaga){
-            this.vida -= 8;
+    
+    public void receberAtaque(Object obj){
+        if(obj instanceof Dwarf){
+            //Ainda não foi pedido para o Dwarf atacar o Elfo
+        }else if (obj instanceof Orc){
+            Orc orc = (Orc)obj;
+            int dano = orc.getDanoDeAtaque();
+            this.vida -= dano;
         }
     }
     
+    public void atacar(Object obj){
+        super.atacar(obj);
+        getItem("Flecha").debitarUmaUnidade();
+        this.experiencia++;
+    }
     
     public void adicionarItem(Item item){
         inventario.getItens().add(item);
@@ -72,7 +62,7 @@ public class Elfo extends Personagem{
     }
 
     public int getFlechas(){
-        return this.flechas;
+        return getItem("Flecha").getQuantidade();
     }
 
     public int getExperiencia(){

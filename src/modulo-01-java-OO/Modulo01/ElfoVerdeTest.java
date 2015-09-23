@@ -9,7 +9,7 @@ public class ElfoVerdeTest{
     public void elfoVerdeRecebe2XPQuandoAtira(){
         ElfoVerde verde = new ElfoVerde("Elfo");
         Dwarf dwarf = new Dwarf();
-        verde.atirarFlechas(dwarf);
+        verde.atacar(dwarf);
         assertEquals(2,verde.getExperiencia());
     }
 
@@ -17,11 +17,11 @@ public class ElfoVerdeTest{
     public void elfoVerdeRecebe10XPQuandoAtira5(){
         ElfoVerde verde = new ElfoVerde("Elfo");
         Dwarf dwarf = new Dwarf();
-        verde.atirarFlechas(dwarf);
-        verde.atirarFlechas(dwarf);
-        verde.atirarFlechas(dwarf);
-        verde.atirarFlechas(dwarf);
-        verde.atirarFlechas(dwarf);
+        verde.atacar(dwarf);
+        verde.atacar(dwarf);
+        verde.atacar(dwarf);
+        verde.atacar(dwarf);
+        verde.atacar(dwarf);
         assertEquals(10,verde.getExperiencia());
     }
 

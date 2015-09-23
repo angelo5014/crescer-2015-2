@@ -54,7 +54,7 @@ public class ElfoTest
     public void elfoAtiraFlechasGanhaXP(){
         Elfo elfo = new Elfo("José");
         Dwarf dwarf = new Dwarf("Gloin");
-        elfo.atirarFlechas(dwarf);
+        elfo.atacar(dwarf);
         assertEquals(1 , elfo.getExperiencia());
     }
 
@@ -63,8 +63,8 @@ public class ElfoTest
         Elfo elfo = new Elfo("José");
         Dwarf dwarf = new Dwarf("Oin");
         Dwarf dwarf2 = new Dwarf("Balin");
-        elfo.atirarFlechas(dwarf);
-        elfo.atirarFlechas(dwarf2);
+        elfo.atacar(dwarf);
+        elfo.atacar(dwarf2);
         assertEquals(100, dwarf.getVida());
         assertEquals(100, dwarf2.getVida());
         assertEquals(2 , elfo.getExperiencia());
@@ -77,10 +77,10 @@ public class ElfoTest
         Elfo elfo1 = new Elfo("Josnei");
         Dwarf dwarf = new Dwarf("Bofur");
         Dwarf dwarf2 = new Dwarf("Gimli");
-        elfo.atirarFlechas(dwarf);
-        elfo1.atirarFlechas(dwarf2);
-        elfo.atirarFlechas(dwarf);
-        elfo1.atirarFlechas(dwarf2);
+        elfo.atacar(dwarf);
+        elfo1.atacar(dwarf2);
+        elfo.atacar(dwarf);
+        elfo1.atacar(dwarf2);
         assertEquals(90, dwarf.getVida());
         assertEquals(90, dwarf2.getVida());
         assertEquals(2 , elfo.getExperiencia());
@@ -93,7 +93,7 @@ public class ElfoTest
     public void elfoAtiraFlechasEDiminuiUma(){
         Elfo elfo = new Elfo("José");
         Dwarf dwarf = new Dwarf("Bifur");
-        elfo.atirarFlechas(dwarf);
+        elfo.atacar(dwarf);
         assertEquals(41 , elfo.getFlechas());
     }
 
@@ -101,7 +101,7 @@ public class ElfoTest
     public void dwarfTomaDano(){
         Elfo elfo = new Elfo("José");
         Dwarf dwarf = new Dwarf("Bifur");
-        elfo.atirarFlechas(dwarf);
+        elfo.atacar(dwarf);
         assertEquals(100 , dwarf.getVida());
     }
 
@@ -120,14 +120,14 @@ public class ElfoTest
     @Test
     public void elfoComUmDeXPToString(){
         Elfo elfo = new Elfo("José", 1);
-        elfo.atirarFlechas(new Dwarf("Oin"));
+        elfo.atacar(new Dwarf("Oin"));
         assertEquals("José possui 0 flechas e 1 nível de experiencia", elfo.toString());
     }
 
     @Test
     public void elfoComUmDeXPEUmaFlechaToString(){
         Elfo elfo = new Elfo("José", 2);
-        elfo.atirarFlechas(new Dwarf("Oin"));
+        elfo.atacar(new Dwarf("Oin"));
         assertEquals("José possui 1 flecha e 1 nível de experiencia", elfo.toString());
     }
     
