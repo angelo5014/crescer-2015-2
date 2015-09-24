@@ -57,8 +57,7 @@ public class Inventario{
         }
         return teste;
     }
-    
-    
+
     public Item getItemPelaDescricao(String descricao){
         Item teste = null;
         for(Item item : itens){
@@ -68,11 +67,12 @@ public class Inventario{
         }
         return teste;
     }
-    
+
     public int retornarIndicePorNome(String descricao){
         return this.itens.indexOf(getItemPelaDescricao(descricao));
     }
-    
+
+    @Override
     public boolean equals(Object obj) {
         Inventario outroInventario = (Inventario)obj;
         return this.itens.equals(outroInventario.getItens());
