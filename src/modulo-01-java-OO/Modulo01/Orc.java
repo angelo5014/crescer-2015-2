@@ -25,44 +25,34 @@ abstract class Orc extends Personagem{
 
     private void debitarFlecha() {
         Item flecha = getItem("Flecha");
-
-        if(flecha.getQuantidade() == 1){
-            this.inventario.perderItem(flecha);
-        }
-        else {
-            flecha.debitarUmaUnidade();
-        }
-    }
-
-    public void atacarDwarf(Dwarf dwarf){
-        if(podeAtacarComEspada()){
-            dwarf.receberAtaqueDoOrc(this);
-        }else if(podeAtacarComArco()){
-            dwarf.receberAtaqueDoOrc(this);
-            debitarFlecha();
-        }else{
-            this.status = Status.FUGINDO;
-        }
-    }
-
-    public void atacarElfo(Elfo elfo){
-        if(podeAtacarComEspada()){
-            elfo.receberAtaqueDoOrc(this);
-        }else if(podeAtacarComArco()){
-            elfo.receberAtaqueDoOrc(this);
-            debitarFlecha();
-        }else{
-            this.status = Status.FUGINDO;
+        if(flecha!=null){
+            if(flecha.getQuantidade() == 1){
+                this.inventario.perderItem(flecha);
+            }
+            else {
+                flecha.debitarUmaUnidade();
+            }
         }
     }
 
     public int getDanoDeAtaque(){
         if(podeAtacarComEspada()){
             return 12;
-        }
-        if(podeAtacarComArco()){
+        }else if(podeAtacarComArco()){
             return 8;
+        }else{
+            return 0;
         }
-        return 0;
     }
+
+    public void atacar(Object obj){
+        if(podeAtacarComEspada() || podeAtacarComArco()){
+        super.atacar(obj);
+        if(!podeAtacarComEspada()){
+            debitarFlecha();
+        }
+    }else{
+        this.status = Status.FUGINDO;
+    }
+}
 }
