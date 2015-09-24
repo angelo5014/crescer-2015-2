@@ -22,7 +22,7 @@ public class Elfo extends Personagem{
         boolean flechaNoSingular = getItem("Flecha").getQuantidade() != 1;
         boolean nivelNoSingular = this.experiencia != 1;
 
-        String textoFormatado = String.format("%s possui %d %s e %d %s de experiencia", 
+        String textoFormatado = String.format("%s possui %d %s e %d %s de experiência.", 
                 this.nome,
                 this.getItem("Flecha").getQuantidade(),
                 flechaNoSingular ? "flechas" : "flecha",
