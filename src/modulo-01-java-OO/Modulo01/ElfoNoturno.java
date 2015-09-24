@@ -2,6 +2,10 @@
  * Representa objetos do tipo Elfo.
  */
 public class ElfoNoturno extends Elfo{
+    
+    public ElfoNoturno(){
+        this(null);
+    }
 
     public ElfoNoturno(String nome){
         this(nome, 42);

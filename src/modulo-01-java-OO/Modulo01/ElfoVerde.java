@@ -1,5 +1,9 @@
 import java.util.*;
 public class ElfoVerde extends Elfo{
+    
+    public ElfoVerde (){
+        this(null);
+    }
 
     public ElfoVerde(String nome){
         super(nome);

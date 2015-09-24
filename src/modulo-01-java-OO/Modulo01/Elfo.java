@@ -1,7 +1,5 @@
-/**
- * Representa objetos do tipo Elfo.
- */
 public class Elfo extends Personagem{
+    private static int cont = 0;
     public Elfo(){
         this(null);
     }
@@ -16,6 +14,7 @@ public class Elfo extends Personagem{
         this.status = Status.VIVO;
         this.experiencia = 0;
         inventario.getItens().add(new Item("Flecha", flechas));
+        Elfo.cont++;
     }
 
     public String toString(){
@@ -49,6 +48,10 @@ public class Elfo extends Personagem{
         this.experiencia++;
     }
     
+    public void tentarSorte(){
+        
+    }
+    
     public void adicionarItem(Item item){
         inventario.getItens().add(item);
     }
@@ -75,5 +78,15 @@ public class Elfo extends Personagem{
 
     public Status getStatus(){
         return this.status;
+    }
+    
+    public static int getQtdElfosCriados(){
+        return Elfo.cont;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        Elfo outro = (Elfo)obj;
+        return this.nome.equals(outro.getNome());
     }
 }
