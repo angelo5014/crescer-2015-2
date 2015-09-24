@@ -47,6 +47,6 @@ public class ElfoNoturnoTest{
             ef.atacar(new Snaga());
             teste++;
         }
-        assertEquals(0.98,ef.getVida(),0.01);
+        assertEquals(0,ef.getVida(),0);
     }
 }

@@ -24,5 +24,58 @@ public class ElfoVerdeTest{
         verde.atacar(dwarf);
         assertEquals(10,verde.getExperiencia());
     }
+     @Test
+    public void elfoVerdeAtacaUmDwarf() {
+        ElfoVerde green = new ElfoVerde("Fandango");
+        green.atacar(new Dwarf());
 
+        assertEquals(2, green.getExperiencia());
+    }
+
+    @Test
+    public void elfoVerdeAtacaUmDwarfEIrishDwarf() {
+        ElfoVerde green = new ElfoVerde("Green Elf");
+        Dwarf common = new Dwarf("Common Dwarf");
+        IrishDwarf irish = new IrishDwarf();
+        green.atacar(irish);
+        green.atacar(common);
+        assertEquals(4, green.getExperiencia());
+    }
+
+    @Test
+    public void elfoVerdeAdicionaEspadaValiriana() {
+        ElfoVerde sortudo = new ElfoVerde("Sortudo");
+        sortudo.adicionarItem(new Item(1, "Espada de aço valiriano"));
+        Inventario esperado = new Inventario();
+        esperado.adicionarItem(new Item(1, "Espada de aço valiriano"));
+        assertEquals(equals(esperado), equals(sortudo.getInventario()));
+    }
+
+    @Test
+    public void elfoVerdeAdicionaItemComDescricaoInvalida() {
+        ElfoVerde sortudo = new ElfoVerde("Sortudo");
+        sortudo.adicionarItem(new Item(1, "Molejão"));
+        Inventario esperado = new Inventario();
+        assertEquals(equals(esperado), equals(sortudo.getInventario()));
+    }
+
+    @Test
+    public void elfoVerdeAdicionaArcoEFlechaVidroENulo() {
+        ElfoVerde sortudo = new ElfoVerde("Celeborn");
+        sortudo.adicionarItem(new Item(1, "Arco e Flecha de Vidro"));
+        sortudo.adicionarItem(null);
+        Inventario esperado = new Inventario();
+        esperado.adicionarItem(new Item(1, "Arco e Flecha de Vidro"));
+        assertEquals(equals(esperado), equals(sortudo.getInventario()));
+    }
+    
+    @Test
+    public void elfoVerdeAdicionaArcoEFlechaVidroEDescricaoNula() {
+        ElfoVerde sortudo = new ElfoVerde("Celeborn");
+        sortudo.adicionarItem(new Item(1, "Arco e Flecha de Vidro"));
+        sortudo.adicionarItem(new Item(1, null));
+        Inventario esperado = new Inventario();
+        esperado.adicionarItem(new Item(1, "Arco e Flecha de Vidro"));
+        assertEquals(equals(esperado), equals(sortudo.getInventario()));
+    }
 }
