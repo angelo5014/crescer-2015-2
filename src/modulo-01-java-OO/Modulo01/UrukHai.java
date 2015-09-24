@@ -6,4 +6,9 @@ public class UrukHai extends Orc{
         this.inventario.adicionarItem(new Item("Espada", 1));
         this.inventario.adicionarItem(new Item("Escudo Uruk-Hai", 1));
     } 
+    
+    
+    public void tentarSorte(){
+        
+    }
 }

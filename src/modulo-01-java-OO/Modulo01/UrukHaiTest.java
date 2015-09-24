@@ -12,11 +12,12 @@ import org.junit.Test;
 
             int vidaEsperada = 150;
             Inventario inventarioEsperado = new Inventario();
-            inventarioEsperado.adicionarItem(new Item(1, "Escudo Uruk-Hai"));
             inventarioEsperado.adicionarItem(new Item(1, "Espada"));
+            inventarioEsperado.adicionarItem(new Item(1, "Escudo Uruk-Hai"));
+
 
             assertEquals(vidaEsperada, orc.getVida(), 0);
-            assertEquals(equals(inventarioEsperado), equals(orc.getInventario()));
+            assertEquals(inventarioEsperado, orc.getInventario());
         }
 
         @Test

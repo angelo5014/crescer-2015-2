@@ -12,4 +12,8 @@ public class Snaga extends Orc{
         this.inventario.adicionarItem( new Item ("Arco",1));
         this.inventario.adicionarItem(new Item ("Flecha",5));
     }
+    
+    public void tentarSorte(){
+        
+    }
 }
