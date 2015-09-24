@@ -97,5 +97,9 @@ public class InventarioTest
 
         assertEquals(5, invDoThorin.getItens().get(2).getQuantidade());
     }
+    @Test
+    public void compararItem(){
+        assertEquals(new Item("Nome", 1), new Item("Nome", 1));
+    }
 
 }
