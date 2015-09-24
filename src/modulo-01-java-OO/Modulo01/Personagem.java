@@ -36,6 +36,8 @@ public abstract class Personagem{
     public void perderItem(Item item){
         inventario.getItens().remove(item);
     }
+    
+    public abstract void tentarSorte();
 
     public void receberDano(int dano){
         this.vida -= dano;
