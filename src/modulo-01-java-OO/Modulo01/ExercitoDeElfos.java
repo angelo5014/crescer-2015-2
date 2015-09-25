@@ -4,10 +4,11 @@ public class ExercitoDeElfos{
     private HashMap<String, Elfo> exercito;
     private HashMap<Status, ArrayList<Elfo>> exercitoOrdenado;
 
-    EstrategiaDeAtaque estrategia = new EstrategiaNormal();
+    EstrategiaDeAtaque estrategia;
 
     public ExercitoDeElfos(){
         this.exercito = new HashMap<>();
+        estrategia = new EstrategiaNormal();
     }
 
     public void alistar(Elfo elfo){
@@ -56,5 +57,9 @@ public class ExercitoDeElfos{
 
     public ArrayList<Elfo> getOrdemDoUltimoAtaque() {
         return this.estrategia.getOrdemDoUltimoAtaque();
+    }
+    
+    public void mudarEstrategiaDeAtaque(EstrategiaDeAtaque estrategia){
+        this.estrategia = estrategia;
     }
 }
