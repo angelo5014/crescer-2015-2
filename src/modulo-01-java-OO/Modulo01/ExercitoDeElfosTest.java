@@ -11,7 +11,7 @@ public class ExercitoDeElfosTest{
     public void elfoVerdeAlistado(){
         ExercitoDeElfos exercitoDeElfos = new ExercitoDeElfos();
         ElfoVerde verde = new ElfoVerde("Verdinho");
-        exercitoDeElfos.alistarElfo(verde);
+        exercitoDeElfos.alistar(verde);
         assertEquals(verde, exercitoDeElfos.getExercito().get("Verdinho"));
     }
 
@@ -19,7 +19,7 @@ public class ExercitoDeElfosTest{
     public void elfoNightcrawlerAlistado(){
         ExercitoDeElfos exercitoDeElfos = new ExercitoDeElfos();
         ElfoNoturno noturno = new ElfoNoturno("Nigtcrawler");
-        exercitoDeElfos.alistarElfo(noturno);
+        exercitoDeElfos.alistar(noturno);
         assertEquals(noturno, exercitoDeElfos.getExercito().get("Nigtcrawler"));
     }
 
@@ -28,8 +28,8 @@ public class ExercitoDeElfosTest{
         ExercitoDeElfos exercitoDeElfos = new ExercitoDeElfos();
         ElfoNoturno noturno = new ElfoNoturno("Nigtcrawler");
         ElfoVerde verde = new ElfoVerde("Verdinho");
-        exercitoDeElfos.alistarElfo(verde);
-        exercitoDeElfos.alistarElfo(noturno);
+        exercitoDeElfos.alistar(verde);
+        exercitoDeElfos.alistar(noturno);
         assertEquals(noturno, exercitoDeElfos.getExercito().get("Nigtcrawler"));
         assertEquals(verde, exercitoDeElfos.getExercito().get("Verdinho"));
     }
@@ -37,14 +37,14 @@ public class ExercitoDeElfosTest{
     @Test
     public void exercitoTem3ElfosVerdes(){
         ExercitoDeElfos exercito = new ExercitoDeElfos();
-        exercito.alistarElfo(new ElfoVerde("Verde"));
-        exercito.alistarElfo(new ElfoVerde("Azul Esverdeado"));
-        exercito.alistarElfo(new ElfoVerde("Verde Azulado"));
+        exercito.alistar(new ElfoVerde("Verde"));
+        exercito.alistar(new ElfoVerde("Azul Esverdeado"));
+        exercito.alistar(new ElfoVerde("Verde Azulado"));
 
         ExercitoDeElfos exercitoEsperado = new ExercitoDeElfos();
-        exercitoEsperado.alistarElfo(new ElfoVerde("Verde"));
-        exercitoEsperado.alistarElfo(new ElfoVerde("Azul Esverdeado"));
-        exercitoEsperado.alistarElfo(new ElfoVerde("Verde Azulado"));
+        exercitoEsperado.alistar(new ElfoVerde("Verde"));
+        exercitoEsperado.alistar(new ElfoVerde("Azul Esverdeado"));
+        exercitoEsperado.alistar(new ElfoVerde("Verde Azulado"));
 
         assertEquals(exercitoEsperado, exercito);
 
@@ -53,14 +53,14 @@ public class ExercitoDeElfosTest{
     @Test
     public void exercitoTem3ElfosNoturnos(){
         ExercitoDeElfos exercito = new ExercitoDeElfos();
-        exercito.alistarElfo(new ElfoNoturno("Noite"));
-        exercito.alistarElfo(new ElfoNoturno("Madrugada"));
-        exercito.alistarElfo(new ElfoNoturno("Tardinha"));
+        exercito.alistar(new ElfoNoturno("Noite"));
+        exercito.alistar(new ElfoNoturno("Madrugada"));
+        exercito.alistar(new ElfoNoturno("Tardinha"));
 
         ExercitoDeElfos exercitoEsperado = new ExercitoDeElfos();
-        exercitoEsperado.alistarElfo(new ElfoNoturno("Noite"));
-        exercitoEsperado.alistarElfo(new ElfoNoturno("Madrugada"));
-        exercitoEsperado.alistarElfo(new ElfoNoturno("Tardinha"));
+        exercitoEsperado.alistar(new ElfoNoturno("Noite"));
+        exercitoEsperado.alistar(new ElfoNoturno("Madrugada"));
+        exercitoEsperado.alistar(new ElfoNoturno("Tardinha"));
 
         assertEquals(exercitoEsperado, exercito);
 
@@ -69,14 +69,14 @@ public class ExercitoDeElfosTest{
     @Test
     public void exercitoTem2ElfosVerdesE1ElfoNoturno(){
         ExercitoDeElfos exercito = new ExercitoDeElfos();
-        exercito.alistarElfo(new ElfoVerde("Verde"));
-        exercito.alistarElfo(new ElfoNoturno("Madrugada"));
-        exercito.alistarElfo(new ElfoVerde("Verde Claro"));
+        exercito.alistar(new ElfoVerde("Verde"));
+        exercito.alistar(new ElfoNoturno("Madrugada"));
+        exercito.alistar(new ElfoVerde("Verde Claro"));
 
         ExercitoDeElfos exercitoEsperado = new ExercitoDeElfos();
-        exercitoEsperado.alistarElfo(new ElfoVerde("Verde"));
-        exercitoEsperado.alistarElfo(new ElfoNoturno("Madrugada"));
-        exercitoEsperado.alistarElfo(new ElfoVerde("Verde Claro"));
+        exercitoEsperado.alistar(new ElfoVerde("Verde"));
+        exercitoEsperado.alistar(new ElfoNoturno("Madrugada"));
+        exercitoEsperado.alistar(new ElfoVerde("Verde Claro"));
 
         assertEquals(exercitoEsperado, exercito);
 
@@ -86,9 +86,9 @@ public class ExercitoDeElfosTest{
     public void exercitoCom3ElfosVivosE3ElfosMortosOrdenado(){
         ExercitoDeElfos exercito = new ExercitoDeElfos();
 
-        exercito.alistarElfo(new ElfoVerde("v1"));
-        exercito.alistarElfo(new ElfoVerde("v2"));
-        exercito.alistarElfo(new ElfoVerde("v3"));
+        exercito.alistar(new ElfoVerde("v1"));
+        exercito.alistar(new ElfoVerde("v2"));
+        exercito.alistar(new ElfoVerde("v3"));
 
         ElfoNoturno morto1 = new ElfoNoturno("n1");
         ElfoNoturno morto2 = new ElfoNoturno("n2");
@@ -100,9 +100,9 @@ public class ExercitoDeElfosTest{
             morto3.atacar(new Dwarf());
         }
 
-        exercito.alistarElfo(morto1);
-        exercito.alistarElfo(morto2);
-        exercito.alistarElfo(morto3);
+        exercito.alistar(morto1);
+        exercito.alistar(morto2);
+        exercito.alistar(morto3);
 
         HashMap<Status, ArrayList<Elfo>> esperado = new HashMap<>();
         ArrayList<Elfo> vivos = new ArrayList<>();
@@ -132,9 +132,9 @@ public class ExercitoDeElfosTest{
     public void obterElfosVivos(){
         ExercitoDeElfos exercito = new ExercitoDeElfos();
 
-        exercito.alistarElfo(new ElfoVerde("v1"));
-        exercito.alistarElfo(new ElfoVerde("v2"));
-        exercito.alistarElfo(new ElfoVerde("v3"));
+        exercito.alistar(new ElfoVerde("v1"));
+        exercito.alistar(new ElfoVerde("v2"));
+        exercito.alistar(new ElfoVerde("v3"));
 
         ElfoNoturno morto1 = new ElfoNoturno("n1");
         ElfoNoturno morto2 = new ElfoNoturno("n2");
@@ -146,9 +146,9 @@ public class ExercitoDeElfosTest{
             morto3.atacar(new Dwarf());
         }
 
-        exercito.alistarElfo(morto1);
-        exercito.alistarElfo(morto2);
-        exercito.alistarElfo(morto3);
+        exercito.alistar(morto1);
+        exercito.alistar(morto2);
+        exercito.alistar(morto3);
 
         ArrayList<Elfo> vivos = new ArrayList<>();
 
@@ -165,9 +165,9 @@ public class ExercitoDeElfosTest{
     public void obterElfosMortos(){
         ExercitoDeElfos exercito = new ExercitoDeElfos();
 
-        exercito.alistarElfo(new ElfoVerde("v1"));
-        exercito.alistarElfo(new ElfoVerde("v2"));
-        exercito.alistarElfo(new ElfoVerde("v3"));
+        exercito.alistar(new ElfoVerde("v1"));
+        exercito.alistar(new ElfoVerde("v2"));
+        exercito.alistar(new ElfoVerde("v3"));
 
         ElfoNoturno morto1 = new ElfoNoturno("n1");
         ElfoNoturno morto2 = new ElfoNoturno("n2");
@@ -179,9 +179,9 @@ public class ExercitoDeElfosTest{
             morto3.atacar(new Dwarf());
         }
 
-        exercito.alistarElfo(morto1);
-        exercito.alistarElfo(morto2);
-        exercito.alistarElfo(morto3);
+        exercito.alistar(morto1);
+        exercito.alistar(morto2);
+        exercito.alistar(morto3);
 
         ArrayList<Elfo> mortos = new ArrayList<>();
 
