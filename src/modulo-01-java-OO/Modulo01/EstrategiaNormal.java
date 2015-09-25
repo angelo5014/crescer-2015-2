@@ -12,7 +12,7 @@ public class EstrategiaNormal implements EstrategiaDeAtaque{
         for(Elfo elfo : pelotao){
             this.ordemDoUltimoAtaque.add(elfo);
             if(elfo instanceof ElfoNoturno){
-                if(cont < 0.3 * intencoes){
+                if(cont < (int)(0.3 * intencoes)){
                     cont++;
                     for(Dwarf dwarf: dwarves){
                         elfo.atacar(dwarf);
