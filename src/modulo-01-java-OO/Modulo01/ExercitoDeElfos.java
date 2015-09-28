@@ -30,7 +30,6 @@ public class ExercitoDeElfos{
             }
             exercitoOrdenado.get(elfo.getStatus()).add(elfo);
         }
-
     }
 
     public ArrayList<Elfo> buscar(Status status){

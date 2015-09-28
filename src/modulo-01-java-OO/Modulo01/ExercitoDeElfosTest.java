@@ -125,9 +125,6 @@ public class ExercitoDeElfosTest{
 
     }
 
-    /**
-     * Obter a lista de elfos vivos
-     */
     @Test
     public void obterElfosVivos(){
         ExercitoDeElfos exercito = new ExercitoDeElfos();
