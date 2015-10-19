@@ -32,14 +32,16 @@ function imprime(arr, funcao) {
 }
 
 //Ex-4
-function fibSum(n){
-  var soma = 0;
-    for(i=0, j=1, k=0 ; k<n ; i=j, j=x, k++ ){
-        x=i+j;
-        soma += x;
-    }
-    return soma;
-}
+var fibonacci = function(n) {
+  if (n === 1) return 1;
+  if (n === 2) return 1;
+
+  return fibonacci(n-1)+fibonacci(n-2);
+};
+var fiboSum = function(n) {
+  return fibonacci(n+2)-1;
+};
+
 //Ex-5
 function excelis(letra) {
     var soma = 0;
@@ -59,4 +61,3 @@ precos.sort(function(a,b) {return a - b;});
   }
   return resposta;
 }
-
