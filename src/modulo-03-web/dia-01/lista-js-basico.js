@@ -40,3 +40,11 @@ function fibSum(n){
     }
     return soma;
 }
+//Ex-5
+function excelis(letra) {
+    var soma = 0;
+    for (var i = 0; i < letra.length; i++) {
+        soma = soma * 26 + letra.charCodeAt(i) - 64;
+    }
+    return soma;
+}
