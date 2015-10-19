@@ -48,3 +48,15 @@ function excelis(letra) {
     }
     return soma;
 }
+//Ex-6
+function queroCafe(mascada, precos){
+var resposta = '';
+precos.sort(function(a,b) {return a - b;});
+  for(i=0;i<precos.length;i++){
+    if(precos[i] <= mascada){
+      i < (precos.length - 2) ? (resposta += precos[i]+',') : (resposta += precos[i]);
+    }
+  }
+  return resposta;
+}
+
