@@ -1,16 +1,37 @@
 function ordenaPorTitulo(titulo, arr){
   return (arr.sort(function(a,b){return (a.titulos[titulo].qtd < b.titulos[titulo].qtd)}));
-}
+};
+
+function somarTitulos(titulo, arr){
+	var soma = 0;
+	arr.forEach(function(a){
+		soma += a.titulos[titulo].qtd;
+	});
+	return soma;
+};
+
 
 function ordenaPorNacionais(arr){
   return ordenaPorTitulo(0, arr);
-}
+};
 function ordenaPorContinentais(arr){
   return ordenaPorTitulo(1, arr);
-}
+};
 function ordenaPorMundiais(arr){
   return ordenaPorTitulo(2,arr);
-}
+};
+function somarPorNacionais(arr){
+	return somarTitulos(0, arr);
+};
+
+function somarPorContinentais(arr){
+	return somarTitulos(1,arr);
+};
+
+function somarPorMundiais(arr){
+	return somarTitulos(2,arr);
+};
+
 /*
 var clubes = [
   {
