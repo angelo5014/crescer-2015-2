@@ -10,6 +10,11 @@ function somarTitulos(titulo, arr){
 	return soma;
 };
 
+function apenasOsMelhores(arr){
+	return arr.filter(function(a){
+		return a.titulos[0].qtd > 18;
+	});
+};
 
 function ordenaPorNacionais(arr){
   return ordenaPorTitulo(0, arr);
