@@ -41,6 +41,14 @@ function somarPorTodosTitulos(arr){
 	return soma;
 };
 
+function calcularIdadeMedia(arr){
+  var soma = arr.reduce(function(acumulador, elem){
+    var idade = new Date().getFullYear() - elem.fundacao.getFullYear();
+    return acumulador + idade;
+  }, 0);
+  return soma / arr.length;
+}
+
 /*
 var clubes = [
   {
