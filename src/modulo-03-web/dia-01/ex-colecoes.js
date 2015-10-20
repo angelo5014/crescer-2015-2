@@ -33,8 +33,12 @@ function somarPorContinentais(arr){
 	return somarTitulos(1,arr);
 };
 
-function somarPorMundiais(arr){
-	return somarTitulos(2,arr);
+function somarPorTodosTitulos(arr){
+	var soma = 0;
+	[0,1,2].forEach(function(i){
+		soma += somarsomarTitulos(i,arr);
+	});
+	return soma;
 };
 
 /*
