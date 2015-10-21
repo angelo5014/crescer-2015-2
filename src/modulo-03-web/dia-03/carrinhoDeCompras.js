@@ -17,6 +17,9 @@ CarrinhoDeCompras.prototype.atualizarItem = function(sku, novaQtd){
 CarrinhoDeCompras.prototype.calcularValorTotal = function(){
   var soma = 0;
   this.produtos.forEach(function(a){soma += a.calcularSubTotal(a);});
+  if(Math.random() > 0.6){
+    soma = (soma * 10) / 100;
+  }
   return soma;
 }
 
