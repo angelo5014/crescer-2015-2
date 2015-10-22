@@ -11,7 +11,7 @@
     },
     {
       "nome": "Ben Hur",
-      "idade": 27,
+      "idade": "xx",
       "celulares": [
         {
           "modelo": "iPhone"
