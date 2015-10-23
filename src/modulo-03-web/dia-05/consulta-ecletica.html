@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Iron Maiden</title>
+  </head>
+  <body>
+    <input type="text" id="search" placeholder="Digite o nome do artista">
+    <button type="button" id="btSearch">Pesquisar</button>
+    <div></div>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+  $('#btSearch').click(function(){
+    $('div').empty();
+    var busca = $('#search').val();
+    busca = busca.split(' ').join('%20');
+    busca.toLowerCase();
+    var url = 'https://api.spotify.com/v1/search?q='.concat(busca, '&type=artist');
+    $.get(url)
+    .done(function(data){
+      var idIncompleto = data.artists.items[0].external_urls.spotify;
+      var idFinal = idIncompleto.replace('https://open.spotify.com/artist/', '');
+      exibirImagens(idFinal);
+    });
+  });
+
+function exibirImagens(id){
+  $.get('https://api.spotify.com/v1/artists/'.concat(id,'/albums?limit=50'))
+  .done(function(data) {
+    var albuns = data.items;
+    albuns.forEach(function(album){
+      var imagens = album.images;
+      imagens.forEach(function(elem) {
+        if(elem.height === 300 && elem.width === 300){
+        $('div').append($('<img>').attr('src', elem.url));
+      }
+      });
+    });
+    });
+  };
+</script>
+
+  </body>
+</html>
