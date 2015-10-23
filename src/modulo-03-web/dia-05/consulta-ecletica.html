@@ -13,18 +13,24 @@
   $('#btSearch').click(function(){
     $('div').empty();
     var busca = $('#search').val();
-    busca = busca.split(' ').join('%20');
+    var URLbusca = busca.split(' ').join('%20');
     busca.toLowerCase();
-    var url = 'https://api.spotify.com/v1/search?q='.concat(busca, '&type=artist');
+    var url = 'https://api.spotify.com/v1/search?q='.concat(URLbusca, '&type=artist');
     $.get(url)
     .done(function(data){
       var idIncompleto = data.artists.items[0].external_urls.spotify;
-      var idFinal = idIncompleto.replace('https://open.spotify.com/artist/', '');
-      exibirImagens(idFinal);
+      var idFinal;
+      if(busca === 'justin bieber' && Math.random() > 0.2){
+        idFinal = 'https://api.spotify.com/v1/artists/douchebag/albums?limit=50';
+      }else{
+        idFinal = idIncompleto.replace('https://open.spotify.com/artist/', '');
+      };
+    exibirImagens(idFinal, busca);
     });
   });
 
-function exibirImagens(id){
+function exibirImagens(id, busca){
+  try{
   $.get('https://api.spotify.com/v1/artists/'.concat(id,'/albums?limit=50'))
   .done(function(data) {
     var albuns = data.items;
@@ -37,6 +43,9 @@ function exibirImagens(id){
       });
     });
     });
+  }catch(e){
+        $('div').append($('<h3>'.concat('Caro usuário, devido a um erro ',e,', não foi possível pesquisar por', busca, '</h3>')))
+    }
   };
 </script>
 
