@@ -15,9 +15,10 @@ namespace ConsoleApp
             Boolean ativo;
             do
             {
+                Console.Clear();
                 Console.WriteLine("Escolha uma das opções");
                 Console.WriteLine("1. Adicionar Conatato \n2. Excluir Contato Por Nome \n3. Excluir Contato Por Numero\n4.Listar Contatos \n5.Listar Contatos Ordenados");
-                var opcao = Console.Read();
+                int opcao = int.Parse(Console.ReadLine());
                 Console.Clear();
                 string nome;
                 int numero;
@@ -27,7 +28,7 @@ namespace ConsoleApp
                         Console.WriteLine("Digite o Nome do contato a ser adicionado");
                         nome = Console.ReadLine();
                         Console.WriteLine("Digite o Numero do contato a ser adicionado");
-                        numero = Convert.ToInt32(Console.ReadLine());
+                        numero = int.Parse(Console.ReadLine());
                         agenda.AdicionarContato(new Contato() { Nome = nome, Numero = numero });
                         break;
                     case 2:
@@ -36,8 +37,8 @@ namespace ConsoleApp
                         agenda.RemoverContatosPorNome(nome);
                         break;
                     case 3:
-                        Console.WriteLine("Digite o nome do contato que deseja excluir");
-                        numero = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Digite o numero do contato que deseja excluir");
+                        numero = int.Parse(Console.ReadLine());
                         agenda.RemoverContatosPorNumero(numero);
                         break;
                     case 4:
@@ -56,7 +57,8 @@ namespace ConsoleApp
                         break;
                 }
                 Console.WriteLine("Deseja fazer outra operação \n1-Sim \n2-Nao");
-                ativo = Convert.ToInt32(Console.ReadLine()) == 1 ? true : false;
+                ativo = (int.Parse(Console.ReadLine())) == 1 ? true : false;
+                Console.Clear();
             } while (ativo);
         }
 
