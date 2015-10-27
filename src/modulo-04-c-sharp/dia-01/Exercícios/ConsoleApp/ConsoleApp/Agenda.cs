@@ -22,22 +22,32 @@ namespace ConsoleApp
 
         public void RemoverContatosPorNome(string nomeContato)
         {
-            foreach (var contato in contatos)
+            var contatosParaRemover = new List<Contato>();
+
+            for (int i = 0; i < contatos.Count; i++)
             {
-                if (contato.Nome == nomeContato)
-                {
-                    contatos.Remove(contato);
-                }
+                if (contatos[i].Nome == nomeContato)
+                    contatosParaRemover.Add(contatos[i]);
+            }
+
+            foreach (var contato in contatosParaRemover)
+            {
+                contatos.Remove(contato);
             }
         }
         public void RemoverContatosPorNumero(int numeroContato)
         {
-            foreach (var contato in contatos)
+            var contatosParaRemover = new List<Contato>();
+
+            for (int i = 0; i < contatos.Count; i++)
             {
-                if (contato.Numero == numeroContato)
-                {
-                    contatos.Remove(contato);
-                }
+                if (contatos[i].Numero == numeroContato)
+                    contatosParaRemover.Add(contatos[i]);
+            }
+
+            foreach (var contato in contatosParaRemover)
+            {
+                contatos.Remove(contato);
             }
         }
 
