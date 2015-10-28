@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,22 @@ namespace DbFuncionarios
         {
             CriarBase();
         }
+
+        public IList<Funcionario> OrdenadosPorCargo()
+        {
+            return Funcionarios.OrderBy(func => func.Cargo.Titulo).ToList();
+        }
+
+        public IList<Funcionario> BuscarPorNome(string nome)
+        {
+            return Funcionarios.Where(func => func.Nome.Contains(nome)).ToList();
+        }
+        
+        public IList<dynamic> BuscaRapida()
+        {
+            return Funcionarios.Select(func => new { Nome = func.Nome, Titulo = func.Cargo.Titulo}).ToList<dynamic>();
+        }
+
 
         private void CriarBase()
         {
