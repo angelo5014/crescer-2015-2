@@ -15,25 +15,30 @@ namespace Locadora.Dominio
         {
             XElement jogoXML = XElement.Load(URL);
 
-            XElement xmlDoCadastro = new XElement("jogo", 
+            //var lastID = jogoXML.LastNode;
+            //var teste = lastID.ElementsAfterSelf();
+
+            int LastId = Convert.ToInt32(jogoXML.Elements("jogo").Last().Attribute("id").Value);
+
+            XElement xmlDoCadastro = new XElement("jogo",
                 new XElement("nome", jogo.Nome),
                 new XElement("preco", jogo.Preco),
                 new XElement("categoria", jogo.Categoria));
+
+            xmlDoCadastro.SetAttributeValue("id", LastId + 1);
 
             jogoXML.Add(xmlDoCadastro);
 
             jogoXML.Save(URL);
         }
 
-        //public List<Jogo> BuscarPorNome(string nome)
+        //public IList<Jogo> BuscarPorNome(string nome)
         //{
         //    XElement jogoXML = XElement.Load(URL);
-        //    foreach (XElement jogo in xmlJogos.Elements("jogo"))
-        //    {
-        //        XElement nome = jogo.Element("nome");
-        //        Console.WriteLine(jogo.Attribute("id"));
-        //        Console.WriteLine(nome.Value);
-        //    }
+            
+        //    var lista = jogoXML.Elements("jogo").Where(jogo => jogo.Element("nome").Value == nome);
+        //    var a = lista.
+
         //}
     }
 }
