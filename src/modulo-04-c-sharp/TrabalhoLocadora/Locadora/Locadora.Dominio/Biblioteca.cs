@@ -14,10 +14,6 @@ namespace Locadora.Dominio
         public void CadastrarJogo(Jogo jogo)
         {
             XElement jogoXML = XElement.Load(URL);
-
-            //var lastID = jogoXML.LastNode;
-            //var teste = lastID.ElementsAfterSelf();
-
             int LastId = Convert.ToInt32(jogoXML.Elements("jogo").Last().Attribute("id").Value);
 
             XElement xmlDoCadastro = new XElement("jogo",
@@ -32,13 +28,46 @@ namespace Locadora.Dominio
             jogoXML.Save(URL);
         }
 
-        //public IList<Jogo> BuscarPorNome(string nome)
-        //{
-        //    XElement jogoXML = XElement.Load(URL);
-            
-        //    var lista = jogoXML.Elements("jogo").Where(jogo => jogo.Element("nome").Value == nome);
-        //    var a = lista.
+        public IList<Jogo> BuscarPorNome(string nome)
+        {
+            XElement jogoXML = XElement.Load(URL);
 
-        //}
+            var listaXelements = jogoXML.Elements("jogo").Where(jogo => jogo.Element("nome").Value.Contains(nome)).ToList();
+
+            List<Jogo> listaJogos = new List<Jogo>();
+
+            foreach(var att in listaXelements)
+            {
+                listaJogos.Add(new Jogo(att.Element("nome").Value,
+                    double.Parse(att.Element("preco").Value),
+                    att.Element("categoria").Value));
+            }
+
+            return listaJogos;
+        }
+
+        public void EditarNomeJogo(string nome, string novoNome)
+        {
+            XElement jogoXML = XElement.Load(URL);
+            var jogoEscolhido = jogoXML.Elements("jogo").FirstOrDefault(jogo => jogo.Element("nome").Value == nome);
+            jogoEscolhido.Element("nome").SetValue(novoNome);
+            jogoXML.Save(URL);
+        }
+
+        public void EditarPrecoJogo(string nome, double novoPreco)
+        {
+            XElement jogoXML = XElement.Load(URL);
+            var jogoEscolhido = jogoXML.Elements("jogo").FirstOrDefault(jogo => jogo.Element("nome").Value == nome);
+            jogoEscolhido.Element("preco").SetValue(novoPreco);
+            jogoXML.Save(URL);
+        }
+
+        public void EditarCategoriaJogo(string nome, string novaCategoria)
+        {
+            XElement jogoXML = XElement.Load(URL);
+            var jogoEscolhido = jogoXML.Elements("jogo").FirstOrDefault(jogo => jogo.Element("nome").Value == nome);
+            jogoEscolhido.Element("categoria").SetValue(novaCategoria);
+            jogoXML.Save(URL);
+        }
     }
 }
