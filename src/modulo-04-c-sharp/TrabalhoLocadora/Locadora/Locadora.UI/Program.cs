@@ -13,7 +13,15 @@ namespace Locadora.UI
         {
             var db = new Biblioteca();
             var jogo = new Jogo("teste", 1, "rpg");
-            db.CadastrarJogo(jogo);
+
+            db.EditarNomeJogo("Super Metroid", "OLOKO BICHO");
+
+            //var a = db.BuscarPorNome("");
+            //foreach (var b in a)
+            //{
+            //    Console.WriteLine(b.Nome + b.Preco);
+            //}
+            //Console.Read();
         }
     }
 }

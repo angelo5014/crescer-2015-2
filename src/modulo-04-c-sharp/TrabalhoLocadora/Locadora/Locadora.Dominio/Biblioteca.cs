@@ -22,28 +22,15 @@ namespace Locadora.Dominio
                 new XElement("categoria", jogo.Categoria));
 
             xmlDoCadastro.SetAttributeValue("id", LastId + 1);
-
             jogoXML.Add(xmlDoCadastro);
-
             jogoXML.Save(URL);
         }
 
         public IList<Jogo> BuscarPorNome(string nome)
         {
             XElement jogoXML = XElement.Load(URL);
-
             var listaXelements = jogoXML.Elements("jogo").Where(jogo => jogo.Element("nome").Value.Contains(nome)).ToList();
-
-            List<Jogo> listaJogos = new List<Jogo>();
-
-            foreach(var att in listaXelements)
-            {
-                listaJogos.Add(new Jogo(att.Element("nome").Value,
-                    double.Parse(att.Element("preco").Value),
-                    att.Element("categoria").Value));
-            }
-
-            return listaJogos;
+            return ConvertXelToJogo(listaXelements);
         }
 
         public void EditarNomeJogo(string nome, string novoNome)
@@ -69,5 +56,24 @@ namespace Locadora.Dominio
             jogoEscolhido.Element("categoria").SetValue(novaCategoria);
             jogoXML.Save(URL);
         }
+
+        private List<Jogo> ConvertXelToJogo(List<XElement> listaXelements)
+        {
+            List<Jogo> listaJogos = new List<Jogo>();
+            foreach (var att in listaXelements)
+            {
+                listaJogos.Add(new Jogo(att.Element("nome").Value,
+                    double.Parse(att.Element("preco").Value),
+                    att.Element("categoria").Value));
+            }
+            return listaJogos;
+        }
+        private Jogo ConvertXelToJogo(XElement Xelement)
+        {
+            return new Jogo(Xelement.Element("nome").Value,
+                    double.Parse(Xelement.Element("preco").Value),
+                    Xelement.Element("categoria").Value);
+        }
+           
     }
 }

@@ -10,17 +10,27 @@ namespace DbFuncionarios
     {
         static void Main(string[] args)
         {
-            BaseDeDados bd = new BaseDeDados();
+            //BaseDeDados bd = new BaseDeDados();
+            //Console.WriteLine(bd.FiltrarPorIdadeAproximada(40)[0].Nome);
             //IList<Funcionario> funcionarios = bd.Funcionarios;
 
+            //var a = bd.QtdFuncionariosPaorTurno();
 
+            //Console.WriteLine(bd.SalarioMedio(TurnoTrabalho.Noite));
 
-            var f = bd.BuscaRapida();
+            //var t = bd.BuscarPorTurno(TurnoTrabalho.Noite, TurnoTrabalho.Tarde);
 
-            foreach(var a in f)
-            {
-                Console.WriteLine(a.Nome +" - "+ a.Titulo);
-            }
+            //foreach(var a in t)
+            //{
+            //    Console.WriteLine(a.Nome);
+            //}
+
+            //var f = bd.BuscaRapida();
+
+            //foreach(var a in f)
+            //{
+            //    Console.WriteLine(a.Nome +" - "+ a.Titulo);
+            //}
 
             //var f = bd.BuscarPorNome("Lucas");
             //foreach (var a in f)

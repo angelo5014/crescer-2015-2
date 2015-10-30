@@ -34,6 +34,52 @@ namespace DbFuncionarios
             return Funcionarios.Select(func => new { Nome = func.Nome, Titulo = func.Cargo.Titulo}).ToList<dynamic>();
         }
 
+        public IList<Funcionario> BuscarPorTurno(params TurnoTrabalho[]args)
+        {
+            return Funcionarios.Where(func => args.Contains(func.TurnoTrabalho)).ToList();
+        }
+
+        public IList<dynamic> QtdFuncionariosPorTurno()
+        {
+            IEnumerable<dynamic> funcForTurn = Funcionarios
+                .GroupBy(func => func.TurnoTrabalho)
+                .Select(turnos => new
+                {
+                    Turno = turnos.Key,
+                    Quantidade = turnos.Count()
+                }).ToList();
+            return funcForTurn.ToList();
+        }
+
+        public IList<Funcionario> BuscarPorCargo(Cargo cargo)
+        {
+            return Funcionarios.Where(func => func.Cargo.Titulo == cargo.Titulo).ToList();
+        }
+
+        public IList<Funcionario> FiltrarPorIdadeAproximada(int idade)
+        {
+            var atual = DateTime.Now.AddYears(-idade);
+            return Funcionarios
+                .Where(func => 
+                func.DataNascimento >= (atual.AddYears(-5))
+                && 
+                func.DataNascimento <= (atual.AddYears(5))
+                ).ToList();
+        }
+
+        public double SalarioMedio(TurnoTrabalho? turno)
+        {
+            var list = turno.HasValue ? BuscarPorTurno(turno.Value) : this.Funcionarios;
+            return list.Average(funcionario => funcionario.Cargo.Salario);
+        }
+
+        public IList<Funcionario> AniversariantesDoMes()
+        {
+            int mesAtual = DateTime.Now.Month;
+            return Funcionarios.Where(func => func.DataNascimento.Month == mesAtual).ToList();
+        }
+
+
 
         private void CriarBase()
         {
