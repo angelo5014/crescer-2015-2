@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,31 +50,31 @@ namespace Locadora.Dominio
             jogoXML.Save(URL);
         }
 
-        public void EditarCategoriaJogo(string nome, string novaCategoria)
+        public void EditarCategoriaJogo(string nome, Categoria novaCategoria)
         {
             XElement jogoXML = XElement.Load(URL);
             var jogoEscolhido = jogoXML.Elements("jogo").FirstOrDefault(jogo => jogo.Element("nome").Value == nome);
-            jogoEscolhido.Element("categoria").SetValue(novaCategoria);
+            jogoEscolhido.Element("categoria").SetValue(novaCategoria.ToString());
             jogoXML.Save(URL);
         }
 
-        private List<Jogo> ConvertXelToJogo(List<XElement> listaXelements)
+        public List<Jogo> ConvertXelToJogo(List<XElement> listaXelements)
         {
             List<Jogo> listaJogos = new List<Jogo>();
             foreach (var att in listaXelements)
             {
                 listaJogos.Add(new Jogo(att.Element("nome").Value,
                     double.Parse(att.Element("preco").Value),
-                    att.Element("categoria").Value));
+                    (Categoria)Enum.Parse(typeof(Categoria), att.Element("categoria").Value)));
             }
             return listaJogos;
         }
-        private Jogo ConvertXelToJogo(XElement Xelement)
+
+        public Jogo ConvertXelToJogo(XElement Xelement)
         {
             return new Jogo(Xelement.Element("nome").Value,
                     double.Parse(Xelement.Element("preco").Value),
-                    Xelement.Element("categoria").Value);
+                    (Categoria)Enum.Parse(typeof(Categoria),Xelement.Element("categoria").Value));
         }
-           
     }
-}
+ }

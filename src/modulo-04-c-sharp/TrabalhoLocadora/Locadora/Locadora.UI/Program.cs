@@ -12,16 +12,20 @@ namespace Locadora.UI
         static void Main(string[] args)
         {
             var db = new Biblioteca();
-            var jogo = new Jogo("teste", 1, "rpg");
+            var rel = new Relatorio();
+            rel.ExportarRelatorio(db);
 
-            db.EditarNomeJogo("Super Metroid", "OLOKO BICHO");
+
+            //var jogo = new Jogo("teste", 1, "rpg");
+
+            //db.EditarCategoriaJogo("Super Metroid", Categoria.ACAO);
 
             //var a = db.BuscarPorNome("");
             //foreach (var b in a)
             //{
             //    Console.WriteLine(b.Nome + b.Preco);
             //}
-            //Console.Read();
+           Console.Read();
         }
     }
 }

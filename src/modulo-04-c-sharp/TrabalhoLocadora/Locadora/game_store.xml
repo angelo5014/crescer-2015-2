@@ -18,7 +18,7 @@
   <jogo id="4">
     <nome>Super Metroid</nome>
     <preco>35</preco>
-    <categoria>AVENTURA</categoria>
+    <categoria>ACAO</categoria>
   </jogo>
   <jogo id="5">
     <nome>Donkey Kong Country</nome>
@@ -99,10 +99,5 @@
     <nome>Mickey to Donald: Magical Adventure 3</nome>
     <preco>32.9</preco>
     <categoria>AVENTURA</categoria>
-  </jogo>
-  <jogo>
-    <nome>teste</nome>
-    <preco>1</preco>
-    <categoria>rpg</categoria>
   </jogo>
 </jogos>

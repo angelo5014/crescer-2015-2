@@ -11,7 +11,7 @@ namespace LocadoraTest
         public void JogoEhInseridoCorretamente()
         {
             var db = new Biblioteca();
-            var jogo = new Jogo("teste", 1, "rpg");
+            var jogo = new Jogo("teste", 1, Categoria.RPG);
             db.CadastrarJogo(jogo);
         }
     }
