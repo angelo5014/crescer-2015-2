@@ -22,6 +22,12 @@ namespace Locadora.Dominio
             string titulo = string.Format("{0,30}Relatório de jogos{0,-30}", "");
             string sepIgual = "================================================================================";
             string cabecColunas = string.Format("ID{0,7}Categoria{0,8}Nome{0,26}Preço{0,9}Disponivel", "");
+            string sepMenos = "--------------------------------------------------------------------------------";
+            string totalJogos = string.Format("Quantidade total de jogos: {0}",bd.totalJogos().ToString());
+            string totalJogosDisponiveis = string.Format("Quantidade de jogos disponíveis: {0}", bd.totalJogosDisp().ToString());
+            string valorMedio = string.Format("Valor médio por jogo: {0}", bd.valorMedio());
+            string maisCaro = string.Format("Jogo mais caro: {0}", bd.jogoMaisCaro());
+            string maisBarato = string.Format("Jogo mais barato: {0}", bd.jogoMaisBarato());
 
 
             using (var writer = new StreamWriter(URLRelatorio, true))
@@ -33,7 +39,13 @@ namespace Locadora.Dominio
                 writer.WriteLine(sepIgual);
                 writer.WriteLine(cabecColunas);
                 writer.WriteLine(listarJogos(bd));
-
+                writer.WriteLine(sepMenos);
+                writer.WriteLine(totalJogos);
+                writer.WriteLine(totalJogosDisponiveis);
+                writer.WriteLine(valorMedio);
+                writer.WriteLine(maisCaro);
+                writer.WriteLine(maisBarato);
+                writer.WriteLine(sepIgual);
             }
         }
 
@@ -54,8 +66,8 @@ namespace Locadora.Dominio
                 lista += (String.Format("{0,-9}{1,-17}{2,-30}R${3,-14}{4,8}",
                     t.ElementAt(tc.IndexOf(jogo)).Attribute("id").Value,
                     jogo.Categoria.ToString(), DiminuirNome(jogo.Nome),
-                    jogo.Preco.ToString(),
-                    "SIM")) + Environment.NewLine;
+                    jogo.Preco.ToString("0.00",System.Globalization.CultureInfo.GetCultureInfoByIetfLanguageTag("pt-BR")),
+                    jogo.Disponivel ? "SIM":"NÃO")) + Environment.NewLine;
             }
             return lista;
         }

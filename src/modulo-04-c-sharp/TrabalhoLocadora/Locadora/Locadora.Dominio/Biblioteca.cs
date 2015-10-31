@@ -63,18 +63,69 @@ namespace Locadora.Dominio
             List<Jogo> listaJogos = new List<Jogo>();
             foreach (var att in listaXelements)
             {
-                listaJogos.Add(new Jogo(att.Element("nome").Value,
-                    double.Parse(att.Element("preco").Value),
-                    (Categoria)Enum.Parse(typeof(Categoria), att.Element("categoria").Value)));
+                var jogo = new Jogo(att.Element("nome").Value,
+                    double.Parse(att.Element("preco").Value, System.Globalization.CultureInfo.InvariantCulture),
+                    (Categoria)Enum.Parse(typeof(Categoria), att.Element("categoria").Value));
+                jogo.Disponivel = att.Element("disponivel").Value == "SIM" ? true : false;
+                listaJogos.Add(jogo);
             }
             return listaJogos;
         }
 
         public Jogo ConvertXelToJogo(XElement Xelement)
         {
-            return new Jogo(Xelement.Element("nome").Value,
-                    double.Parse(Xelement.Element("preco").Value),
+            var jogo = new Jogo(Xelement.Element("nome").Value,
+                    double.Parse(Xelement.Element("preco").Value, System.Globalization.CultureInfo.InvariantCulture),
                     (Categoria)Enum.Parse(typeof(Categoria),Xelement.Element("categoria").Value));
+            jogo.Disponivel = Xelement.Element("disponivel").Value == "SIM" ? true : false;
+            return jogo;
+        }
+
+        public int totalJogos()
+        {
+            XElement jogoXML = XElement.Load(URL);
+            return Convert.ToInt32(jogoXML.Elements("jogo").Count());
+        }
+
+        public int totalJogosDisp()
+        {
+            XElement jogoXML = XElement.Load(URL);
+            var a = Convert.ToInt32(jogoXML.Elements("jogo").Where(jogo => jogo.Element("disponivel").Value == "SIM").Count());
+            return a;
+        }
+        public double valorMedio()
+        {
+            XElement jogoXML = XElement.Load(URL);
+            return jogoXML.Elements("jogo").Average(jogo => double.Parse(jogo.Element("preco").Value, System.Globalization.CultureInfo.InvariantCulture));
+        }
+        public string jogoMaisCaro()
+        {
+            XElement jogoXML = XElement.Load(URL);
+            var maiorValor = jogoXML.Elements("jogo")
+                .Max(jogo => double.Parse(
+                    jogo.Element("preco").Value, 
+                    System.Globalization.CultureInfo.InvariantCulture));
+
+            var jogoEncontrado = jogoXML.Elements("jogo")
+                .First(jogo => 
+                double.Parse(jogo.Element("preco").Value, 
+                System.Globalization.CultureInfo.InvariantCulture) == maiorValor);
+
+            return jogoEncontrado.Element("nome").Value;
+        }
+        public string jogoMaisBarato()
+        {
+            XElement jogoXML = XElement.Load(URL);
+            var MenorValor =  jogoXML.Elements("jogo")
+                .Min(jogo => double.Parse(jogo.Element("preco").Value,
+                System.Globalization.CultureInfo.InvariantCulture));
+
+            var jogoEncontrado = jogoXML.Elements("jogo")
+                .First(jogo =>
+                double.Parse(jogo.Element("preco").Value,
+                System.Globalization.CultureInfo.InvariantCulture) == MenorValor);
+
+            return jogoEncontrado.Element("nome").Value;
         }
     }
  }

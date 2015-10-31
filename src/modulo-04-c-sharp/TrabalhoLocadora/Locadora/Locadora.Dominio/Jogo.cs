@@ -12,12 +12,14 @@ namespace Locadora.Dominio
         public string Nome { get; private set; }
         public double Preco { get; private set; }
         public Categoria Categoria { get; private set; }
+        public bool Disponivel { get; set; }
 
         public Jogo(string nome, double preco, Categoria genero)
         {
             this.Nome = nome;
             this.Preco = preco;
             this.Categoria = genero;
+            this.Disponivel = true;
         }
     }
 }

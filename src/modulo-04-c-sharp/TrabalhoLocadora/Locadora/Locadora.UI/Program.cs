@@ -14,7 +14,7 @@ namespace Locadora.UI
             var db = new Biblioteca();
             var rel = new Relatorio();
             rel.ExportarRelatorio(db);
-
+            
 
             //var jogo = new Jogo("teste", 1, "rpg");
 
