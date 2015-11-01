@@ -33,6 +33,19 @@ namespace Locadora.Dominio
             var listaXelements = jogoXML.Elements("jogo").Where(jogo => jogo.Element("nome").Value.Contains(nome)).ToList();
             return ConvertXelToJogo(listaXelements);
         }
+        public Jogo BuscarPorNomeIdentico(string nome)
+        {
+            XElement jogoXML = XElement.Load(URL);
+            var Xelement = jogoXML.Elements("jogo").FirstOrDefault(jogo => jogo.Element("nome").Value == nome);
+            if (Xelement != null)
+            {
+                return ConvertXelToJogo(Xelement);
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public void EditarNomeJogo(string nome, string novoNome)
         {
@@ -76,7 +89,7 @@ namespace Locadora.Dominio
         {
             var jogo = new Jogo(Xelement.Element("nome").Value,
                     double.Parse(Xelement.Element("preco").Value, System.Globalization.CultureInfo.InvariantCulture),
-                    (Categoria)Enum.Parse(typeof(Categoria),Xelement.Element("categoria").Value));
+                    (Categoria)Enum.Parse(typeof(Categoria), Xelement.Element("categoria").Value));
             jogo.Disponivel = Xelement.Element("disponivel").Value == "SIM" ? true : false;
             return jogo;
         }
@@ -103,12 +116,12 @@ namespace Locadora.Dominio
             XElement jogoXML = XElement.Load(URL);
             var maiorValor = jogoXML.Elements("jogo")
                 .Max(jogo => double.Parse(
-                    jogo.Element("preco").Value, 
+                    jogo.Element("preco").Value,
                     System.Globalization.CultureInfo.InvariantCulture));
 
             var jogoEncontrado = jogoXML.Elements("jogo")
-                .First(jogo => 
-                double.Parse(jogo.Element("preco").Value, 
+                .First(jogo =>
+                double.Parse(jogo.Element("preco").Value,
                 System.Globalization.CultureInfo.InvariantCulture) == maiorValor);
 
             return jogoEncontrado.Element("nome").Value;
@@ -116,7 +129,7 @@ namespace Locadora.Dominio
         public string jogoMaisBarato()
         {
             XElement jogoXML = XElement.Load(URL);
-            var MenorValor =  jogoXML.Elements("jogo")
+            var MenorValor = jogoXML.Elements("jogo")
                 .Min(jogo => double.Parse(jogo.Element("preco").Value,
                 System.Globalization.CultureInfo.InvariantCulture));
 
@@ -128,4 +141,4 @@ namespace Locadora.Dominio
             return jogoEncontrado.Element("nome").Value;
         }
     }
- }
+}
