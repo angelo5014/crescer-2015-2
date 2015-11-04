@@ -1,0 +1,25 @@
+﻿@model Locadora.MVC.Models.RelatorioModel
+
+@{
+    ViewBag.Title = "JogosDisponiveis";
+}
+
+<section class="">
+    <div class="row">
+        <div class="col-lg-6" >
+            <div class="alert" style="background-color:black">
+                <ul class="list-group"  style="color: green" >
+                    <li class="list-group-item list-group-item-heading" style="color:blue">Lista de Jogos Disponiveis</li>
+                    @{
+                        foreach (var jogo in @Model.Relatorio)
+                        {
+                            <li class="list-group-item">
+                                @jogo.Nome
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+</section>
+

@@ -49,6 +49,8 @@ namespace Locadora.Dominio
             }
         }
 
+        
+
         private string DiminuirNome(string nome)
         {
             return nome = nome.Length < 26 ? nome : nome.Substring(0, 22) + "...";
@@ -70,6 +72,14 @@ namespace Locadora.Dominio
                     jogo.Disponivel ? "SIM":"NÃO")) + Environment.NewLine;
             }
             return lista;
+        }
+
+        public List<Jogo> RetornarJogos()
+        {
+            Biblioteca bd = new Biblioteca();
+            XElement gameStore = XElement.Load(URLXML);
+            var t = gameStore.Elements("jogo").Select(j => j);
+            return bd.ConvertXelToJogo(t.ToList());
         }
 
     }

@@ -10,7 +10,8 @@ namespace Locadora.MVC.Controllers
     {
         public ActionResult JogosDisponiveis()
         {
-            return View();
+            var modelo = new Locadora.MVC.Models.RelatorioModel();
+            return View(modelo);
         }
     }
 }

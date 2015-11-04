@@ -10,7 +10,12 @@ namespace Locadora.MVC.Controllers
     {
         public ActionResult Index()
         {
+            Console.WriteLine("teste");
             return View();
+        }
+        public ActionResult Teste()
+        {
+            return View("ViewPage1");
         }
     }
 }
