@@ -12,7 +12,7 @@ namespace Locadora.Repositorio.ADO
 {
     public class JogoRepositorio : RepositorioBase,  IJogoRepositorio
     {
-        private const string BASE_SELECT = "SELECT Id, Nome, Preco, IdCategoria, IdClienteLocacao FROM Jogo ";
+        private const string BASE_SELECT = "SELECT Id, Nome, Preco, Descricao, IdSelo, IdCategoria, IdClienteLocacao, Imagem, Video FROM Jogo ";
 
         public int Atualizar(Jogo entidade)
         {
@@ -89,15 +89,19 @@ namespace Locadora.Repositorio.ADO
             using (IDbConnection conexao = CriarConexao())
             {
                 var sql = new StringBuilder();
-                sql.Append(" INSERT INTO Jogo (Nome, Preco, Categoria, IdClienteLocacao) ");
-                sql.Append(" VALUES (@paramNome, @paramPreco, @paramCategoria, @paramIdClienteLocacao) ");
+                sql.Append(" INSERT INTO Jogo (Nome, Preco, Descricao, IdSelo, Categoria, Imagem, Video, IdClienteLocacao) ");
+                sql.Append(" VALUES (@paramNome, @paramPreco, @paramDescricao, @paramIdSelo, @paramCategoria, @paramImagem, @paramVideo, @paramIdClienteLocacao) ");
 
                 IDbCommand comando = conexao.CreateCommand();
                 comando.CommandText = sql.ToString();
                 comando.AddParam("paramNome", entidade.Nome);
                 comando.AddParam("paramPreco", entidade.Preco);
+                comando.AddParam("paramDescricao", entidade.Descricao);
+                comando.AddParam("paramIdSelo", (int)entidade.Selo);
                 comando.AddParam("paramIdCategoria", (int)entidade.Categoria);
                 comando.AddParam("paramIdClienteLocacao", entidade.IdClienteLocacao);
+                comando.AddParam("paramImagem", entidade.Imagem);
+                comando.AddParam("paramVideo", entidade.Video);
 
                 conexao.Open();
                 return comando.ExecuteNonQuery();
@@ -138,7 +142,11 @@ namespace Locadora.Repositorio.ADO
 
             jogo.Nome = reader["Nome"].ToString();
             jogo.Preco = Convert.ToDecimal(reader["Preco"]);
+            jogo.Descricao = reader["Descricao"].ToString();
+            jogo.Selo = (Selo)Convert.ToInt32(reader["IdSelo"]);
             jogo.Categoria = (Categoria)Convert.ToInt32(reader["IdCategoria"]);
+            jogo.Imagem = reader["Imagem"].ToString();
+            jogo.Video = reader["Video"].ToString();
 
             return jogo;
         }
