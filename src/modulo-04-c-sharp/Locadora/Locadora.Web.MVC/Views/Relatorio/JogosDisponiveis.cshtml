@@ -8,7 +8,7 @@
 <table class="table table-striped table-bordered table-hover">
     <thead>
         <tr>
-            <th style="width: 40%">Jogo</th>            
+            <th style="width: 40%">Jogo</th>
             <th style="width: 30%">Categoria</th>
             <th style="width: 30%">Preço</th>
         </tr>
@@ -16,10 +16,30 @@
     @foreach (var jogo in @Model.Jogos)
     {
         <tr>
-            <td>@jogo.Nome</td>            
+            <td>@jogo.Nome</td>
             <td>@jogo.Categoria</td>
             <td>@jogo.Preco.ToString("c")</td>
             <td>~@Html.ActionLink("Detalhes", "DetalhesDoJogo/" + jogo.Id, "Jogo")</td>
         </tr>
     }
+
+
 </table>
+
+<ul>
+
+    <th colspan="3"><h4><strong>Informações Gerais</strong></h4></th>
+
+    <li>
+        <td colspan="3">Quantidade Total de Jogos: @Model.QuantidadeDeJogos</td>
+    </li>
+    <li>
+        <td colspan="3">Média de Preço por Jogo: @Model.PrecoMedio</td>
+    </li>
+    <li>
+        <td colspan="3">Jogo Mais Caro: @Model.JogoMaisCaro</td>
+    </li>
+    <li>
+        <td colspan="3">Jogo Mais Barato: @Model.JogoMaisBarato</td>
+    </li>
+</ul>

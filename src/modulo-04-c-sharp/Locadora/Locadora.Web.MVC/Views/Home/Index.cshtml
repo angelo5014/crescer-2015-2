@@ -1,5 +1,11 @@
 ﻿@{
     ViewBag.Title = "Página Inicial";
 }
-
+<div>
+    <form action='@Url.Action("JogosDisponiveis", "Relatorio")' method="get">
+        <input type="text" placeholder="Digite o nome do jogo" name="nome" />
+        <input class="shiny-button" type="submit" value="Buscar" />
+    </form>
+</div>
 <img class="banner" src="@Url.Content("~/Content/games.png")">Jogo</img>
+

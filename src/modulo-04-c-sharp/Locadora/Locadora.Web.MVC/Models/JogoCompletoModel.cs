@@ -23,7 +23,7 @@ namespace Locadora.Web.MVC.Models
             this.Descricao = descricao;
             this.Categoria = categoria;
             this.Selo = selo;
-            this.Imagem = (imagem == null || imagem == "" ? "~/Content/sem-foto_360.jpg" : imagem);
+            this.Imagem = (string.IsNullOrEmpty(imagem) ? "~/Content/sem-foto_360.jpg" : imagem);
             this.Video = video;
         }
     }
