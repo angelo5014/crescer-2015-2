@@ -15,7 +15,7 @@ namespace Locadora.Repositorio.XML
         {
             get
             {
-                return "db_jogos.xml";
+                return @"C:\Users\Angelo\Documents\crescer-2015-2\src\modulo-04-c-sharp\Locadora\Locadora.Repositorio.XML\db_jogos.xml";
             }
         }
 
