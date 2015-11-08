@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = "Jogos Disponíveis";
 }
+@if (TempData["Mensagem"] == null)
+{
+
 
 <h2>Jogos disponíveis para locação</h2>
 
@@ -19,7 +22,17 @@
             <td>@jogo.Nome</td>
             <td>@jogo.Categoria</td>
             <td>@jogo.Preco.ToString("c")</td>
-            <td>~@Html.ActionLink("Detalhes", "DetalhesDoJogo/" + jogo.Id, "Jogo")</td>
+            <td>
+                <a href="~/Jogo/DetalhesDoJogo/@jogo.Id">
+                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                </a>
+            </td>
+            <td>
+                <a href="~/Jogo/Manter/@jogo.Id">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </a>
+
+            </td>
         </tr>
     }
 
@@ -43,3 +56,8 @@
         <td colspan="3">Jogo Mais Barato: @Model.JogoMaisBarato</td>
     </li>
 </ul>
+}
+else
+{
+    <h1>@TempData["Mensagem"]</h1>
+}

@@ -12,7 +12,7 @@ namespace Locadora.Repositorio.ADO
 {
     public class JogoRepositorio : RepositorioBase,  IJogoRepositorio
     {
-        private const string BASE_SELECT = "SELECT Id, Nome, Preco, Descricao, IdSelo, IdCategoria, IdClienteLocacao, Imagem, Video FROM Jogo ";
+        private const string BASE_SELECT = "SELECT Id, Nome, Preco, Descricao, IdSelo, IdCategoria, Imagem, Video, IdClienteLocacao FROM Jogo ";
 
         public int Atualizar(Jogo entidade)
         {
@@ -22,7 +22,11 @@ namespace Locadora.Repositorio.ADO
                 sql.Append(" UPDATE Jogo set ");
                 sql.Append(" Nome = @paramNome, ");
                 sql.Append(" Preco = @paramPreco, ");
+                sql.Append(" Descricao = @paramDescricao, ");
+                sql.Append(" IdSelo = @paramIdSelo, ");
                 sql.Append(" IdCategoria = @paramIdCategoria, ");
+                sql.Append(" Imagem = @paramImagem, ");
+                sql.Append(" Video = @paramVideo, ");
                 sql.Append(" IdClienteLocacao = @paramIdClienteLocacao ");
                 sql.Append(" WHERE Id = @paramId ");
 
@@ -30,7 +34,11 @@ namespace Locadora.Repositorio.ADO
                 comando.CommandText = sql.ToString();
                 comando.AddParam("paramNome", entidade.Nome);
                 comando.AddParam("paramPreco", entidade.Preco);
+                comando.AddParam("paramDescricao", entidade.Descricao);
+                comando.AddParam("paramIdSelo", (int)entidade.Selo);
                 comando.AddParam("paramIdCategoria", (int)entidade.Categoria);
+                comando.AddParam("paramImagem", entidade.Imagem);
+                 comando.AddParam("paramVideo", entidade.Video);
                 comando.AddParam("paramIdClienteLocacao", entidade.IdClienteLocacao);
                 comando.AddParam("paramId", entidade.Id);
 
@@ -89,8 +97,8 @@ namespace Locadora.Repositorio.ADO
             using (IDbConnection conexao = CriarConexao())
             {
                 var sql = new StringBuilder();
-                sql.Append(" INSERT INTO Jogo (Nome, Preco, Descricao, IdSelo, Categoria, Imagem, Video, IdClienteLocacao) ");
-                sql.Append(" VALUES (@paramNome, @paramPreco, @paramDescricao, @paramIdSelo, @paramCategoria, @paramImagem, @paramVideo, @paramIdClienteLocacao) ");
+                sql.Append(" INSERT INTO Jogo (Nome, Preco, Descricao, IdSelo, IdCategoria, Imagem, Video, IdClienteLocacao) ");
+                sql.Append(" VALUES (@paramNome, @paramPreco, @paramDescricao, @paramIdSelo, @paramIdCategoria, @paramImagem, @paramVideo, @paramIdClienteLocacao) ");
 
                 IDbCommand comando = conexao.CreateCommand();
                 comando.CommandText = sql.ToString();

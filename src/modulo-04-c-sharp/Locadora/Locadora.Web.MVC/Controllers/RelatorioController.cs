@@ -19,7 +19,10 @@ namespace Locadora.Web.MVC.Controllers
             var model = new RelatorioModel();
             bool buscarNome = string.IsNullOrEmpty(nome);
 
-            var resultado = buscarNome ? repositorio.BuscarTodos() : repositorio.BuscarPorNome(nome);
+            try
+            {
+                var resultado = buscarNome ? repositorio.BuscarTodos() : repositorio.BuscarPorNome(nome);
+            
 
             foreach (var jogo in resultado)
             {
@@ -37,6 +40,12 @@ namespace Locadora.Web.MVC.Controllers
             model.PrecoMedio = model.Jogos.Average(jogo => jogo.Preco);
 
             return View(model);
+            }
+            catch
+            {
+                TempData["Mensagem"] = "Nenhum jogo Encontrado";
+                return View();
+            }
         }
     }
 }

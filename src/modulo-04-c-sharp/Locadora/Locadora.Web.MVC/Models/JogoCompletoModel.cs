@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Locadora.Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,20 +12,20 @@ namespace Locadora.Web.MVC.Models
         public string Nome { get; set; }
         public decimal Preco { get; set; }
         public string Descricao { get; set; }
-        public string Categoria { get; set; } 
-        public string Selo { get; set; }
+        public Categoria Categoria { get; set; } 
+        public Selo Selo { get; set; }
         public string Imagem { get; set; } 
         public string Video { get; set; }
 
-        public JogoCompletoModel(string nome, decimal preco, string descricao, string categoria, string selo, string imagem, string video)
+        public JogoCompletoModel(Jogo jogo)
         {
-            this.Nome = nome;
-            this.Preco = preco;
-            this.Descricao = descricao;
-            this.Categoria = categoria;
-            this.Selo = selo;
-            this.Imagem = (string.IsNullOrEmpty(imagem) ? "~/Content/sem-foto_360.jpg" : imagem);
-            this.Video = video;
+            this.Nome = jogo.Nome;
+            this.Preco = jogo.Preco;
+            this.Descricao = jogo.Descricao;
+            this.Categoria = jogo.Categoria;
+            this.Selo = jogo.Selo;
+            this.Imagem = (string.IsNullOrEmpty(jogo.Imagem) ? "~/Content/sem-foto_360.jpg" : jogo.Imagem);
+            this.Video = jogo.Video;
         }
     }
 }
