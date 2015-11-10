@@ -10,10 +10,6 @@ namespace Locadora.Dominio
     {
         public string Nome { get; set; }
 
-        public int idade { get; set; }
-
-        public int email { get; set; }
-
         public Cliente()
         {
 

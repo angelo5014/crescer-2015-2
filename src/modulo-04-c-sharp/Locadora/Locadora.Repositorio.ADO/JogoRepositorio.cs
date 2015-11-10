@@ -39,7 +39,8 @@ namespace Locadora.Repositorio.ADO
                 comando.AddParam("paramIdCategoria", (int)entidade.Categoria);
                 comando.AddParam("paramImagem", entidade.Imagem);
                  comando.AddParam("paramVideo", entidade.Video);
-                comando.AddParam("paramIdClienteLocacao", entidade.IdClienteLocacao);
+                //TODO: ajustar mimi pq deu pau na aula do benhur soh
+               // comando.AddParam("paramIdClienteLocacao", entidade.IdClienteLocacao);
                 comando.AddParam("paramId", entidade.Id);
 
                 conexao.Open();
@@ -107,7 +108,8 @@ namespace Locadora.Repositorio.ADO
                 comando.AddParam("paramDescricao", entidade.Descricao);
                 comando.AddParam("paramIdSelo", (int)entidade.Selo);
                 comando.AddParam("paramIdCategoria", (int)entidade.Categoria);
-                comando.AddParam("paramIdClienteLocacao", entidade.IdClienteLocacao);
+                //TODO: Deu pau nesse bagulho
+                //comando.AddParam("paramIdClienteLocacao", entidade.IdClienteLocacao);
                 comando.AddParam("paramImagem", entidade.Imagem);
                 comando.AddParam("paramVideo", entidade.Video);
 
@@ -144,8 +146,9 @@ namespace Locadora.Repositorio.ADO
         private Jogo ConverterDataReaderEmJogo(IDataReader reader)
         {
             var jogo = new Jogo(
-                id: Convert.ToInt32(reader["Id"]),
-                idClienteLocacao: reader["IdClienteLocacao"].ToString().ToNullable<int>()
+                id: Convert.ToInt32(reader["Id"])//,
+                //TODO: Deu pau no bagulho
+                //idClienteLocacao: reader["IdClienteLocacao"].ToString().ToNullable<int>()
                 );
 
             jogo.Nome = reader["Nome"].ToString();
