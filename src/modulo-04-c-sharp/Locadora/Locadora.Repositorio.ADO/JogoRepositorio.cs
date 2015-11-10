@@ -8,7 +8,7 @@ using Locadora.Dominio;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace Locadora.Repositorio.ADO
+namespace Locadora.Repositorio.EF
 {
     public class JogoRepositorio : RepositorioBase,  IJogoRepositorio
     {

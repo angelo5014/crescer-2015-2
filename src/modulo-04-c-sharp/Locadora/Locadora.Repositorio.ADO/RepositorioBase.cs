@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Locadora.Repositorio.ADO
+namespace Locadora.Repositorio.EF
 {
     public abstract class RepositorioBase
     {

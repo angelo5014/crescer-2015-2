@@ -6,13 +6,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Locadora.Dominio.Repositorio;
-using Locadora.Repositorio.ADO;
+using Locadora.Repositorio.EF;
 
 namespace Locadora.Web.MVC.Controllers
 {
+    [Authorize]
     public class RelatorioController : Controller
     {
-        private IJogoRepositorio repositorio = new Repositorio.ADO.JogoRepositorio();
+        private IJogoRepositorio repositorio = new Locadora.Repositorio.EF.JogoRepositorio();
 
         public ActionResult JogosDisponiveis(string nome)
         {

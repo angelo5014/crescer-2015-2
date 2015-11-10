@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Locadora.Web.MVC.Controllers
 {
+    [Authorize]
     public class ClienteController : Controller
     {
         [HttpGet]
@@ -21,7 +22,7 @@ namespace Locadora.Web.MVC.Controllers
         {
             if (id.HasValue)
             {
-                IClienteRepositorio repositorio = new Repositorio.ADO.ClienteRepositorio();
+                IClienteRepositorio repositorio = new Repositorio.EF.ClienteRepositorio();
                 var model = repositorio.BuscarPorId((int)id);
 
 

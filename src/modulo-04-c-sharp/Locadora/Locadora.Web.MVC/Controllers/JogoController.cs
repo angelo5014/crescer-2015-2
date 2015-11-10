@@ -1,6 +1,7 @@
 ﻿using Locadora.Dominio;
 using Locadora.Dominio.Repositorio;
 using Locadora.Web.MVC.Models;
+using Locadora.Web.MVC.Seguranca.Filter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,10 @@ using System.Web.Mvc;
 
 namespace Locadora.Web.MVC.Controllers
 {
+    [Authorize]
     public class JogoController : Controller
     {
-        IJogoRepositorio repositorio = new Repositorio.ADO.JogoRepositorio();
+        IJogoRepositorio repositorio = new Repositorio.EF.JogoRepositorio();
 
         [HttpGet]
         public ActionResult Manter(int? id)
@@ -28,6 +30,7 @@ namespace Locadora.Web.MVC.Controllers
             }
         }
 
+        [Autorizador(Roles = "DETALHE")]
         [HttpGet]
         public ActionResult DetalhesDoJogo(int id)
         {
