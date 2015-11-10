@@ -8,11 +8,11 @@ using Locadora.Dominio;
 
 namespace Locadora.Repositorio.EF
 {
-    class JogoRepositorio : IJogoRepositorio
+    class JogoRepositorio : RepositorioBase, IJogoRepositorio
     {
         public int Atualizar(Jogo jogo)
         {
-            using (var db = new BancoDeDados())
+            using (var db = CriarConexao())
             {
                 db.Entry(jogo).State = System.Data.Entity.EntityState.Modified;
                 return db.SaveChanges();
@@ -21,7 +21,7 @@ namespace Locadora.Repositorio.EF
 
         public Jogo BuscarPorId(int id)
         {
-            using (var db = new BancoDeDados())
+            using (var db = CriarConexao())
             {
                 return db.Jogo.Find(id);
             }
@@ -29,7 +29,7 @@ namespace Locadora.Repositorio.EF
 
         public IList<Jogo> BuscarPorNome(string nome)
         {
-            using (var db = new BancoDeDados())
+            using (var db = CriarConexao())
             {
                 return db.Jogo.Where(jogo => jogo.Nome.Contains(nome)).ToList();
             }
@@ -37,7 +37,7 @@ namespace Locadora.Repositorio.EF
 
         public IList<Jogo> BuscarTodos()
         {
-            using (var db = new BancoDeDados())
+            using (var db = CriarConexao())
             {
                 return db.Jogo.Select(jogo => jogo).ToList();
             }
@@ -45,7 +45,7 @@ namespace Locadora.Repositorio.EF
 
         public int Criar(Jogo jogo)
         {
-            using (var db = new BancoDeDados())
+            using (var db = CriarConexao())
             {
                 db.Entry(jogo).State = System.Data.Entity.EntityState.Added;
                 return db.SaveChanges();
@@ -54,7 +54,7 @@ namespace Locadora.Repositorio.EF
 
         public int Excluir(int id)
         {
-            using (var db = new BancoDeDados())
+            using (var db = CriarConexao())
             {
                 db.Entry(new Jogo(id)).State = System.Data.Entity.EntityState.Deleted;
                 return db.SaveChanges();
