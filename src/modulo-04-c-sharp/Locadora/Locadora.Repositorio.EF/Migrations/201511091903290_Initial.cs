@@ -15,25 +15,45 @@ namespace Locadora.Repositorio.EF.Migrations
                         Nome = c.String(nullable: false, maxLength: 200),
                     })
                 .PrimaryKey(t => t.Id);
-            
+
+            CreateTable(
+                "dbo.Categoria",
+                c => new
+                {
+                    Id = c.Int(nullable: false, identity: true),
+                    Descricao = c.String(nullable: false)
+                })
+                .PrimaryKey(t => t.Id);
+
+            CreateTable(
+                "dbo.Selo",
+                c => new
+                {
+                    Id = c.Int(nullable: false, identity: true),
+                    Descricao = c.String(nullable: false)
+                })
+                .PrimaryKey(t => t.Id);
+
             CreateTable(
                 "dbo.Jogo",
                 c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Nome = c.String(nullable: false),
-                        Preco = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Descricao = c.String(nullable: false),
-                        IdCategoria = c.Int(nullable: false),
-                        IdSelo = c.Int(nullable: false),
-                        Imagem = c.String(),
-                        Video = c.String(),
-                        IdClienteLocacao = c.Int(),
-                    })
+                {
+                    Id = c.Int(nullable: false, identity: true),
+                    Nome = c.String(nullable: false),
+                    Preco = c.Decimal(nullable: false, precision: 18, scale: 2),
+                    Descricao = c.String(nullable: false),
+                    IdCategoria = c.Int(nullable: false),
+                    IdSelo = c.Int(nullable: false),
+                    Imagem = c.String(),
+                    Video = c.String(),
+                    IdClienteLocacao = c.Int(),
+                })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Cliente", t => t.IdClienteLocacao)
+                .ForeignKey("dbo.IdCategoria", t => t.IdCategoria)
+                .ForeignKey("dbo.IdSelo", t => t.IdSelo)
                 .Index(t => t.IdClienteLocacao);
-            
+
         }
         
         public override void Down()
