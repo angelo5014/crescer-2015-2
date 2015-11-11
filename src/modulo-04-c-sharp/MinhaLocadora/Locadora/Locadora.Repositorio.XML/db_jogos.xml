@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<jogos>
+  <jogo id="1">
+    <nome>Chrono Trigger</nome>
+    <preco>60</preco>
+    <descricao>Jogo RPG antigão que faz sucesso com os old</descricao>
+    <categoria>RPG</categoria>
+    <selo>Ouro</selo>
+    <imagem></imagem>
+    <video></video>
+    <id_cliente_locacao></id_cliente_locacao>
+  </jogo>
+  <jogo id="2">
+    <nome>Top Gear</nome>
+    <preco>20</preco>
+    <descricao>Jogo de corrida maneiro</descricao>
+    <categoria>CORRIDA</categoria>
+    <selo>Ouro</selo>
+    <imagem></imagem>
+    <video></video>
+    <id_cliente_locacao></id_cliente_locacao>
+  </jogo>
+  <jogo id="3">
+    <nome>Megaman X</nome>
+    <preco>40</preco>
+    <descricao>Jogo de plataforma em que o cara tem um canhão no braço</descricao>
+    <categoria>AVENTURA</categoria>
+    <selo>Ouro</selo>
+    <imagem></imagem>
+    <video></video>
+    <id_cliente_locacao></id_cliente_locacao>
+  </jogo>
+  <jogo id="4">
+    <nome>Super Metroid</nome>
+    <preco>35</preco>
+    <descricao>Jogo plataforma onde o nome da protagonista não é metroid </descricao>
+    <categoria>AVENTURA</categoria>
+    <selo>Ouro</selo>
+    <imagem></imagem>
+    <video></video>
+    <id_cliente_locacao></id_cliente_locacao>
+
+  </jogo>
+  <jogo id="5">
+    <nome>Donkey Kong Country</nome>
+    <preco>25</preco>
+    <descricao>Jogo de corrida com animais e pessoas onde tomo mundo se agride</descricao>
+    <categoria>AVENTURA</categoria>
+    <selo>Ouro</selo>
+    <imagem></imagem>
+    <video></video>
+    <id_cliente_locacao></id_cliente_locacao>
+  </jogo>
+</jogos>
