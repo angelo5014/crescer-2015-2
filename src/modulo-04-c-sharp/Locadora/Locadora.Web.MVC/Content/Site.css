@@ -16,7 +16,29 @@ textarea {
     max-width: 280px;
 }
 
+<<<<<<< HEAD
 banner{
     
 }
 
+=======
+.color-white {
+    color: #fff;
+}
+
+.bg-black {
+    background-color: #000;
+}
+
+.fb-page {
+    float: right;
+}
+
+.imagem-detalhe-jogo {
+    width: 100%;
+}
+
+.imagem-selo-jogo {
+    width: 32px;
+}
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196

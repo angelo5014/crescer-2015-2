@@ -13,24 +13,41 @@ namespace Locadora.Dominio
         public string Descricao { get; set; }
 
         public Categoria Categoria { get; set; }
+        
+        public Selo Selo { get; set; }
 
+        public string Descricao { get; set; }
+
+        public string UrlImagem { get; set; }
+
+<<<<<<< HEAD
         public Selo Selo { get; set; }
 
         public string Imagem { get; set; }
 
         public string Video { get; set; }
+=======
+        public string TagVideo { get; set; }
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
 
         public Cliente ClienteLocacao { get; private set; }
         
         public Jogo()
         {
-
+            this.Selo = Selo.Bronze;
         }
 
+<<<<<<< HEAD
         public Jogo(int id, Cliente ClienteLocacao = null)
         {
             this.Id = id;
             this.ClienteLocacao = ClienteLocacao;
+=======
+        public Jogo(int id, Cliente clienteLocacao) : base()
+        {
+            this.Id = id;
+            this.ClienteLocacao = clienteLocacao;
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
         }
 
         public void LocarPara(Cliente cliente)

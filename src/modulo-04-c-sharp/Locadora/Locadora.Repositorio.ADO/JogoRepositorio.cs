@@ -12,7 +12,13 @@ namespace Locadora.Repositorio.EF
 {
     public class JogoRepositorio : RepositorioBase,  IJogoRepositorio
     {
+<<<<<<< HEAD
         private const string BASE_SELECT = "SELECT Id, Nome, Preco, Descricao, IdSelo, IdCategoria, Imagem, Video, IdClienteLocacao FROM Jogo ";
+=======
+        private const string BASE_SELECT = " SELECT Id, Nome, Preco, IdCategoria, IdClienteLocacao, IdSelo, " +
+                                                  " Descricao, Url_Imagem, Tag_Video " +
+                                           " FROM Jogo ";
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
 
         public int Atualizar(Jogo entidade)
         {
@@ -25,9 +31,17 @@ namespace Locadora.Repositorio.EF
                 sql.Append(" Descricao = @paramDescricao, ");
                 sql.Append(" IdSelo = @paramIdSelo, ");
                 sql.Append(" IdCategoria = @paramIdCategoria, ");
+<<<<<<< HEAD
                 sql.Append(" Imagem = @paramImagem, ");
                 sql.Append(" Video = @paramVideo, ");
                 sql.Append(" IdClienteLocacao = @paramIdClienteLocacao ");
+=======
+                sql.Append(" IdClienteLocacao = @paramIdClienteLocacao, ");
+                sql.Append(" IdSelo = @paramIdSelo, ");
+                sql.Append(" Descricao = @paramDescricao, ");
+                sql.Append(" Url_Imagem = @paramUrlImagem, ");
+                sql.Append(" Tag_Video = @paramTagVideo ");
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
                 sql.Append(" WHERE Id = @paramId ");
 
                 IDbCommand comando = conexao.CreateCommand();
@@ -37,10 +51,18 @@ namespace Locadora.Repositorio.EF
                 comando.AddParam("paramDescricao", entidade.Descricao);
                 comando.AddParam("paramIdSelo", (int)entidade.Selo);
                 comando.AddParam("paramIdCategoria", (int)entidade.Categoria);
+<<<<<<< HEAD
                 comando.AddParam("paramImagem", entidade.Imagem);
                  comando.AddParam("paramVideo", entidade.Video);
                 //TODO: ajustar mimi pq deu pau na aula do benhur soh
                // comando.AddParam("paramIdClienteLocacao", entidade.IdClienteLocacao);
+=======
+                comando.AddParam("paramIdClienteLocacao", entidade.IdClienteLocacao);
+                comando.AddParam("paramIdSelo", (int)entidade.Selo);
+                comando.AddParam("paramDescricao", entidade.Descricao);
+                comando.AddParam("paramUrlImagem", entidade.UrlImagem);
+                comando.AddParam("paramTagVideo", entidade.TagVideo);
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
                 comando.AddParam("paramId", entidade.Id);
 
                 conexao.Open();
@@ -98,8 +120,13 @@ namespace Locadora.Repositorio.EF
             using (IDbConnection conexao = CriarConexao())
             {
                 var sql = new StringBuilder();
+<<<<<<< HEAD
                 sql.Append(" INSERT INTO Jogo (Nome, Preco, Descricao, IdSelo, IdCategoria, Imagem, Video, IdClienteLocacao) ");
                 sql.Append(" VALUES (@paramNome, @paramPreco, @paramDescricao, @paramIdSelo, @paramIdCategoria, @paramImagem, @paramVideo, @paramIdClienteLocacao) ");
+=======
+                sql.Append(" INSERT INTO Jogo (Nome, Preco, Categoria, IdClienteLocacao, IdSelo, Descricao, Url_Imagem, Tag_Video) ");
+                sql.Append(" VALUES (@paramNome, @paramPreco, @paramCategoria, @paramIdClienteLocacao, @paramIdSelo, @paramDescricao, @paramUrlImagem, @paramTagVideo) ");
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
 
                 IDbCommand comando = conexao.CreateCommand();
                 comando.CommandText = sql.ToString();
@@ -108,10 +135,18 @@ namespace Locadora.Repositorio.EF
                 comando.AddParam("paramDescricao", entidade.Descricao);
                 comando.AddParam("paramIdSelo", (int)entidade.Selo);
                 comando.AddParam("paramIdCategoria", (int)entidade.Categoria);
+<<<<<<< HEAD
                 //TODO: Deu pau nesse bagulho
                 //comando.AddParam("paramIdClienteLocacao", entidade.IdClienteLocacao);
                 comando.AddParam("paramImagem", entidade.Imagem);
                 comando.AddParam("paramVideo", entidade.Video);
+=======
+                comando.AddParam("paramIdClienteLocacao", entidade.IdClienteLocacao);
+                comando.AddParam("paramIdSelo", (int)entidade.Selo);
+                comando.AddParam("paramDescricao", entidade.Descricao);
+                comando.AddParam("paramUrlImagem", entidade.UrlImagem);
+                comando.AddParam("paramTag_Video", entidade.TagVideo);
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
 
                 conexao.Open();
                 return comando.ExecuteNonQuery();
@@ -156,8 +191,15 @@ namespace Locadora.Repositorio.EF
             jogo.Descricao = reader["Descricao"].ToString();
             jogo.Selo = (Selo)Convert.ToInt32(reader["IdSelo"]);
             jogo.Categoria = (Categoria)Convert.ToInt32(reader["IdCategoria"]);
+<<<<<<< HEAD
             jogo.Imagem = reader["Imagem"].ToString();
             jogo.Video = reader["Video"].ToString();
+=======
+            jogo.Selo = (Selo)Convert.ToInt32(reader["IdSelo"]);
+            jogo.Descricao = reader["Descricao"].ToString();
+            jogo.UrlImagem = reader["Url_Imagem"].ToString();
+            jogo.TagVideo = reader["Tag_Video"].ToString();
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
 
             return jogo;
         }

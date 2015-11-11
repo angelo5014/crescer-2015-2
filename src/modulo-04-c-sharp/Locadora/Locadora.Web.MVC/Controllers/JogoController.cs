@@ -1,7 +1,13 @@
 ﻿using Locadora.Dominio;
+<<<<<<< HEAD
 using Locadora.Dominio.Repositorio;
 using Locadora.Web.MVC.Models;
 using Locadora.Web.MVC.Seguranca.Filter;
+=======
+using Locadora.Web.MVC.Helpers;
+using Locadora.Web.MVC.Models;
+using Locadora.Web.MVC.Seguranca;
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +16,7 @@ using System.Web.Mvc;
 
 namespace Locadora.Web.MVC.Controllers
 {
+<<<<<<< HEAD
     [Authorize]
     public class JogoController : Controller
     {
@@ -99,5 +106,18 @@ namespace Locadora.Web.MVC.Controllers
             return jogo;
         }
 
+=======
+    [Autorizador]
+    public class JogoController : Controller
+    {
+        public ActionResult DetalhesDoJogo(int id)
+        {
+            Jogo jogoEncontrado = FabricaDeModulos.CriarJogoRepositorio().BuscarPorId(id);
+
+            var jogoModel = new DetalheJogoModel(jogoEncontrado);
+
+            return View(jogoModel);
+        }
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
     }
 }

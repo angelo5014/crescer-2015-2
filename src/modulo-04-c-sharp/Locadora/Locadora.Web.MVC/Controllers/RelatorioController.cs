@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 ﻿using Locadora.Web.MVC.Models;
 using Locadora.Dominio;
+=======
+﻿using Locadora.Dominio;
+using Locadora.Dominio.Repositorio;
+using Locadora.Web.MVC.Helpers;
+using Locadora.Web.MVC.Models;
+using Locadora.Web.MVC.Seguranca;
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +18,7 @@ using Locadora.Repositorio.EF;
 
 namespace Locadora.Web.MVC.Controllers
 {
+<<<<<<< HEAD
     [Authorize]
     public class RelatorioController : Controller
     {
@@ -39,6 +48,31 @@ namespace Locadora.Web.MVC.Controllers
             model.JogoMaisBarato = model.Jogos.First(jogo => jogo.Preco == menorPreco).Nome;
 
             model.PrecoMedio = model.Jogos.Average(jogo => jogo.Preco);
+=======
+    [Autorizador]
+    public class RelatorioController : Controller
+    {
+        public ActionResult JogosFiltradosPorId(int id)
+        {
+            return View();
+        }
+        
+        public ActionResult JogosDisponiveis(string nome)
+        {
+            IList<Jogo> jogosEncontrados = null;
+            IJogoRepositorio jogoRepositorio = FabricaDeModulos.CriarJogoRepositorio();
+
+            if(string.IsNullOrEmpty(nome))
+            {
+                jogosEncontrados = jogoRepositorio.BuscarTodos();
+            }
+            else
+            {
+                jogosEncontrados = jogoRepositorio.BuscarPorNome(nome);
+            }
+
+            RelatorioJogosDisponiveisModel model = new RelatorioJogosDisponiveisModel(jogosEncontrados);
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
 
             return View(model);
             }
@@ -48,5 +82,7 @@ namespace Locadora.Web.MVC.Controllers
                 return View();
             }
         }
+        
+
     }
 }

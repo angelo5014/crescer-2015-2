@@ -8,8 +8,8 @@ CREATE TABLE dbo.Categoria
 
 CREATE TABLE dbo.Cliente
 (    
-    Id              INT             NOT NULL CONSTRAINT PK_IdCliente PRIMARY KEY,
-    Nome            VARCHAR(250)    NOT NULL
+    Id              INT  IDENTITY (1,1)           NOT NULL CONSTRAINT PK_IdCliente PRIMARY KEY,
+    Nome            VARCHAR(250)				  NOT NULL
 )
 
 CREATE TABLE dbo.Selo

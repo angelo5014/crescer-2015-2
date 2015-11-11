@@ -20,10 +20,17 @@ namespace Locadora.Dominio
         }
 
         private Permissao() { }
+<<<<<<< HEAD
 
         public override bool Equals(object obj)
         {
             if (obj != null)
+=======
+        
+        public override bool Equals(object obj)
+        {
+            if(obj != null)
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
             {
                 Permissao permissaoComp = obj as Permissao;
 
@@ -35,4 +42,8 @@ namespace Locadora.Dominio
             return false;
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196

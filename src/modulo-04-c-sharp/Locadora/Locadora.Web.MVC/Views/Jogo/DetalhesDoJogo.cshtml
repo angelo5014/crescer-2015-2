@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 ﻿@model JogoCompletoModel
+=======
+﻿@model Locadora.Web.MVC.Models.DetalheJogoModel
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
 @{
     ViewBag.Title = "DetalhesDoJogo";
 }
 
 
+<<<<<<< HEAD
 
 
 <section class="col-lg-12">
@@ -23,4 +28,42 @@
 
     </div>
 </section>
+=======
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading text-center"><h2>@Model.Nome</h2></div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
+                <img src="@Model.UrlImagem" alt="Imagem Jogo" class="imagem-detalhe-jogo img-thumbnail" />
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-7 col-xs-12">
+
+                <ul class="list-group">
+                    <li class="list-group-item">Categoria: @Model.Categoria <br /></li>
+                    <li class="list-group-item">Preço: @Model.Preco.ToString("c") <br /></li>
+                    <li class="list-group-item">Selo: @Html.Partial("~/Views/Shared/Jogo/_SeloJogo.cshtml", Model.Selo)</li>
+                </ul>
+            </div>
+        </div>
+        
+        @if (!String.IsNullOrEmpty(Model.TagVideo))
+        {
+            <br />
+            <div class="row bg-black">
+                <div class="col-lg-12 text-center">
+                    <h2 class="color-white">Vídeo do jogo</h2>
+                    @Html.Raw(Model.TagVideo)
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+
+
+
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
 

@@ -16,7 +16,12 @@ namespace Locadora.Web.MVC
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+<<<<<<< HEAD
             BundleTable.EnableOptimizations = true;
+=======
+
+            //BundleTable.EnableOptimizations = true;
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
         }
     }
 }

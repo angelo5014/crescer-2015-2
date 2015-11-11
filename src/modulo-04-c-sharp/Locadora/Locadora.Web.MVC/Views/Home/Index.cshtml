@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "Página Inicial";
+﻿
+@{
+    ViewBag.Title = "Pagina Inicial";
 }
 <div>
     <form action='@Url.Action("JogosDisponiveis", "Relatorio")' method="get">
@@ -8,6 +9,7 @@
     </form>
 </div>
 
+<<<<<<< HEAD
 <img class="banner" src="@Url.Content("~/Content/games.png")"/>
 
 <div class="fb-like"></div>
@@ -21,4 +23,16 @@
   js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.5";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+=======
+<h2>Locadora - CWI Crescer</h2>
+<form action="@Url.Action("JogosDisponiveis", "Relatorio")" method="get">
+    <label for="nome">Pesquisa por nome: </label>
+    <input type="text" name="nome" value="" />
+
+    <input type="submit" value="Pesquisar" />
+</form>
+
+
+<img src="@Url.Content("~/Content/Images/logo.png")" />
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
 

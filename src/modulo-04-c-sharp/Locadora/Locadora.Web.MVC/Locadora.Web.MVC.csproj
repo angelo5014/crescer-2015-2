@@ -116,9 +116,16 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+<<<<<<< HEAD
     <Content Include="Content\games.png" />
     <Content Include="Content\produto-sem-imagem.gif" />
     <Content Include="Content\sem-foto_360.jpg" />
+=======
+    <Content Include="Content\Images\bronze-medal.png" />
+    <Content Include="Content\Images\gold-medal.png" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\silver-medal.png" />
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -134,19 +141,29 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
-    <Content Include="Views\Relatorio\JogosDisponiveis.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JogoController.cs" />
+=======
+    <Compile Include="Helpers\FabricaDeModulos.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Seguranca\Autorizador.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JogoController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
     <Compile Include="Controllers\RelatorioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ClienteModel.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\JogoCompletoModel.cs" />
     <Compile Include="Models\JogoModel.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -155,21 +172,37 @@
     <Compile Include="Seguranca\ControleDaSessao.cs" />
     <Compile Include="Seguranca\Filter\Autorizador.cs" />
     <Compile Include="Seguranca\Models\UsuarioLogado.cs" />
+=======
+    <Compile Include="Models\DetalheJogoModel.cs" />
+    <Compile Include="Models\RelatorioJogosDisponiveisModel.cs" />
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seguranca\ControleDeSessao.cs" />
+    <Compile Include="Seguranca\UsuarioLogado.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+<<<<<<< HEAD
     <Content Include="Views\Jogo\DetalhesDoJogo.cshtml" />
     <Content Include="Views\Cliente\Index.cshtml" />
     <Content Include="Views\Jogo\Manter.cshtml" />
+=======
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Relatorio\JogosDisponiveis.cshtml" />
+    <Content Include="Views\Jogo\DetalhesDoJogo.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Cliente\Manter.cshtml" />
+    <Content Include="Views\Shared\Jogo\_SeloJogo.cshtml" />
+>>>>>>> 196bc442c1d9dea6c1835e05199b10a9db08b196
     <Content Include="Views\Login\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -192,6 +225,20 @@
       <Name>Locadora.Repositorio.ADO</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Locadora.Dominio\Locadora.Dominio.csproj">
+      <Project>{93d95d00-78c7-4b77-be44-686ab7a29c7c}</Project>
+      <Name>Locadora.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Locadora.Infraestrutura.Servicos\Locadora.Infraestrutura.Servicos.csproj">
+      <Project>{f5c9351f-9b3f-42f3-a019-2f0bf6abd1ac}</Project>
+      <Name>Locadora.Infraestrutura.Servicos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Locadora.Repositorio.EF\Locadora.Repositorio.EF.csproj">
+      <Project>{15831fe1-6945-4478-8fb4-c720b409ae8b}</Project>
+      <Name>Locadora.Repositorio.EF</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -207,7 +254,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>56771</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:56771/</IISUrl>
+          <IISUrl>http://localhost:3000/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
