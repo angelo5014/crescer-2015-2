@@ -15,6 +15,7 @@ namespace Locadora.Web.MVC.Controllers
     {
         IJogoRepositorio repositorio = new Repositorio.EF.JogoRepositorio();
 
+        [Autorizador(Roles = "ADMIN")]
         [HttpGet]
         public ActionResult Manter(int? id)
         {
@@ -30,7 +31,7 @@ namespace Locadora.Web.MVC.Controllers
             }
         }
 
-        [Autorizador(Roles = "DETALHE")]
+        [Autorizador(Roles = "ADMIN")]
         [HttpGet]
         public ActionResult DetalhesDoJogo(int id)
         {

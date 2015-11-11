@@ -88,7 +88,7 @@ namespace Locadora.Repositorio.EF
         {
             ToTable("Permissao");
             HasKey(u => u.Id);
-            Property(u => u.Descricao).IsRequired().HasMaxLength(50);
+            Property(u => u.Nome).IsRequired().HasMaxLength(50);
         }
     }
 

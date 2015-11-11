@@ -152,6 +152,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Models\ManterJogoModel.cs" />
     <Compile Include="Models\RelatorioModel.cs" />
+    <Compile Include="Seguranca\ControleDaSessao.cs" />
     <Compile Include="Seguranca\Filter\Autorizador.cs" />
     <Compile Include="Seguranca\Models\UsuarioLogado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

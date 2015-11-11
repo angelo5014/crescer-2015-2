@@ -15,7 +15,7 @@ namespace Locadora.Web.MVC.Seguranca.Filter
         {
             UsuarioLogado usuarioLogado = filterContext.HttpContext.Session["USUARIO_LOGADO"] as UsuarioLogado;
 
-            var identidade = new GenericIdentity(usuarioLogado.Usuario);
+            var identidade = new GenericIdentity(usuarioLogado.Email);
             string[] roles = usuarioLogado.Permissoes;
 
             var principal = new GenericPrincipal(identidade, roles);

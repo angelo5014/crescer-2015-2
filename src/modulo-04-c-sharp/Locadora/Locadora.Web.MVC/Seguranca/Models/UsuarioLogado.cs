@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Locadora.Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,14 +8,21 @@ namespace WebApplication1.Models
 {
     public class UsuarioLogado
     {
-        public string Usuario { get; private set; }
+        public string Email { get; private set; }
 
         public string[] Permissoes { get; private set; }
 
-        public UsuarioLogado(string usuario, string[] permissoes)
+        public UsuarioLogado(Usuario usuario)
         {
-            this.Usuario = usuario;
-            this.Permissoes = permissoes;
+            this.Email = usuario.Email;
+            this.Permissoes = usuario.Permissoes.Select(p => p.Nome).ToArray();
         }
+
+        public bool TemPermissao(string nomePermissao)
+        {
+            return this.Permissoes != null
+                && this.Permissoes.Contains(nomePermissao);
+        }
+
     }
 }
