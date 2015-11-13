@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Pagina Inicial";
+}
+
+<h2>Locadora - CWI Crescer</h2>
+<form action="@Url.Action("JogosDisponiveis", "Relatorio")" method="get">
+    <label for="nome">Pesquisa por nome: </label>
+    <input type="text" id="nome" name="nome" value="" />
+
+    <input type="submit" id="btnPesquisar" value="Pesquisar" />
+</form>
+
+
+<img class="img-responsive" src="@Url.Content("~/Content/Images/games.png")" />
+
+@section Scripts {
+    <script>
+        $("document").ready(function() {
+            $("#nome").autocomplete({
+              source: '@Url.Action("JogosAutocomplete", "Relatorio")',
+              select: function() { $("#btnPesquisar").click(); }
+            });
+        });
+    </script>
+}

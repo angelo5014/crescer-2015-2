@@ -1,0 +1,15 @@
+﻿@model DetalheJogoModel
+
+@{
+    string imgJogo = "";
+
+    if (Model.UrlImagem != null && Model.UrlImagem != "")
+    {
+        imgJogo = Model.UrlImagem;
+    }
+    else
+    {
+        imgJogo = "~/Content/Images/produto-sem-imagem.gif";
+    }
+}
+<img src="imgJogo" alt="Imagem Jogo" class="imagem-detalhe-jogo img-thumbnail" />

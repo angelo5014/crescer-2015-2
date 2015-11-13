@@ -10,7 +10,6 @@ namespace Locadora.Web.MVC.Models
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public decimal Preco { get; set; }
         public string Descricao { get; set; }
         public Categoria Categoria { get; set; } 
         public Selo Selo { get; set; }
@@ -20,7 +19,6 @@ namespace Locadora.Web.MVC.Models
         public JogoCompletoModel(Jogo jogo)
         {
             this.Nome = jogo.Nome;
-            this.Preco = jogo.Preco;
             this.Descricao = jogo.Descricao;
             this.Categoria = jogo.Categoria;
             this.Selo = jogo.Selo;

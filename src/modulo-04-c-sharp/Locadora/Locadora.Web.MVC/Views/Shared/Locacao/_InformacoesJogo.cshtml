@@ -1,0 +1,39 @@
+﻿@model Locadora.Web.MVC.Models.DetalheJogoModel
+@{
+    ViewBag.Title = "DetalhesDoJogo";
+}
+
+
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading text-center"><h2>@Model.Nome</h2></div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
+                <div style="position:absolute; right:7%; top:3.7%; background-color:white">
+                    @Html.Partial("~/Views/Shared/Jogo/_SeloJogo.cshtml", Model.Selo)
+                </div>
+                <img src="@Model.UrlImagem" alt="Imagem Jogo" class="imagem-detalhe-jogo img-thumbnail"/>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-7 col-xs-12">
+
+                <ul class="list-group">
+                    <li class="list-group-item">Categoria: @Model.Categoria <br /></li>
+                    <li class="list-group-item">Preço: @Model.Preco.ToString("c") <br /></li>
+                    <li class="list-group-item">Entrega: @DateTime.Now.AddDays(Model.TempoMaximo).ToString("dd/MM/yyyy")</li>
+                </ul>
+            </div>
+        </div>
+
+        @if (!String.IsNullOrEmpty(Model.TagVideo))
+        {
+            <br />
+            <div class="row bg-black">
+                <div class="col-lg-12 text-center">
+                    <h2 class="color-white">Vídeo do jogo</h2>
+                    @Html.Raw(Model.TagVideo)
+                </div>
+            </div>
+        }
+    </div>
+</div>
