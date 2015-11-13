@@ -1,5 +1,4 @@
-﻿using Locadora.Dominio;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,18 +7,30 @@ namespace Locadora.Web.MVC.Models
 {
     public class LocacaoModel
     {
-        public Jogo Jogo { get; private set; }
-        public Cliente Cliente { get; private set; }
-        public DateTime DataLocacao { get; private set; }
-        public DateTime? DataDevolucao { get; private set; }
+        public int IdJogo { get; set; }
 
-        public LocacaoModel (Locacao locacao)
-        {
-            this.Jogo = locacao.Jogo;
-            this.Cliente = locacao.Cliente;
-            this.DataLocacao = DataLocacao;
-            this.DataDevolucao = DataDevolucao;
-        }
+        public int IdCliente { get; set; }
 
+        public string NomeJogo { get; set; }
+
+        public string NomeCliente { get; set; }
+
+        public string Selo { get; set; }
+
+        public string Categoria { get; set; }
+
+        public string Descricao { get; set; }
+
+        public string UrlImagem { get; set; }
+
+        public string TagVideo { get; set; }
+
+        public int TempoMaximo { get; set; }
+
+        public DateTime DataLocacao { get; set; }
+
+        public DateTime DataPrevista { get { return DataLocacao.AddDays(TempoMaximo); } }
+
+        public decimal Preco { get; set; }
     }
 }

@@ -1,17 +1,17 @@
-﻿@model Locadora.Dominio.Selo
+﻿@model string
 
 @{ 
     string imgSelo = "";
 
     switch (Model)
     {
-        case Locadora.Dominio.Selo.Bronze:
+        case "Bronze":
             imgSelo = "~/Content/Images/bronze-medal.png";
             break;
-        case Locadora.Dominio.Selo.Prata:
+        case "Prata":
             imgSelo = "~/Content/Images/silver-medal.png";
             break;
-        case Locadora.Dominio.Selo.Ouro:
+        case "Ouro":
             imgSelo = "~/Content/Images/gold-medal.png";
             break;
         default:

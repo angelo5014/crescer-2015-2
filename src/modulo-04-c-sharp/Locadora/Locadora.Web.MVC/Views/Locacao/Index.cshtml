@@ -1,4 +1,4 @@
-﻿@model DetalheJogoModel
+﻿@model Locadora.Web.MVC.Models.LocacaoModel
 
 @{
     ViewBag.Title = "Index";
@@ -6,19 +6,24 @@
 
 @Html.Partial("~/Views/Shared/Locacao/_InformacoesJogo.cshtml", Model)
 
-<form action="@Url.Action("Locar", "Locacao")" method="get">
-    <label for="nome">Pesquisa por nome: </label>
-    <input type="text" id="nome" name="nome" value="" />
+@using (Html.BeginForm("Locar", "Locacao", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @*@Html.AntiForgeryToken()*@
+    @Html.ValidationSummary(true)
 
-    <input type="submit" id="btnPesquisar" value="Pesquisar" />
-</form>
+    @Html.HiddenFor(m => m.IdJogo)
+
+    <label for="nome">Pesquisa por nome: </label>
+    @Html.TextBoxFor(m => m.NomeCliente, new { @type = "text", @class = "fomr-control", @id = "nome", @name = "nome", @value = "" })
+
+    <input type="submit" id="btnPesquisar" value="Locar" />
+}
 
 @section Scripts {
     <script>
         $("document").ready(function() {
             $("#nome").autocomplete({
-              source: '@Url.Action("ClientesAutoComplete", "Cliente")',
-              //select: function() { $("#btnPesquisar").click(); }
+              source: '@Url.Action("ClientesAutoComplete", "Cliente")'
             });
         });
     </script>

@@ -14,6 +14,8 @@ namespace Locadora.Dominio
         public DateTime DataLocacao { get; private set; }
         public DateTime? DataDevolucao { get; private set; }
 
+        public Locacao() { }
+
         public Locacao(Jogo jogo, Cliente cliente)
         {
             this.Jogo = jogo;

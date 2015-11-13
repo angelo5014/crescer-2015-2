@@ -8,6 +8,6 @@ namespace Locadora.Dominio.Servicos
 {
     public interface IServicoLocacao
     {
-        bool VerificarDisponibilidade();
+        bool VerificarDisponibilidade(int idJogo);
     }
 }

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicoCriptografia.cs" />
+    <Compile Include="ServicoLocacao.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Locadora.Dominio\Locadora.Dominio.csproj">
