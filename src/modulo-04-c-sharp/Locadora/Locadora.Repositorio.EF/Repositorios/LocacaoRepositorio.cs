@@ -14,7 +14,7 @@ namespace Locadora.Repositorio.EF.Repositorios
         {
             using (var db = new BancoDeDados())
             {
-                return db.Locacao.Find(id);
+                return db.Locacao.Include("Jogo").Include("Cliente").FirstOrDefault();
             }
         }
 
@@ -22,7 +22,7 @@ namespace Locadora.Repositorio.EF.Repositorios
         {
             using (var db = new BancoDeDados())
             {
-                var b = db.Locacao.FirstOrDefault(m => m.Id == idJogo && m.DataDevolucao == null);
+                var b = db.Locacao.SingleOrDefault(m => m.Id == idJogo && m.DataDevolucao == null);
                 return b;
             }
         }

@@ -15,8 +15,8 @@ namespace Locadora.Repositorio.EF.Mapping
             ToTable("Locacao");
 
             HasKey(m => m.Id);
-            HasRequired(m => m.Jogo).WithRequiredDependent().Map(m => m.MapKey("IdJogo"));
-            HasRequired(m => m.Cliente).WithRequiredDependent().Map(m => m.MapKey("IdCliente"));
+            HasRequired(m => m.Jogo).WithMany().HasForeignKey(m => m.IdJogo);//.WithRequiredDependent().Map(m => m.MapKey("IdJogo"));
+            HasRequired(m => m.Cliente).WithMany().HasForeignKey(m => m.IdCliente);//.WithRequiredDependent().Map(m => m.MapKey("IdCliente"));
             Property(m => m.DataLocacao).IsRequired();
             Property(m => m.DataDevolucao).IsOptional();
         }

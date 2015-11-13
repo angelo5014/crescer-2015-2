@@ -8,8 +8,9 @@ namespace Locadora.Dominio
 {
     public class Locacao : EntidadeBase
     {
-
+        public int IdJogo { get; set; }
         public Jogo Jogo { get; private set; }
+        public int IdCliente { get; set; }
         public Cliente Cliente { get; private set; }
         public DateTime DataLocacao { get; private set; }
         public DateTime? DataDevolucao { get; private set; }
@@ -18,8 +19,8 @@ namespace Locadora.Dominio
 
         public Locacao(Jogo jogo, Cliente cliente)
         {
-            this.Jogo = jogo;
-            this.Cliente = cliente;
+            this.IdJogo = jogo.Id;
+            this.IdCliente = cliente.Id;
             this.DataLocacao = DateTime.Now;
         }
 

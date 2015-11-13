@@ -15,11 +15,9 @@ namespace Locadora.Infraestrutura.Servicos
         IJogoRepositorio jogoRepositorio;
         IClienteRepositorio clienteRepositorio;
 
-        public ServicoLocacao(ILocacaoRepositorio locacaoRepositorio /*TODO: IJogoRepositorio jogoRepositorio, IClienteRepositorio clienteRepositorio*/)
+        public ServicoLocacao(ILocacaoRepositorio locacaoRepositorio)
         {
             this.locacaoRepositorio = locacaoRepositorio;
-            this.jogoRepositorio = jogoRepositorio;
-            this.clienteRepositorio = clienteRepositorio;
         }
 
         public bool VerificarDisponibilidade(int idJogo)

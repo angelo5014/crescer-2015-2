@@ -9,7 +9,7 @@
 @using (Html.BeginForm("Locar", "Locacao", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @*@Html.AntiForgeryToken()*@
-    @Html.ValidationSummary(true)
+    @*@Html.ValidationSummary(true)*@
 
     @Html.HiddenFor(m => m.IdJogo)
 

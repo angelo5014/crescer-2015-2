@@ -17,8 +17,7 @@ namespace Locadora.Web.MVC.Controllers
     {
         //Só pra teste! Não façam uma coisa dessas!
         List<JogoDisponivelModel> exemploDeLista = new List<JogoDisponivelModel>
-        {
-            //new JogoDisponivelModel(new Dominio.Jogo(1) { Nome = "Mario" }),
+        {            //new JogoDisponivelModel(new Dominio.Jogo(1) { Nome = "Mario" }),
             //new JogoDisponivelModel(new Dominio.Jogo(2) { Nome = "Mario 2" })
 
         };

@@ -48,9 +48,9 @@ namespace Locadora.Web.MVC.Controllers
                     repositorio.Criar(locacao);
                 }
 
-                return View("Index");
+                return RedirectToAction("JogosDisponiveis", "Relatorio");
             }
-            return View("Index");
+            return View("Index", model.IdJogo);
         }
 
         private Locacao LocacaoModelParaLocacao(LocacaoModel model)
