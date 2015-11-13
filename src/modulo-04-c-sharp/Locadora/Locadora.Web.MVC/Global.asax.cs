@@ -17,7 +17,7 @@ namespace Locadora.Web.MVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

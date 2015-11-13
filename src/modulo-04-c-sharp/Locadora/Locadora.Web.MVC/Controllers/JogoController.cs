@@ -11,9 +11,11 @@ using System.Web.Mvc;
 
 namespace Locadora.Web.MVC.Controllers
 {
-    [Autorizador]
+    
     public class JogoController : Controller
     {
+
+        [Autorizador]
         public ActionResult Manter(int? id)
         {
             if (id.HasValue)
@@ -29,6 +31,7 @@ namespace Locadora.Web.MVC.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [Autorizador]
         public ActionResult Salvar(ManterJogoModel model)
         {
             if (ModelState.IsValid)

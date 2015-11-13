@@ -12,5 +12,6 @@ namespace Locadora.Dominio.Repositorio
         Locacao BuscarJogoLivre(int idJogo);
         int Criar(Locacao locacao);
         int Atualizar(Locacao locacao);
+        int BuscarIdPorIdJogo(int id);
     }
 }

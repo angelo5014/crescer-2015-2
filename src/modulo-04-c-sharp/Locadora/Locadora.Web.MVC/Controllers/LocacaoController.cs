@@ -27,6 +27,11 @@ namespace Locadora.Web.MVC.Controllers
             return View();
         }
 
+        public ActionResult IndexDevolucao()
+        {
+            return View();
+        }
+
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult Locar(LocacaoModel model)
@@ -51,6 +56,23 @@ namespace Locadora.Web.MVC.Controllers
                 return RedirectToAction("JogosDisponiveis", "Relatorio");
             }
             return View("Index", model.IdJogo);
+        }
+
+        public ActionResult Devolver(LocacaoModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var repositorio = FabricaDeModulos.CriarLocacaoRepositorio();
+                var locacao = repositorio
+                                .BuscarPorId(repositorio
+                                .BuscarIdPorIdJogo(FabricaDeModulos.CriarJogoRepositorio()
+                                .BuscarPorNome(model.NomeJogo)[0].Id));
+
+                locacao.DataDevolucao = DateTime.Now;
+                repositorio.Atualizar(locacao);
+                //return View(LocacaoParaLocacaoModel(locacao));
+            }
+            return View("IndexDevolucao");
         }
 
         private Locacao LocacaoModelParaLocacao(LocacaoModel model)
@@ -83,6 +105,36 @@ namespace Locadora.Web.MVC.Controllers
                 UrlImagem = jogo.UrlImagem,
                 TagVideo = jogo.TagVideo,
                 TempoMaximo = jogo.TempoMaximo
+            };
+        }
+        
+        private Jogo LocacaoModelParaJogo(LocacaoModel model)
+        {
+            return new Jogo(model.IdJogo)
+            {
+                Nome = model.NomeJogo,
+                Selo = (Selo)Enum.Parse(typeof(Selo), model.Selo),
+                Categoria = (Categoria)Enum.Parse(typeof(Categoria), model.Categoria),
+                Descricao = model.Descricao,
+                UrlImagem = model.UrlImagem,
+                TagVideo = model.TagVideo
+            };
+        }
+
+        private LocacaoModel LocacaoParaLocacaoModel(Locacao loc)
+        {
+            return new LocacaoModel()
+            {
+                IdJogo = loc.IdJogo,
+                IdCliente = loc.IdCliente,
+                DataLocacao = loc.DataLocacao,
+                NomeJogo = loc.Cliente.Nome,
+                NomeCliente = loc.Jogo.Nome,
+                Selo = loc.Jogo.Selo.ToString(),
+                Categoria = loc.Jogo.Categoria.ToString(),
+                Descricao = loc.Jogo.Descricao,
+                UrlImagem = loc.Jogo.UrlImagem,
+                TagVideo = loc.Jogo.TagVideo
             };
         }
 

@@ -220,6 +220,8 @@
     <Content Include="Views\Locacao\Index.cshtml" />
     <Content Include="Views\Shared\Locacao\_InformacoesJogo.cshtml" />
     <Content Include="Views\Shared\Jogo\_Imagem.cshtml" />
+    <Content Include="Views\Locacao\IndexDevolucao.cshtml" />
+    <Content Include="Views\Locacao\Devolver.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
