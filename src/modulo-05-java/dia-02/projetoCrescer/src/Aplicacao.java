@@ -1,9 +1,7 @@
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
 import br.com.cwi.dao.ClienteDao;
-import br.com.cwi.jdbc.ConnectionFactory;
 import br.com.cwi.model.Cliente;
 
 public class Aplicacao {

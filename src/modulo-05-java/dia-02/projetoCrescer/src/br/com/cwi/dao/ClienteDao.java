@@ -10,7 +10,7 @@ import java.util.List;
 import br.com.cwi.jdbc.ConnectionFactory;
 import br.com.cwi.model.Cliente;
 
-public class ClienteDao {
+public class ClienteDao implements BaseDao<Cliente> {
 
 	public void add(Cliente cliente) throws SQLException{
 		try (Connection conn = new ConnectionFactory().getConnection();){
@@ -36,6 +36,7 @@ public class ClienteDao {
 					"SELECT idCliente,"
 					+ " nmCliente"
 					+ ", nrCpf FROM Cliente");
+			
 			ResultSet result = statement.executeQuery();
 			
 			List<Cliente> list = new ArrayList<Cliente>();
