@@ -2,19 +2,51 @@ package br.com.cwi.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.cwi.jdbc.ConnectionFactory;
 import br.com.cwi.model.Servico;
 
-public class ServicoDao {
+public class ServicoDao implements BaseDao<Servico>{
 
 	public void add(Servico servico) throws SQLException{
 		
 		try(Connection conn = new ConnectionFactory().getConnection()){
-			String sql = "SELECT";
+			String sql = "INSERT INTO Servico(idServico, dsServico) VALUES(?,?)";
 			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setLong(1, servico.getIdServico());
+			statement.setString(2, servico.getDsServico());
+			statement.execute();
+		}catch (SQLException e) {
+			throw e;
 		}
 	}
 	
+	public List<Servico> listAll() throws SQLException{
+		
+		try (Connection conn = new ConnectionFactory().getConnection()){
+			
+			String sql = "SELECT idServico, dsServico FROM Servico";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			
+			ResultSet resultSet = statement.executeQuery();
+			
+			List<Servico> lista = new ArrayList<Servico>();
+			
+			while (resultSet.next()) {
+				Servico ser = new Servico();
+				ser.setIdServico(resultSet.getLong("idServico"));
+				ser.setDsServico(resultSet.getString("dsServico"));
+				lista.add(ser);
+			}
+			
+			return lista;
+			
+		} catch (SQLException e) {
+			throw e;
+		}
+	}
 }
