@@ -17,7 +17,7 @@ public class ServicoDao implements BaseDao<Servico>{
 		try(Connection conn = new ConnectionFactory().getConnection()){
 			String sql = "INSERT INTO Servico(idServico, dsServico) VALUES(?,?)";
 			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setLong(1, servico.getIdServico());
+			statement.setLong(1, servico.getId());
 			statement.setString(2, servico.getDsServico());
 			statement.execute();
 		}catch (SQLException e) {
@@ -38,7 +38,7 @@ public class ServicoDao implements BaseDao<Servico>{
 			
 			while (resultSet.next()) {
 				Servico ser = new Servico();
-				ser.setIdServico(resultSet.getLong("idServico"));
+				ser.setId(resultSet.getLong("idServico"));
 				ser.setDsServico(resultSet.getString("dsServico"));
 				lista.add(ser);
 			}

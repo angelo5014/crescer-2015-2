@@ -1,18 +1,8 @@
 package br.com.cwi.model;
 
-public class Servico {
+public class Servico extends BaseModel{
 
-	private Long idServico;
-	
 	private String dsServico;
-
-	public Long getIdServico() {
-		return idServico;
-	}
-
-	public void setIdServico(Long idServico) {
-		this.idServico = idServico;
-	}
 
 	public String getDsServico() {
 		return dsServico;

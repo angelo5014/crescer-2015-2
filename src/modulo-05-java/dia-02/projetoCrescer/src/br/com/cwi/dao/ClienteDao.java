@@ -19,7 +19,7 @@ public class ClienteDao implements BaseDao<Cliente> {
 					+ "(idCliente, nmCliente, nrCpf)"
 					+ " VALUES(?,?,?)");
 			
-			statement.setLong(1, cliente.getIdCliente());
+			statement.setLong(1, cliente.getId());
 			statement.setString(2, cliente.getNmCliente());
 			statement.setString(3, cliente.getNrCpf());
 			
@@ -31,11 +31,13 @@ public class ClienteDao implements BaseDao<Cliente> {
 		}
 	}
 	public List<Cliente> listAll() throws SQLException{
+		
 		try (Connection conn = new ConnectionFactory().getConnection()){
+			
 			PreparedStatement statement = conn.prepareStatement(
 					"SELECT idCliente,"
-					+ " nmCliente"
-					+ ", nrCpf FROM Cliente");
+					+ " nmCliente,"
+					+ " nrCpf FROM Cliente");
 			
 			ResultSet result = statement.executeQuery();
 			
@@ -43,7 +45,7 @@ public class ClienteDao implements BaseDao<Cliente> {
 			
 			while(result.next()){
 				Cliente cliente = new Cliente();
-				cliente.setIdCliente(result.getLong("idCliente"));
+				cliente.setId(result.getLong("idCliente"));
 				cliente.setNmCliente(result.getString("nmCliente"));
 				cliente.setNrCpf(result.getString("nrCpf"));
 				list.add(cliente);
