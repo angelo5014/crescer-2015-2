@@ -9,4 +9,8 @@ public class DaoFactory {
 	public static ServicoDao createServicoDao(){
 		return new ServicoDao();
 	}
+	
+	public static PedidoDao createPedidoDao() {
+		return new PedidoDao();
+	}
 }
