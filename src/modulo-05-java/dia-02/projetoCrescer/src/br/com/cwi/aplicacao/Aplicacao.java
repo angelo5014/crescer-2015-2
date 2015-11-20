@@ -37,6 +37,7 @@ public class Aplicacao {
 		System.out.println("Deseja fazer mais alguma operacao? 1-Sim 2-Nao");
 		continuar = in.nextInt();
 		}
+		in.close();
 	}
 	
 	
@@ -73,9 +74,10 @@ public class Aplicacao {
 		pedido.setDsPedido(dsPedido);
 		
 		DaoFactory.createPedidoDao().add(pedido);
+		in.close();
 	}
 	
-	public static void listarPedidos() throws Exception {
+	public static void listarPedidos() throws SQLException {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Escolha um cliente");
 		listarClientes();
@@ -86,6 +88,7 @@ public class Aplicacao {
 			System.out.print(pedido.getIdCliente() + " -- ");
 			System.out.println(pedido.getDsPedido());
 		}
+		in.close();
 	}
 	
 	private static void buscarPedido() throws SQLException{
@@ -93,6 +96,7 @@ public class Aplicacao {
 		System.out.println("Digote o id do pedido");
 		Pedido pedido = DaoFactory.createPedidoDao().findById(in.nextLong());
 		System.out.println(pedido.getId() + " - " + pedido.getIdCliente() + " -- " + pedido.getDsPedido());
+		in.close();
 	}
 	
 	private static void listarClientes() throws SQLException {

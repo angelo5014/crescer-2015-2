@@ -149,7 +149,6 @@ public class ClienteDao implements BaseDao<Cliente> {
 			builder.append(" nrCliente");
 
 			boolean hasWhere = false;
-			int nrParameter = 0;
 
 			if (cliente.getId() != null) {
 				builder.append("WHERE idCliente=?");
