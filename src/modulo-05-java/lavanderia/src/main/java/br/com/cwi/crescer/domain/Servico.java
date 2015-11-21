@@ -24,7 +24,21 @@ public class Servico {
 	@Column(name="Descricao", length = 30)
 	@Basic(optional = false)
 	private String descricao;
-	
-	
-	
+
+	public String getIdServico() {
+		return idServico;
+	}
+
+	public void setIdServico(String idServico) {
+		this.idServico = idServico;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
 }
