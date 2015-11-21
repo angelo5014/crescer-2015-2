@@ -5,22 +5,22 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.cwi.crescer.domain.Pessoa;
+import br.com.cwi.crescer.domain.Cliente;
 
 @Repository
-public class PessoaDAO {
-	
+public class ClienteDAO {
+
 	@PersistenceContext
 	private EntityManager em;
 	
-	public Pessoa findById(Long id){
-		return em.find(Pessoa.class, id);
+	public Cliente findById(Long id){
+		return em.find(Cliente.class, id);
 	}
-	
-//	public Pessoa findById(Long id) {
+
+//	public Cliente findById(Long id) {
 //	
-//		String queryStr = "SELECT p FROM Pessoa p WHERE p.idPessoa = :id";
-//		 TypedQuery<Pessoa> query = em.createQuery(queryStr, Pessoa.class);
+//		String queryStr = "SELECT c FROM Cliente c WHERE c.idCliente = :id";
+//		 TypedQuery<Cliente> query = em.createQuery(queryStr, Cliente.class);
 //		
 //		query.setParameter("id", id);
 //		
