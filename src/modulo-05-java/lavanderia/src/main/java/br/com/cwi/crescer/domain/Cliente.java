@@ -3,6 +3,8 @@ package br.com.cwi.crescer.domain;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,11 +16,11 @@ import javax.persistence.Table;
 @SequenceGenerator(name = Cliente.SEQUENCE_NAME,sequenceName = Cliente.SEQUENCE_NAME)
 public class Cliente {
 	
-	public final static String SEQUENCE_NAME = "SEQ_cliente";
+	public final static String SEQUENCE_NAME = "SEQ_Cliente";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME)
-	@Column(name = "idCliente")
+	@Column(name = "IDCliente")
 	private Long idCliente;
 	
 	@Column(name = "Nome", length = 70)
@@ -38,14 +40,19 @@ public class Cliente {
 	@Column(name = "Bairro", length = 50)
 	private String bairro;
 	
-	@Column(name = "IdCidade")
+	@Column(name = "IDCidade")
 	private Long idCidade;
 	
 	@Column(name = "CEP", length = 8)
 	private Long cep;
 	
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "Situacao", length = 1)
-	private char situacao;
+	private SituacaoCliente situacao;
+	
+	public static enum SituacaoCliente{
+		ATIVO, INATIVO;
+	}
 
 	public Long getIdCliente() {
 		return idCliente;
@@ -111,11 +118,11 @@ public class Cliente {
 		this.cep = cep;
 	}
 
-	public char getSituacao() {
+	public SituacaoCliente getSituacao() {
 		return situacao;
 	}
 
-	public void setSituacao(char situacao) {
+	public void setSituacao(SituacaoCliente situacao) {
 		this.situacao = situacao;
 	}
 	

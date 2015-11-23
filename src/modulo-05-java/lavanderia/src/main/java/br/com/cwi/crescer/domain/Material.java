@@ -17,7 +17,7 @@ public class Material {
 	public final static String SEQUENCE_NAME = "SEQ_material";
 	
 	@Id
-	@Column(name="idMaterial")
+	@Column(name="IDMaterial")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME)
 	private Long idMaterial;
 	

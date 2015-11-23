@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class Cidade {
 	
 	@Id
-	@Column(name = "idCidade")
+	@Column(name = "IDCidade")
 	private Long idCidade;
 	
 	@Column(name = "nome", length = 50)

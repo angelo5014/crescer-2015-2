@@ -19,15 +19,15 @@ public class Produto {
 	public final static String SEQUENCE_NAME = "SEQ_produto";
 	
 	@Id
-	@Column(name = "idProduto")
+	@Column(name = "IDProduto")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME)
 	private Long idProduto;
 	
-	@Column(name = "IdServico")
+	@Column(name = "IDServico")
 	@Basic(optional = false)
 	private Long idServico;
 	
-	@Column(name = "IdMaterial")
+	@Column(name = "IDMaterial")
 	@Basic(optional = false)
 	private Long idMaterial;
 	

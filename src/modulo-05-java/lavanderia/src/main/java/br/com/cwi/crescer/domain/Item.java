@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,36 +21,41 @@ public class Item {
 	public final static String SEQUENCE_NAME = "SEQ_item";
 	
 	@Id
-	@Column(name = "IdItem")
+	@Column(name = "IDItem")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME)
 	private Long idItem;
 	
-	@Column(name = "IdPedido")
+	@Column(name = "IDPedido")
 	@Basic(optional = false)
 	private Long idPedido;
 	
-	@Column(name = "IdProduto")
+	@Column(name = "IDProduto")
 	@Basic(optional = false)
 	private Long idProduto;
 	
 	@Column(name = "peso")
 	@ Basic(optional = false)
-	private double peso;
+	private BigDecimal peso;
 	
-	@Column(name = "ValorUnitario")
+	@Column(name = "VALORUnitario")
 	@Basic(optional = false)
 	private BigDecimal valorUnitario;
 	
-	@Column(name = "ValorDesconto")
+	@Column(name = "VAlORDesconto")
 	@Basic(optional = false)
 	private BigDecimal valorDesconto;
 	
-	@Column(name = "ValorTotal")
+	@Column(name = "VALORTotal")
 	@Basic(optional = false)
 	private BigDecimal valorTotal;
 
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "Situacao", length = 1)
-	private char situacao;
+	private SituacaoItem situacao;
+	
+	public static enum SituacaoItem{
+		PENDENTE, PROCESSANDO, PROCESSADO;
+	}
 
 	public Long getIdItem() {
 		return idItem;
@@ -74,11 +81,11 @@ public class Item {
 		this.idProduto = idProduto;
 	}
 
-	public double getPeso() {
+	public BigDecimal getPeso() {
 		return peso;
 	}
 
-	public void setPeso(double peso) {
+	public void setPeso(BigDecimal peso) {
 		this.peso = peso;
 	}
 
@@ -106,11 +113,11 @@ public class Item {
 		this.valorTotal = valorTotal;
 	}
 
-	public char getSituacao() {
+	public SituacaoItem getSituacao() {
 		return situacao;
 	}
 
-	public void setSituacao(char situacao) {
+	public void setSituacao(SituacaoItem situacao) {
 		this.situacao = situacao;
 	}
 	
