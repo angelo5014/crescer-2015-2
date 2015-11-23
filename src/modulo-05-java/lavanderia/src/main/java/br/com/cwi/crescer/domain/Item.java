@@ -10,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -25,9 +27,10 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME)
 	private Long idItem;
 	
-	@Column(name = "IDPedido")
+	@ManyToOne
+	@JoinColumn(name = "IDPedido")
 	@Basic(optional = false)
-	private Long idPedido;
+	private Pedido pedido;
 	
 	@Column(name = "IDProduto")
 	@Basic(optional = false)
@@ -65,12 +68,12 @@ public class Item {
 		this.idItem = idItem;
 	}
 
-	public Long getIdPedido() {
-		return idPedido;
+	public Pedido getPedido() {
+		return pedido;
 	}
 
-	public void setIdPedido(Long idPedido) {
-		this.idPedido = idPedido;
+	public void setPedido(Pedido Pedido) {
+		this.pedido = pedido;
 	}
 
 	public Long getIdProduto() {
