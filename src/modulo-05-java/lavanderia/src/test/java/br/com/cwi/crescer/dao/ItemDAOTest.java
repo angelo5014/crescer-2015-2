@@ -19,6 +19,7 @@ public class ItemDAOTest extends AbstractInfrastructureTest {
         Item item = itemDAO.findById(1L);
         Assert.assertNotNull(item);
         Assert.assertNotNull(item.getPedido());
+        Assert.assertNotNull(item.getProduto());
     }
 
     @Test

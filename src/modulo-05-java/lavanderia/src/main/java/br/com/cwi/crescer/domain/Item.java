@@ -32,9 +32,10 @@ public class Item {
 	@Basic(optional = false)
 	private Pedido pedido;
 	
-	@Column(name = "IDProduto")
+	@ManyToOne
+	@JoinColumn(name = "IDProduto")
 	@Basic(optional = false)
-	private Long idProduto;
+	private Produto produto;
 	
 	@Column(name = "peso")
 	@ Basic(optional = false)
@@ -59,7 +60,7 @@ public class Item {
 	public static enum SituacaoItem{
 		PENDENTE, PROCESSANDO, PROCESSADO;
 	}
-
+	
 	public Long getIdItem() {
 		return idItem;
 	}
@@ -72,16 +73,16 @@ public class Item {
 		return pedido;
 	}
 
-	public void setPedido(Pedido Pedido) {
+	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
 
-	public Long getIdProduto() {
-		return idProduto;
+	public Produto getProduto() {
+		return produto;
 	}
 
-	public void setIdProduto(Long idProduto) {
-		this.idProduto = idProduto;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
 	public BigDecimal getPeso() {
