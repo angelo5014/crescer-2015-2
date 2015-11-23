@@ -28,11 +28,11 @@ public class Pedido {
 	@Basic(optional = false)
 	private Long idCliente;
 	
-	@Column(name = "DataInclusao")
+	@Column(name = "DATAInclusao")
 	@Basic(optional = false)
 	private Date dataInclusao;
 	
-	@Column(name = "DataEntrega")
+	@Column(name = "DATAEntrega")
 	private Date dataEntrega;
 	
 	@Column(name = "Valor")
