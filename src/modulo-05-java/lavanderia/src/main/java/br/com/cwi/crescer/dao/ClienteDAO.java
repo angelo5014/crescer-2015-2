@@ -2,6 +2,8 @@ package br.com.cwi.crescer.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Repository;
 
 import br.com.cwi.crescer.domain.Cliente;
@@ -20,14 +22,17 @@ public class ClienteDAO extends AbstractDAO{
                 .getResultList();
     }
 	
-//	public Cliente findById(Long id) {
-//	
-//		String queryStr = "SELECT c FROM Cliente c WHERE c.idCliente = :id";
-//		 TypedQuery<Cliente> query = em.createQuery(queryStr, Cliente.class);
-//		
-//		query.setParameter("id", id);
-//		
-//		return query.getSingleResult();
-//	}
+	public List<Cliente> listAll(){
+		return em.createQuery("FROM Cliente", Cliente.class).getResultList();
+	}
 	
+	@Transactional
+	public Cliente save(Cliente cliente){
+		if(cliente.getIdCliente() == null){
+			em.persist(cliente);
+			return cliente;
+		}
+		em.merge(cliente);
+		return cliente;
+	}
 }
