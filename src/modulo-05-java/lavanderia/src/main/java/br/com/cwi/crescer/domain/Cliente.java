@@ -40,8 +40,14 @@ public class Cliente {
 	@Column(name = "Email", length = 100, unique = true)
 	private String email;
 	
-	@Embedded
-	private Endereco endereco;
+	@Column(name = "BAIRRO", length = 50)
+	private String bairro;
+	
+	@Column(name = "CEP", length = 11)
+	private Long cep;
+	
+	@Column(name = "ENDERECO", length = 50)
+	private String endereco;
 	
 	@ManyToOne
 	@JoinColumn(name = "IDCidade")
@@ -98,11 +104,27 @@ public class Cliente {
 		this.email = email;
 	}
 
-	public Endereco getEndereco() {
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public Long getCep() {
+		return cep;
+	}
+
+	public void setCep(Long cep) {
+		this.cep = cep;
+	}
+
+	public String getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(Endereco endereco) {
+	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
 
