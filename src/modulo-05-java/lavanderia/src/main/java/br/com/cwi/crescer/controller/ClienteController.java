@@ -2,8 +2,11 @@ package br.com.cwi.crescer.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +35,7 @@ public class ClienteController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView listar(){
-		return new ModelAndView("cliente/lista", "clientes", clienteService.listarClientes());
+		return new ModelAndView("cliente/lista", "clientes", clienteService.listarClientesAtivos());
 	}
 	
 	@RequestMapping(path="/{id}", method = RequestMethod.GET)
@@ -57,7 +60,14 @@ public class ClienteController {
     }
 	
 	@RequestMapping(path = "/novo", method = RequestMethod.POST)
-    public ModelAndView incluir(ClienteDTO dto) {
+    public ModelAndView incluir(@Valid @ModelAttribute("cliente") ClienteDTO dto,
+    							BindingResult result,
+    							final RedirectAttributes redirectAttributes) {
+		
+		if(result.hasErrors()){
+			return new ModelAndView("cliente/novo");
+		}
+		
         clienteService.incluir(dto);
         return new ModelAndView("redirect:/clientes");
     }
@@ -69,7 +79,7 @@ public class ClienteController {
 	
 	@RequestMapping(path = "/remover", method = RequestMethod.POST)
     public ModelAndView excluir(ClienteDTO dto, final RedirectAttributes redirectAttributes) {
-		clienteService.deletar(dto);
+		clienteService.inativar(dto.getId());
 		redirectAttributes.addFlashAttribute("sucesso", "Removido com sucesso");
         return new ModelAndView("redirect:/clientes");
     }

@@ -1,35 +1,21 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+		layout:decorator="Layout">
 	<head>
 		<meta charset="ISO-8859-1"/>
-		<title>Batata</title>
-		<style type="text/css" rel="stylesheet" href="site.css" ></style>
+		<title>Lavanderia - Crescer</title>
 		<link rel="stylesheet" href="/css/bootstrap.min.css" />
 	</head>
 	<body>
 	
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<p class="navbar-text">
-					<a th:href="@{/}" class="navbar-link" style="text-decoration: none">Home</a>
-				</p>
-				<p class="navbar-text">
-					<a th:href="@{/clientes}" class="navbar-link"
-						style="text-decoration: none">Lista de Clientes</a>
-				</p>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav"></ul>
+	<section layout:fragment="content">
+		<div>
+			<div >
+				<img src="https://static.pexels.com/photos/2371/person-looking-searching-clean.jpg" class="img-responsive"/>
 			</div>
 		</div>
-	</div>
+	</section>
 	
-	<div>
-		<div >
-			<img src="https://static.pexels.com/photos/2371/person-looking-searching-clean.jpg" class="img-responsive"/>
-		</div>
-		</div>
 	</body>
 </html>

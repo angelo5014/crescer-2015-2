@@ -4,14 +4,17 @@ import br.com.cwi.crescer.domain.Cliente;
 import br.com.cwi.crescer.dto.ClienteDTO;
 
 public class ClienteMapper {
+	
+	
+	
 	public static Cliente getNewEntity(ClienteDTO dto) {
         Cliente entity = new Cliente();
         entity.setNome(dto.getNome());
         entity.setCpf(dto.getCpf());
         entity.setEmail(dto.getEmail());
-        entity.setEndereco(entity.getEndereco());
-        entity.setBairro(entity.getBairro());
-        entity.setCep(entity.getCep());
+        entity.setEndereco(dto.getEndereco());
+        entity.setBairro(dto.getBairro());
+        entity.setCep(dto.getCep());
         return entity;
     }
 

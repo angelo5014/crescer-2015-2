@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="Layout">
 
 <head>
 	<meta charset="ISO-8859-1" />
@@ -11,15 +11,16 @@
 
 <body>
 
-<a class="btn btn-default btn-cadastro" th:href="@{|/clientes/novo|}" role="button">Cadastrar</a>
+<section layout:fragment="content">
 
 	<div th:if="${(sucesso) != null}" class="alert alert-success fade in alert-dismisable alert-position">
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	   <p th:text="${sucesso}"></p>
 	</div>
 
-	<div th:if="${not #lists.isEmpty(clientes)}">
-		<table>
+	<div th:if="${not #lists.isEmpty(clientes)}" class="col-md-6" style="margin-top:100px">
+	
+		<table class="table table-striped table-bordered table-hover col-sm-10">
 			<thead>
 				<tr>
 					<th>Id</th>
@@ -41,7 +42,13 @@
 				</tr>
 			</thead>
 		</table>
+		
+		<a class="btn btn-default btn-cadastro" th:href="@{|/clientes/novo|}" role="button">Cadastrar</a>
+		
 	</div>
+	
+	</section>
+	
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/jquery.min.js"></script>
 </body>
