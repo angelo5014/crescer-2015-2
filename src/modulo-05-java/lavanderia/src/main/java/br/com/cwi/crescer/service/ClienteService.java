@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import br.com.cwi.crescer.dao.CidadeDAO;
 import br.com.cwi.crescer.dao.ClienteDAO;
 import br.com.cwi.crescer.domain.Cliente;
+import br.com.cwi.crescer.domain.Cliente.SituacaoCliente;
 import br.com.cwi.crescer.dto.ClienteDTO;
 import br.com.cwi.crescer.mapper.ClienteMapper;
 
@@ -41,6 +42,14 @@ public class ClienteService {
 		Cliente cliente = ClienteMapper.merge(clienteDTO, clienteDAO.findById(clienteDTO.getId()));
 		cliente.setCidade(cidadeDAO.findById(clienteDTO.getIdCidade()));
 		clienteDAO.save(cliente);
+	}
+	
+	public void incluir(ClienteDTO clienteDTO){
+		Cliente entity = ClienteMapper.getNewEntity(clienteDTO);
+		entity.setCidade(cidadeDAO.findById(clienteDTO.getIdCidade()));
+		
+		entity.setSituacao(SituacaoCliente.ATIVO);
+		clienteDAO.save(entity);
 	}
 	
 }

@@ -9,6 +9,9 @@ public class ClienteMapper {
         entity.setNome(dto.getNome());
         entity.setCpf(dto.getCpf());
         entity.setEmail(dto.getEmail());
+        entity.setEndereco(entity.getEndereco());
+        entity.setBairro(entity.getBairro());
+        entity.setCep(entity.getCep());
         return entity;
     }
 
