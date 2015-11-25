@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.cwi.crescer.domain.Cidade;
 import br.com.cwi.crescer.dto.ClienteDTO;
@@ -58,6 +59,18 @@ public class ClienteController {
 	@RequestMapping(path = "/novo", method = RequestMethod.POST)
     public ModelAndView incluir(ClienteDTO dto) {
         clienteService.incluir(dto);
+        return new ModelAndView("redirect:/clientes");
+    }
+	
+	@RequestMapping(path = "/remover/{id}", method = RequestMethod.GET)
+	public ModelAndView exibirRemover(@PathVariable("id") Long id){
+		return new ModelAndView("cliente/remover", "cliente", clienteService.buscarClientePorId(id));
+	}
+	
+	@RequestMapping(path = "/remover", method = RequestMethod.POST)
+    public ModelAndView excluir(ClienteDTO dto, final RedirectAttributes redirectAttributes) {
+		clienteService.deletar(dto);
+		redirectAttributes.addFlashAttribute("sucesso", "Removido com sucesso");
         return new ModelAndView("redirect:/clientes");
     }
 	

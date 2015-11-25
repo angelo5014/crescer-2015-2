@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css" />
+	<title>Remover</title>
+</head>
+
+<body>
+	<div>
+	<form th:action="@{/clientes/remover}" th:object="${cliente}" method="post" class="form-horizontal">
+	
+			<input th:field="*{id}" type="hidden" /> 
+			
+			<div class="inline-block">
+				<label class="control-label">Nome: </label>
+				<input class="form-control" th:field="*{nome}" type="text" disabled="true" />
+			</div>
+			
+			<p>
+				<label class="control-label">CPF: </label>
+		 		<input th:field="*{cpf}" type="text" disabled="true"/>
+			</p>
+			
+			<p>
+		 		<label class="control-label">Email: </label>
+		 		<input th:field="*{email}" type="text" disabled="true"/>
+	 		</p>
+	 		
+	 		<p>
+		 		<label class="control-label">Cidade: </label>
+		 		<select th:field="*{idCidade}" disabled="true">
+	                <option th:each="c : ${cidades}" th:text="${c.nome}" th:value="${c.idCidade}" ></option>
+	            </select>
+            </p>
+             <h1>Tem certeza que deseja excluir esse cliente?</h1>
+				<button class="btn btn-default btn-position" type="submit">Sim</button>
+				<a class="btn btn-default btn-cadastro btn-position" th:href="@{|/clientes|}" role="button">Não</a>
+             
+		</form>
+	</div>
+
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/jquery.min.js"></script>
+</body>
+
+</html>

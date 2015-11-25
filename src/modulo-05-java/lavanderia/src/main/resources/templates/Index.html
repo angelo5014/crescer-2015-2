@@ -5,12 +5,30 @@
 		<meta charset="ISO-8859-1"/>
 		<title>Batata</title>
 		<style type="text/css" rel="stylesheet" href="site.css" ></style>
+		<link rel="stylesheet" href="/css/bootstrap.min.css" />
 	</head>
 	<body>
-	<div class="container">
-		<h1 th:text="${mensagem}">Index</h1>
+	
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<p class="navbar-text">
+					<a th:href="@{/}" class="navbar-link" style="text-decoration: none">Home</a>
+				</p>
+				<p class="navbar-text">
+					<a th:href="@{/clientes}" class="navbar-link"
+						style="text-decoration: none">Lista de Clientes</a>
+				</p>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav"></ul>
+			</div>
+		</div>
+	</div>
+	
+	<div>
 		<div >
-			<img src="https://static.pexels.com/photos/2371/person-looking-searching-clean.jpg"/>
+			<img src="https://static.pexels.com/photos/2371/person-looking-searching-clean.jpg" class="img-responsive"/>
 		</div>
 		</div>
 	</body>

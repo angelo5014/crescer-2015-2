@@ -5,10 +5,19 @@
 	<meta charset="ISO-8859-1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css" />
 	<title>Lista</title>
 </head>
 
 <body>
+
+<a class="btn btn-default btn-cadastro" th:href="@{|/clientes/novo|}" role="button">Cadastrar</a>
+
+	<div th:if="${(sucesso) != null}" class="alert alert-success fade in alert-dismisable alert-position">
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	   <p th:text="${sucesso}"></p>
+	</div>
+
 	<div th:if="${not #lists.isEmpty(clientes)}">
 		<table>
 			<thead>
@@ -33,6 +42,8 @@
 			</thead>
 		</table>
 	</div>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/jquery.min.js"></script>
 </body>
 
 </html>
