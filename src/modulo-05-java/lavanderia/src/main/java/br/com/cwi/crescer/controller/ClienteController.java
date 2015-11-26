@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -43,32 +44,50 @@ public class ClienteController {
 		return new ModelAndView("cliente/exibe", "cliente", clienteService.buscarClientePorId(id));
 	}
 	
+	@ResponseBody
+	@RequestMapping(path = "/rest/{id}")
+	public ClienteDTO buscarCliente(@PathVariable("id") Long id) {
+	    return clienteService.buscarClientePorId(id);
+	}
+	
 	@RequestMapping(path="/editar/{id}", method = RequestMethod.GET)
-	public ModelAndView exibirEdit(@PathVariable("id") Long id){
+	public ModelAndView editar(@PathVariable("id") Long id){
 		return new ModelAndView("cliente/edita", "cliente", clienteService.buscarClientePorId(id));
 	}
 	
 	@RequestMapping(path="/editar", method = RequestMethod.POST)
-	public ModelAndView exibirEdit(ClienteDTO clienteDTO){
+	public ModelAndView editar(@Valid @ModelAttribute("cliente") ClienteDTO clienteDTO,
+									BindingResult result,
+									final RedirectAttributes redirectAttributes){
+		
+		if(result.hasErrors()){
+			return new ModelAndView("cliente/edita");
+		}
+		
 		clienteService.atualizar(clienteDTO);
+		redirectAttributes.addFlashAttribute("sucesso", "Cliente editado com sucesso");
 		return new ModelAndView("redirect:/clientes");
 	}
 	
-	@RequestMapping(path = "/novo", method = RequestMethod.GET)
+	@RequestMapping(path = "/incluir", method = RequestMethod.GET)
     public ModelAndView incluir() {
         return new ModelAndView("cliente/novo", "cliente", new ClienteDTO());
     }
 	
-	@RequestMapping(path = "/novo", method = RequestMethod.POST)
-    public ModelAndView incluir(@Valid @ModelAttribute("cliente") ClienteDTO dto,
-    							BindingResult result,
-    							final RedirectAttributes redirectAttributes) {
+	@RequestMapping(path = "/incluir", method = RequestMethod.POST)
+    public ModelAndView incluir(
+    		@Valid @ModelAttribute("cliente") ClienteDTO clienteDTO,
+    		BindingResult result,
+    		final RedirectAttributes redirectAttributes) {
 		
 		if(result.hasErrors()){
 			return new ModelAndView("cliente/novo");
 		}
 		
-        clienteService.incluir(dto);
+        clienteService.incluir(clienteDTO);
+        
+        redirectAttributes.addFlashAttribute("sucesso", "Cliente criado com sucesso");
+        
         return new ModelAndView("redirect:/clientes");
     }
 	
