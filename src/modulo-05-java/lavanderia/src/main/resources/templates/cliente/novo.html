@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="Layout">
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,55 +7,62 @@
 		<title>Visualizar</title>
 	</head>
 <body>
-<form th:action="@{/clientes/incluir}" th:object="${cliente}" method="post">
-	
-		    <input th:field="*{id}" type="hidden" />
-			
-			<p>
-				<label class="control-label">Nome: </label>
-				<input th:field="*{nome}" type="text"/>
-				<span class="help-inline" th:errors="*{nome}"></span>
-			</p>
-			
-			<p>
-				<label class="control-label">CPF: </label>
-		 		<input th:field="*{cpf}" type="text" />
-		 		<span class="help-inline" th:errors="*{cpf}"></span>
-			</p>
-			
-			<p>
-		 		<label class="control-label">Email: </label>
-		 		<input th:field="*{email}" type="text"/>
-		 		<span class="help-inline" th:errors="*{email}"></span>
-	 		</p>
-	 		
-	 		<p>
-		 		<label class="control-label">Endereço: </label>
-		 		<input th:field="*{endereco}" type="text"/>
-		 		<span class="help-inline" th:errors="*{endereco}"></span>
-	 		</p>
-	 		
-	 		<p>
-		 		<label class="control-label">Bairro: </label>
-		 		<input th:field="*{bairro}" type="text"/>
-		 		<span class="help-inline" th:errors="*{bairro}"></span>
-	 		</p>
-	 		
-	 		<p>
-		 		<label class="control-label">Cidade: </label>
-		 		<select th:field="*{idCidade}">
-	                <option th:each="c : ${cidades}" th:text="${c.nome}" th:value="${c.idCidade}" ></option>
-	            </select>
-            </p>
-            
-            <p>
-		 		<label class="control-label">CEP: </label>
-		 		<input th:field="*{cep}" type="text"/>
-		 		<span class="help-inline" th:errors="*{cep}"></span>
-	 		</p>
-             
-             <button type="submit">Salvar</button>
-             
-		</form>
+		<section layout:fragment = "content">
+		
+		<div class="table-bordered col-lg-4 col-lg-offset-4">
+			<h3>Cadasto de Clientes</h3>
+		
+			<form th:action="@{/clientes/incluir}" th:object="${cliente}" method="post" >
+		
+			    <input th:field="*{id}" type="hidden" />
+				
+				<div class="form-group">
+					<label class="control-label">Nome: </label>
+					<input th:field="*{nome}" type="text" class="form-control"/>
+					<span class="help-inline" th:errors="*{nome}"></span>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label">CPF: </label>
+			 		<input th:field="*{cpf}" type="text" class="form-control"/>
+			 		<span class="help-inline" th:errors="*{cpf}"></span>
+				</div>
+				
+				<div class="form-group">
+			 		<label class="control-label">Email: </label>
+			 		<input th:field="*{email}" type="text" class="form-control"/>
+			 		<span class="help-inline" th:errors="*{email}"></span>
+		 		</div>
+		 		
+		 		<div class="form-group">
+			 		<label class="control-label">Endereço: </label>
+			 		<input th:field="*{endereco}" type="text" class="form-control"/>
+			 		<span class="help-inline" th:errors="*{endereco}"></span>
+		 		</div>
+		 		
+		 		<div class="form-group">
+			 		<label class="control-label">Bairro: </label>
+			 		<input th:field="*{bairro}" type="text" class="form-control"/>
+			 		<span class="help-inline" th:errors="*{bairro}"></span>
+		 		</div>
+		 		
+		 		<div class="form-group">
+			 		<label class="control-label">Cidade: </label>
+			 		<select th:field="*{idCidade}" class="form-control">
+		                <option th:each="c : ${cidades}" th:text="${c.nome}" th:value="${c.idCidade}" ></option>
+		            </select>
+	            </div>
+	            
+	            <div class="form-group">
+			 		<label class="control-label">CEP: </label>
+			 		<input th:field="*{cep}" type="text" class="form-control"/>
+			 		<span class="help-inline" th:errors="*{cep}"></span>
+		 		</div>
+	             
+	             <button type="submit" class="btn btn-primary">Salvar</button>
+	             
+			</form>
+			</div>
+		</section>
 </body>
 </html>
