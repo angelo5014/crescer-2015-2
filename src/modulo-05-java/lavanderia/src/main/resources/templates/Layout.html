@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
-	<meta charset="ISO-8859-1" />
+	<meta charset="UTF-8" />
 	<title>Lavanderia - Crescer</title>
 	<link rel="stylesheet" href="/css/bootstrap.min.css" />
 </head>
@@ -18,14 +18,31 @@
 					<a th:href="@{/clientes}" class="navbar-link"
 						style="text-decoration: none">Lista de Clientes</a>
 				</p>
+				<p class="navbar-text" sec:authorize="isAuthenticated()">
+					<span sec:authorize="hasRole('ROLE_USER')">
+						Olá USER
+					</span>
+					<span sec:authorize="hasRole('ROLE_ADMIN')">
+						Olá ADMIN
+					</span>
+				
+					<div sec:authentication="name">
+					</div>
+				
+					<form th:action="@{/logout}" method="POST" style="float:right;">
+						<button type="submit" class="btn btn-primary" >Deslogar</button>
+					</form>
+				</p>
 			</div>
 			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav"></ul>
+				<ul class="nav navbar-nav">
+				<li class="active"><a th:href="@{/}" class="navbar-link" style="text-decoration: none">Home</a></li>
+				</ul>
 			</div>
 		</div>
 	</div>
 	
-	<section layout:fragment="content" style="margin-top:70px"></section>
+	<section layout:fragment="content" style="margin-top:50px"></section>
 	
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/jquery.min.js"></script>

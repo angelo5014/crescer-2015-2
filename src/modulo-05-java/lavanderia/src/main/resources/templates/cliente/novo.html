@@ -9,7 +9,7 @@
 <body>
 		<section layout:fragment = "content">
 		
-		<div class="table-bordered col-lg-4 col-lg-offset-4">
+		<div class="table-bordered col-lg-4 col-lg-offset-4" style="margin-top:10px">
 			<h3>Cadasto de Clientes</h3>
 		
 			<form th:action="@{/clientes/incluir}" th:object="${cliente}" method="post" >
@@ -62,7 +62,7 @@
 	             <button type="submit" class="btn btn-primary">Salvar</button>
 	             
 			</form>
-			</div>
-		</section>
+		</div>
+	</section>
 </body>
 </html>
