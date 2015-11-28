@@ -34,6 +34,15 @@ public class ClienteService {
 		return clientesDTO;
 	}
 	
+	public List<ClienteDTO> buscar(String name){
+		List<Cliente> clientes = clienteDAO.findByName(name);
+		List<ClienteDTO> clientesDTO = new ArrayList<ClienteDTO>();
+		for (Cliente cliente : clientes) {
+			clientesDTO.add(ClienteMapper.toDTO(cliente));
+		}
+		return clientesDTO;
+	}
+	
 	public List<ClienteDTO> listarClientesAtivos() {
 		List<Cliente> clientes = clienteDAO.listAll();
 		List<ClienteDTO> clientesDTO = new ArrayList<ClienteDTO>();
@@ -53,8 +62,6 @@ public class ClienteService {
 		cliente.setCidade(cidadeDAO.findById(clienteDTO.getIdCidade()));
 		clienteDAO.save(cliente);
 	}
-	
-	
 	
 	public void incluir(ClienteDTO clienteDTO){
 		Cliente entity = ClienteMapper.getNewEntity(clienteDTO);

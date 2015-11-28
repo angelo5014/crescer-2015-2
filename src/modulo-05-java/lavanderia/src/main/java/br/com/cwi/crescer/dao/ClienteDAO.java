@@ -8,12 +8,20 @@ import org.springframework.stereotype.Repository;
 
 import br.com.cwi.crescer.domain.Cliente;
 import br.com.cwi.crescer.domain.Cliente.SituacaoCliente;
+import br.com.cwi.crescer.domain.Produto;
 
 @Repository
 public class ClienteDAO extends AbstractDAO{
 
 	public Cliente findById(Long id){
 		return em.find(Cliente.class, id);
+	}
+	
+	public List<Cliente> findByName(String name) {
+		return em.createQuery("FROM Cliente c WHERE c.idCliente LIKE :name", Cliente.class)
+				.setParameter("name", name + "%")
+				.getResultList();
+		
 	}
 
 	public List<Cliente> findBySituacao(SituacaoCliente situacao) {
