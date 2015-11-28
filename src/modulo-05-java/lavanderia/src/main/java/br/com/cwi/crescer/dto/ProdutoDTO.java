@@ -2,6 +2,8 @@ package br.com.cwi.crescer.dto;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.NotNull;
+
 public class ProdutoDTO {
 	
 	private Long id;
@@ -14,8 +16,10 @@ public class ProdutoDTO {
 	
 	private String nomeMaterial;
 	
+	@NotNull
 	private BigDecimal valor;
 	
+	@NotNull
 	private int prazo;
 
 	private String situacao;
