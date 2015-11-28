@@ -59,16 +59,16 @@ public class Cliente {
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos;
 	
+	public static enum SituacaoCliente{
+		ATIVO, INATIVO;
+	}
+	
 	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
 	
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
-	}
-	
-	public static enum SituacaoCliente{
-		ATIVO, INATIVO;
 	}
 
 	public Long getIdCliente() {
