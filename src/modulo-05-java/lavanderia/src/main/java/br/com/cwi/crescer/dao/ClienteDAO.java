@@ -18,7 +18,7 @@ public class ClienteDAO extends AbstractDAO{
 	}
 	
 	public List<Cliente> findByName(String name) {
-		return em.createQuery("FROM Cliente c WHERE c.idCliente LIKE :name", Cliente.class)
+		return em.createQuery("FROM Cliente c WHERE c.nome LIKE :name", Cliente.class)
 				.setParameter("name", name + "%")
 				.getResultList();
 		

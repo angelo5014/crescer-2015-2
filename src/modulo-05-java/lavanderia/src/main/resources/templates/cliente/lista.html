@@ -14,10 +14,10 @@
 <section layout:fragment="content">
 
 	<div>
-	<form th:action="@{/buscar}" method="GET" class="form-horizontal">
-		<input type="text" name="nome"/>
-		<button type="submit" class="btn btn-primary">Buscar</button>
-	</form>
+		<form th:action="@{/clientes/buscar}" method="GET" class="form-horizontal">
+			<input type="text" name="nome"/>
+			<button type="submit" class="btn btn-primary">Buscar</button>
+		</form>
 	</div>
 
 	<div th:if="${(sucesso) != null}" class="alert alert-success fade in alert-dismisable alert-position">
