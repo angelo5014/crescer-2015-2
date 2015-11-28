@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import br.com.cwi.crescer.domain.Cliente;
 import br.com.cwi.crescer.domain.Cliente.SituacaoCliente;
-import br.com.cwi.crescer.domain.Produto;
 
 @Repository
 public class ClienteDAO extends AbstractDAO{

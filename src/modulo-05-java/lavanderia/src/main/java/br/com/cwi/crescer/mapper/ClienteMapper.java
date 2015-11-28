@@ -1,11 +1,12 @@
 package br.com.cwi.crescer.mapper;
 
+import javax.persistence.EnumType;
+
 import br.com.cwi.crescer.domain.Cliente;
+import br.com.cwi.crescer.domain.Cliente.SituacaoCliente;
 import br.com.cwi.crescer.dto.ClienteDTO;
 
 public class ClienteMapper {
-	
-	
 	
 	public static Cliente getNewEntity(ClienteDTO dto) {
         Cliente entity = new Cliente();
@@ -28,6 +29,7 @@ public class ClienteMapper {
         dto.setBairro(entity.getBairro());
         dto.setIdCidade(entity.getCidade().getIdCidade());
         dto.setCep(entity.getCep());
+        dto.setSituacao(entity.getSituacao().toString());
         return dto;
     }
 
@@ -35,6 +37,7 @@ public class ClienteMapper {
         entity.setNome(dto.getNome());
         entity.setCpf(dto.getCpf());
         entity.setEmail(dto.getEmail());
+        entity.setSituacao(Enum.valueOf(SituacaoCliente.class, dto.getSituacao()));
         return entity;
     }
 }

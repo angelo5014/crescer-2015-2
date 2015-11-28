@@ -60,7 +60,7 @@ public class Cliente {
 	private List<Pedido> pedidos;
 	
 	public static enum SituacaoCliente{
-		ATIVO, INATIVO;
+		INATIVO, ATIVO;
 	}
 	
 	public List<Pedido> getPedidos() {

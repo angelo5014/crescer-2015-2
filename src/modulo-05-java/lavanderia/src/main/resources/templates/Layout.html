@@ -14,11 +14,7 @@
 				<p class="navbar-text">
 					<a th:href="@{/}" class="navbar-link" style="text-decoration: none">Home</a>
 				</p>
-				<p class="navbar-text">
-					<a th:href="@{/clientes}" class="navbar-link"
-						style="text-decoration: none">Lista de Clientes</a>
-				</p>
-				<p class="navbar-text" sec:authorize="isAuthenticated()">
+				<div class="navbar-text navbar-right" sec:authorize="isAuthenticated()">
 					<span sec:authorize="hasRole('ROLE_USER')">
 						Olá USER
 					</span>
@@ -29,20 +25,21 @@
 					<div sec:authentication="name">
 					</div>
 				
-					<form th:action="@{/logout}" method="POST" style="float:right;">
+					<form th:action="@{/logout}" method="POST">
 						<button type="submit" class="btn btn-primary" >Deslogar</button>
 					</form>
-				</p>
+				</div>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-				<li class="active"><a th:href="@{/}" class="navbar-link" style="text-decoration: none">Home</a></li>
+					<li><a th:href="@{/clientes}" class="navbar-link" style="text-decoration: none">Lista de Clientes</a></li>
+					<li><a th:href="@{/produtos}" class="navbar-link" style="text-decoration: none">Lista de Produtos</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	
-	<section layout:fragment="content" style="margin-top:50px"></section>
+	<section layout:fragment="content" style="margin-top:100px"></section>
 	
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/jquery.min.js"></script>

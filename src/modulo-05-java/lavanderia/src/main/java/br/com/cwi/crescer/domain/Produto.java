@@ -49,7 +49,7 @@ public class Produto {
 	private int prazo;
 
 	public static enum SituacaoProduto{
-		ATIVO, INATIVO;
+		INATIVO,ATIVO;
 	}
 	
 	public Long getIdProduto() {

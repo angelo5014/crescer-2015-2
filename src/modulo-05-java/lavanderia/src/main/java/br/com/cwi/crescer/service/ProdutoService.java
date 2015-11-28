@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.cwi.crescer.dao.MaterialDAO;
 import br.com.cwi.crescer.dao.ProdutoDAO;
@@ -12,6 +13,7 @@ import br.com.cwi.crescer.domain.Produto;
 import br.com.cwi.crescer.dto.ProdutoDTO;
 import br.com.cwi.crescer.mapper.ProdutoMapper;
 
+@Service
 public class ProdutoService {
 	
 	private ProdutoDAO produtoDAO;
@@ -29,7 +31,10 @@ public class ProdutoService {
 		List<Produto> produtos = produtoDAO.listAll();
 		List<ProdutoDTO> produtoDTO = new ArrayList<>();
 		for (Produto produto : produtos) {
-			produtoDTO.add(ProdutoMapper.toDTO(produto));
+			ProdutoDTO dto = ProdutoMapper.toDTO(produto);
+			dto.setNomeServico(servicoDAO.findById(produto.getServico().getIdServico()).getDescricao());
+			dto.setNomeMaterial(materialDAO.findById(produto.getMaterial().getIdMaterial()).getDescricao());
+			produtoDTO.add(dto);
 		}
 		return produtoDTO;
 	}
