@@ -16,6 +16,4 @@ public class LavanderiaApplication extends WebMvcConfigurerAdapter{
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
     }
-    
-    
 }
