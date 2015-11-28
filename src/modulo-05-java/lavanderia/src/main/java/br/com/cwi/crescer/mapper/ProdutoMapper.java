@@ -6,6 +6,13 @@ import br.com.cwi.crescer.dto.ProdutoDTO;
 
 public class ProdutoMapper {
 	
+	public static Produto merge(ProdutoDTO dto, Produto entity) {
+		entity.setValor(dto.getValor());
+		entity.setPrazo(dto.getPrazo());
+		entity.setSituacao(Enum.valueOf(SituacaoProduto.class,dto.getSituacao()));
+		return entity;
+	}
+	
 	public static Produto getNewEntity(ProdutoDTO dto){
 		Produto entity = new Produto();
 		entity.setIdProduto(dto.getId());

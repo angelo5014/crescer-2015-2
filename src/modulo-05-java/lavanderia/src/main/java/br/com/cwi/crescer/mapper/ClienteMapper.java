@@ -1,7 +1,5 @@
 package br.com.cwi.crescer.mapper;
 
-import javax.persistence.EnumType;
-
 import br.com.cwi.crescer.domain.Cliente;
 import br.com.cwi.crescer.domain.Cliente.SituacaoCliente;
 import br.com.cwi.crescer.dto.ClienteDTO;

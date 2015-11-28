@@ -27,6 +27,15 @@ public class ProdutoService {
 		this.materialDAO = materialDAO;
 	}
 	
+	public ProdutoDTO buscarProdutoPorId(Long id) {
+		return ProdutoMapper.toDTO(produtoDAO.findById(id));
+	}
+	
+	public void atualizar(ProdutoDTO produtoDTO) {
+		Produto produto = ProdutoMapper.merge(produtoDTO, produtoDAO.findById(produtoDTO.getId()));
+		produtoDAO.save(produto);
+	}
+	
 	public List<ProdutoDTO> listarProdutos() {
 		List<Produto> produtos = produtoDAO.listAll();
 		List<ProdutoDTO> produtoDTO = new ArrayList<>();

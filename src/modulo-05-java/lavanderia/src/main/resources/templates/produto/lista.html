@@ -14,7 +14,7 @@
 <section layout:fragment="content">
 
 	<div>
-	<form th:action="@{/buscar}" method="GET" class="form-horizontal">
+	<form th:action="@{/produtos/buscar}" method="GET" class="form-horizontal">
 		<input type="text" name="nome"/>
 		<button type="submit" class="btn btn-primary">Buscar</button>
 	</form>
@@ -36,6 +36,7 @@
                		<th>Valor</th>
                		<th>Prazo</th>
                		<th>Situacao</th>
+               		<th>Editar</th>
 				</tr>
 				<tr th:each="produto : ${(produtos)}">
                 	<td th:text="${produto.id}"></td>
@@ -44,6 +45,7 @@
                 	<td th:text="${produto.valor}"></td>
                 	<td th:text="${produto.prazo}"></td>
                 	<td th:text="${produto.situacao}"></td>
+                	<td><a th:href="${'/produtos/editar/' + produto.id}">Editar</a></td>
 				</tr>
 			</thead>
 		</table>

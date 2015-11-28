@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="Layout">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Editar</title>
+	</head>
+
+	<body>		
+		<section layout:fragment = "content">
+			<form th:action="@{/produtos/editar}" th:object="${produto}" method="post" class="form-horizontal">
+		
+			    <input th:field="*{id}" type="hidden" />
+			    
+			    <p>
+			 		<label class="control-label">Servico: </label>
+			 		<input th:field="*{nomeServico}" type="text" disabled="true"/>
+		 		</p>
+		 		
+		 		<p>
+			 		<label class="control-label">Material </label>
+			 		<input th:field="*{nomeMaterial}" type="text" disabled="true"/>
+		 		</p>
+			    
+				<p>
+			 		<label class="control-label">Valor: </label>
+			 		<input th:field="*{valor}" type="text"/>
+		 		</p>
+		 		
+		 		<p>
+			 		<label class="control-label">Prazo: </label>
+			 		<input th:field="*{prazo}" type="text"/>
+		 		</p>
+		 		
+		 		<p>
+					<label class="control-label col-2">Situação </label> <select
+						th:field="*{situacao}">
+						<option th:each="s : ${situacoes}" th:text="${s}"
+							th:value="${s}"></option>
+					</select> <span class="help-inline" th:errors="*{situacao}"></span>
+				</p>
+	             
+	             <button type="submit">Salvar</button>
+	             
+			</form>
+		</section>
+	
+	</body>
+	
+</html>
