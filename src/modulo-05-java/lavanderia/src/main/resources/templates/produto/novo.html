@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="Layout">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Visualizar</title>
+	</head>
+<body>
+		<section layout:fragment = "content">
+		
+		<div class="table-bordered col-lg-4 col-lg-offset-4" style="margin-top:10px">
+			<h3>Cadasto de Produtos</h3>
+		
+			<form th:action="@{/produtos/incluir}" th:object="${produto}" method="post" class="form-horizontal">
+		
+			    <input th:field="*{id}" type="hidden" />
+			    
+			    <select id="servico" name="servico" th:field="*{idServico}">
+					<option  th:each="s : ${servicos}" th:text="${s.descricao}" th:value="${s.id}" >
+					</option>
+				</select>
+		 		
+		 		<select id="material" name="material" th:field="*{idMaterial}">
+					<option th:each="m : ${materiais}" th:text="${m.descricao}" th:value="${m.id}" >
+					</option>
+				</select>
+			    
+				<p>
+			 		<label class="control-label">Valor: </label>
+			 		<input th:field="*{valor}" type="text"/>
+			 		<span class="help-inline" th:errors="*{valor}"></span>
+		 		</p>
+		 		
+		 		<p>
+			 		<label class="control-label">Prazo: </label>
+			 		<input th:field="*{prazo}" type="text"/>
+			 		<span class="help-inline" th:errors="*{prazo}"></span>
+		 		</p>
+	             
+	             <button type="submit">Salvar</button>
+	             
+			</form>
+			</div>
+		</section>
+</body>
+</html>

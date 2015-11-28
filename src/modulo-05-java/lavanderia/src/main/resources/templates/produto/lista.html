@@ -13,16 +13,25 @@
 
 <section layout:fragment="content">
 
-	<div>
-	<form th:action="@{/produtos/buscar}" method="GET" class="form-horizontal">
-		<input type="text" name="nome"/>
-		<button type="submit" class="btn btn-primary">Buscar</button>
-	</form>
-	</div>
-
 	<div th:if="${(sucesso) != null}" class="alert alert-success fade in alert-dismisable alert-position">
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	   <p th:text="${sucesso}"></p>
+	</div>
+	
+	<div>
+		<form th:action="@{/produtos/buscar}" method="GET" class="form-horizontal">
+			<select id="servico" name="servico">
+				<option th:value="0" ></option>
+				<option th:each="s : ${servicos}" th:text="${s.descricao}" th:value="${s.id}" >
+				</option>
+			</select>
+			<select id="material" name="material">
+				<option th:value="0" ></option>
+				<option th:each="m : ${materiais}" th:text="${m.descricao}" th:value="${m.id}" >
+				</option>
+			</select>
+			<button type="submit" class="btn btn-primary">Buscar</button>
+		</form>
 	</div>
 
 	<div th:if="${not #lists.isEmpty(produtos)}" class="col-md-6 col-md-offset-3" style="margin-top:100px">
@@ -50,7 +59,7 @@
 			</thead>
 		</table>
 		
-		<a class="btn btn-default" th:href="@{|/clientes/incluir|}" role="button">Cadastrar</a>
+		<a class="btn btn-default" th:href="@{|/produtos/incluir|}" role="button">Cadastrar</a>
 		
 	</div>
 	

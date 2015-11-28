@@ -36,6 +36,18 @@ public class ProdutoService {
 		produtoDAO.save(produto);
 	}
 	
+	public List<ProdutoDTO> buscar(Long idMaterial, Long idServico){
+		List<Produto> produtos = produtoDAO.findProduct(idServico, idMaterial);
+		List<ProdutoDTO> produtoDTO = new ArrayList<>();
+		for (Produto produto : produtos) {
+			ProdutoDTO dto = ProdutoMapper.toDTO(produto);
+			dto.setNomeServico(servicoDAO.findById(produto.getServico().getIdServico()).getDescricao());
+			dto.setNomeMaterial(materialDAO.findById(produto.getMaterial().getIdMaterial()).getDescricao());
+			produtoDTO.add(dto);
+		}
+		return produtoDTO;
+	}
+	
 	public List<ProdutoDTO> listarProdutos() {
 		List<Produto> produtos = produtoDAO.listAll();
 		List<ProdutoDTO> produtoDTO = new ArrayList<>();
@@ -46,6 +58,20 @@ public class ProdutoService {
 			produtoDTO.add(dto);
 		}
 		return produtoDTO;
+	}
+	
+	public boolean incluir(ProdutoDTO dto) {
+		Produto produto = ProdutoMapper.getNewEntity(dto);
+		produto.setMaterial(materialDAO.findById(dto.getId()));
+		produto.setServico(servicoDAO.findById(dto.getId()));
+		List<Produto> produtoExistente = produtoDAO.findProduct(
+				produto.getServico().getIdServico(), 
+				produto.getMaterial().getIdMaterial());
+		if (produtoExistente.isEmpty()) {
+			produtoDAO.save(produto);
+			return true;
+		}
+		return false;
 	}
 	
 }
