@@ -20,4 +20,8 @@ public class PedidoDAO extends AbstractDAO{
                 .getResultList();
     }
 	
+	public List<Pedido> listAll() {
+		return em.createQuery("FROM Pedido", Pedido.class).getResultList();
+	}
+	
 }

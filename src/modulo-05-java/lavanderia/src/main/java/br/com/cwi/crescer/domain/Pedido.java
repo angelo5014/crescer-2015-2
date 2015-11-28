@@ -43,10 +43,16 @@ public class Pedido {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "DATAEntrega")
 	private Date dataEntrega;
-	
-	@Column(name = "Valor")
+
+	@Column(name = "VALORBruto")
 	@Basic(optional = false)
-	private BigDecimal valor;
+	private BigDecimal valorBruto;
+	
+	@Column(name = "VALORDesconto")
+	private BigDecimal valorDesconto;
+	
+	@Column(name = "VALORFinal")
+	private BigDecimal valorFinal;
 	
 	@Column(name = "Situacao", length = 1)
 	private SituacaoPedido situacao;
@@ -78,10 +84,10 @@ public class Pedido {
 		return cliente;
 	}
 
-	public void setIdCliente(Cliente Cliente) {
-		this.cliente = Cliente;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
-
+	
 	public Date getDataInclusao() {
 		return dataInclusao;
 	}
@@ -98,12 +104,28 @@ public class Pedido {
 		this.dataEntrega = dataEntrega;
 	}
 
-	public BigDecimal getValor() {
-		return valor;
+	public BigDecimal getValorBruto() {
+		return valorBruto;
 	}
 
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
+	public void setValorBruto(BigDecimal valor) {
+		this.valorBruto = valor;
+	}
+	
+	public BigDecimal getValorDesconto() {
+		return valorDesconto;
+	}
+
+	public void setValorDesconto(BigDecimal valorDesconto) {
+		this.valorDesconto = valorDesconto;
+	}
+	
+	public BigDecimal getValorFinal() {
+		return valorFinal;
+	}
+
+	public void setValorFinal(BigDecimal valorFinal) {
+		this.valorFinal = valorFinal;
 	}
 
 	public SituacaoPedido getSituacao() {
