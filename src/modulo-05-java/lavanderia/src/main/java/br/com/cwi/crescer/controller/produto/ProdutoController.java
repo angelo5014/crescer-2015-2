@@ -80,26 +80,19 @@ public class ProdutoController {
 			return new ModelAndView("produto/novo");
 		}
 		
-		produtoService.incluir(produtoDTO);
-		redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso");
-        return new ModelAndView("produto/novo", "produto", new ProdutoDTO());
+		if(produtoService.incluir(produtoDTO)){
+			redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso");
+		}else{
+			redirectAttributes.addFlashAttribute("sucesso", "Produto já existente");
+		}
+		return new ModelAndView("redirect:/produtos/incluir");
+		
     }
 	
 	@RequestMapping(path = "/buscar", params = {"material", "servico"},method = RequestMethod.GET)
 	public ModelAndView buscar(@RequestParam("material") Long idMaterial, @RequestParam("servico") Long idServico){
 		return new ModelAndView("produto/lista", "produtos", produtoService.buscar(idMaterial, idServico));
 	}
-	
-	/*
-	@ModelAttribute("materiais")
-	public String[] comboMateriais(){
-		List<MaterialDTO> dtos = materialService.listarMateriais();
-		String[] materiais = new String[dtos.size()];
-		for (int i = 0; i < dtos.size() ; i++) {
-			materiais[i] = dtos.get(i).getDescricao();
-		}
-		return materiais;
-	}*/
 	
 	@ModelAttribute("materiais")
 	public List<MaterialDTO> comboMateriais(){
