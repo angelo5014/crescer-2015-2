@@ -22,6 +22,12 @@ public class ClienteDAO extends AbstractDAO{
 				.getResultList();
 		
 	}
+	
+	public Cliente findByCpf(String cpf) {
+		return em.createQuery("FROM Cliente c WHERE c.cpf = :cpf", Cliente.class)
+				.setParameter("cpf", cpf)
+				.getResultList().get(0);
+	}
 
 	public List<Cliente> findBySituacao(SituacaoCliente situacao) {
         return em.createQuery("FROM Cliente c WHERE c.situacao = :situacao", Cliente.class)

@@ -1,8 +1,8 @@
 package br.com.cwi.crescer.controller.pedido;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.cwi.crescer.domain.Pedido.SituacaoPedido;
+import br.com.cwi.crescer.dto.PedidoDTO;
 import br.com.cwi.crescer.service.ItemService;
 import br.com.cwi.crescer.service.PedidoService;
 
@@ -41,10 +42,15 @@ public class PedidoController {
 	}
 	
 	@RequestMapping(path = "/buscar", method = RequestMethod.GET)
-	public ModelAndView buscar(@RequestParam Map<String, String> situacao){
-		return new ModelAndView("pedido/lista", 
-				"pedidos", 
-				pedidoService.procurarPorSituacao(situacao.get("situacao")));
+	public ModelAndView buscar(@RequestParam Map<String, String> param){
+		List<PedidoDTO> dtos = new ArrayList<>();
+		if(param.containsKey("cpf")){
+			dtos = pedidoService.procurarPorCpf(param.get("cpf"));
+		}else {
+			dtos = pedidoService.procurarPorSituacao(param.get("situacao"));
+		}
+		
+		return new ModelAndView("pedido/lista", "pedidos", dtos);
 	}
 	
 	@ModelAttribute("situacoes")
