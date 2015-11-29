@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,6 +38,13 @@ public class PedidoController {
 		this.pedidoService = pedidoService;
 		this.itemService = itemService;
 		this.clienteService = clienteService;
+	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@RequestMapping(path = "/cancelar", method = RequestMethod.POST)
+	public ModelAndView cancelar(@ModelAttribute("pedido") PedidoDTO pedidoDTO){
+		pedidoService.cancelarPedido(pedidoDTO.getId());
+		return new ModelAndView("redirect:/pedidos/editar/" + pedidoDTO.getId());
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)

@@ -75,5 +75,25 @@ public class PedidoService {
 		}
 		return dtos;
 	}
+	
+	public void cancelarPedido(Long id){
+		setSituacaoPedido(id, SituacaoPedido.CANCELADO);
+	}
+	
+	public void retirarPedido(Long id) throws Exception{
+		Pedido entity = pedidoDAO.findById(id);
+		if(entity.getSituacao() == SituacaoPedido.PROCESSADO){
+			setSituacaoPedido(id, SituacaoPedido.ENCERRADO);
+		}else{
+			throw new Exception("Somente pedidos já processados podem ser encerrados.");
+		}
+	}
+	
+	private void setSituacaoPedido(Long idPedido, SituacaoPedido situacao){
+		Pedido entity = pedidoDAO.findById(idPedido);
+		entity.setSituacao(situacao);
+		
+		pedidoDAO.save(entity);
+	}
 
 }
