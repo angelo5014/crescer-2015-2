@@ -1,6 +1,8 @@
 package br.com.cwi.crescer.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,16 @@ public class PedidoService {
 
 	public PedidoDTO buscarPorId(Long id) {
 		return PedidoMapper.toDTO(pedidoDAO.findById(id));
+	}
+	
+	public Long incluir(PedidoDTO dto){
+		Pedido pedido = new Pedido();
+		pedido.setCliente(clienteDAO.findById(dto.getIdCliente()));
+		pedido.setDataInclusao(new Date());
+		pedido.setValorBruto(new BigDecimal("0"));
+		pedido.setSituacao(SituacaoPedido.PENDENTE);
+		return pedidoDAO.save(pedido).getIdPedido();
+		//return PedidoMapper.toDTO(pedidoDAO.findById(pedidoDAO.save(pedido).getIdPedido()));
 	}
 	
 	public List<PedidoDTO> procurarPorCpf(String cpf) {

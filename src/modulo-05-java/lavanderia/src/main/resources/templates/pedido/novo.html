@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="Layout">
+<head>
+<meta charset="UTF-8" />
+<title>Novo Pedido</title>
+</head>
+<body>
+	<section layout:fragment="content">	
+		<form th:action="@{/pedidos/incluir}" th:object="${pedido}" method="POST">
+			 	<div class="form-group">
+					<label>Cliente: </label>
+					<select class="form-control" th:field="*{idCliente}">
+			    	    <option th:each="cliente : ${clientes}" th:text="${cliente.nome}" th:value="${cliente.id}" ></option>
+			        </select>
+			       	<span class="help-inline" th:errors="*{id}"></span>
+		        </div>
+		        <button class="btn btn-primary" type="submit">Escolher</button>
+		</form>
+	</section>
+</body>
+</html>
