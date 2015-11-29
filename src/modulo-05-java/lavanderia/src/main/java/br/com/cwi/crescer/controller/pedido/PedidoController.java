@@ -1,13 +1,18 @@
 package br.com.cwi.crescer.controller.pedido;
 
+import java.util.Map;
+
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.cwi.crescer.domain.Cliente.SituacaoCliente;
 import br.com.cwi.crescer.domain.Pedido.SituacaoPedido;
 import br.com.cwi.crescer.service.ItemService;
 import br.com.cwi.crescer.service.PedidoService;
@@ -28,6 +33,18 @@ public class PedidoController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView listar(){
 		return new ModelAndView("pedido/lista", "pedidos", pedidoService.listarPedidos());
+	}
+	
+	@RequestMapping(path = "/exibir/{id}", method = RequestMethod.GET)
+	public ModelAndView exibir(@PathVariable("id") Long id){
+		return new ModelAndView("pedido/exibe", "pedido", pedidoService.buscarPorId(id));
+	}
+	
+	@RequestMapping(path = "/buscar", method = RequestMethod.GET)
+	public ModelAndView buscar(@RequestParam Map<String, String> situacao){
+		return new ModelAndView("pedido/lista", 
+				"pedidos", 
+				pedidoService.procurarPorSituacao(situacao.get("situacao")));
 	}
 	
 	@ModelAttribute("situacoes")

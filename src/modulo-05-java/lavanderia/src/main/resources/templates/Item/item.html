@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<tr layout:fragment = "itens" >
+			<td th:text="${item.id}"></td>
+			<td th:text="${item.nomeServico}"></td>
+			<td th:text="${item.nomeMaterial}"></td>
+			<td th:text="${item.peso}"></td>
+			<td th:text="${item.valorUnitario}"></td>
+			<td th:text="${item.valorTotal}"></td>
+			<td th:text="${item.situacao}"></td>
+	</tr>
+</body>
+</html>
