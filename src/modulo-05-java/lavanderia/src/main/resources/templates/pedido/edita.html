@@ -11,9 +11,19 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 	<section layout:fragment="content" class="table-bordered col-lg-10 col-lg-offset-1" th:object="${pedido}">
 	
-		<form th:action="@{/pedidos/cancelar}" th:object="${pedido}" method="post" sec:authorize="hasRole('ROLE_ADMIN')">
+		<form class="pull-right" th:action="@{/pedidos/cancelar}" th:object="${pedido}" method="post" sec:authorize="hasRole('ROLE_ADMIN')">
 			<input th:field="*{id}" type="hidden" />
 			<button class="btn btn-default">Cancelar</button>
+		</form>
+		
+		<form th:action="@{/pedidos/processando}" th:object="${pedido}" method="post">
+			<input th:field="*{id}" type="hidden" />
+			<button class="btn btn-default">Iniciar processo</button>
+		</form>
+		
+		<form th:action="@{/pedidos/encerrar}" th:object="${pedido}" method="post">
+			<input th:field="*{id}" type="hidden" />
+			<button class="btn btn-default">Encerrar</button>
 		</form>
 	
 		<div class="col-lg-10 col-lg-offset-1">
@@ -28,25 +38,41 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 			<p th:text="*{situacao}"></p>
 		</div>
 		
-		<a class="btn btn-default" href="@{|itens/incluir}" role="button">Inserir Item</a>
+		<a th:href="@{|/itens/incluir/| + ${pedido.id}}" class="btn btn-default">Inserir Item</a>
+		
 		
 		<table class="table-bordered col-lg-10 col-lg-offset-1">
 			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Servico</th>
-					<th>Material</th>
-					<th>Peso</th>
-					<th>Valor Unitario</th>
-					<th>Valor Total</th>
-					<th>Situacao</th>
-				</tr>
-
+			
+					<tr>
+						<th>ID</th>
+						<th>Servico</th>
+						<th>Material</th>
+						<th>Peso</th>
+						<th>Valor Unitario</th>
+						<th>Valor Total</th>
+						<th>Situacao</th>
+					</tr>
 				
-				<tr layout:include="item/item :: itens" style="margin-top:50px" th:each="item : ${pedido.itens}" >
-				</tr>
+					<tr  th:each="item : ${pedido.itens}">
+						<td th:text="${item.id}"></td>
+						<td th:text="${item.nomeServico}"></td>
+						<td th:text="${item.nomeMaterial}"></td>
+						<td th:text="${item.peso}"></td>
+						<td th:text="${item.valorUnitario}"></td>
+						<td th:text="${item.valorTotal}"></td>
+						<td th:text="${item.situacao}"></td>
+						<td> <a th:if="${pedido.situacao == 'PROCESSANDO'}" class="btn btn-default" th:href="@{|/itens/processar/${item.id}/${item.idPedido}|}">Processar
+						</a> 
+						</td>
+					</tr>
+				
 			</thead>
 		</table>
+		<form th:object="${pedido}" method="POST" th:action="@{|/pedidos/processado|}">
+			<input th:field="*{id}" type="hidden"/>
+			<button type="submit">Processar Itens</button>
+		</form>
 		
 	</section>
 </body>

@@ -1,4 +1,4 @@
-package br.com.cwi.crescer.service;
+package br.com.cwi.crescer.service.pedido;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import br.com.cwi.crescer.dao.ClienteDAO;
 import br.com.cwi.crescer.dao.PedidoDAO;
+import br.com.cwi.crescer.domain.Item;
+import br.com.cwi.crescer.domain.Item.SituacaoItem;
 import br.com.cwi.crescer.domain.Pedido;
 import br.com.cwi.crescer.domain.Pedido.SituacaoPedido;
 import br.com.cwi.crescer.dto.PedidoDTO;
@@ -20,11 +22,18 @@ public class PedidoService {
 
 	private PedidoDAO pedidoDAO;
 	private ClienteDAO clienteDAO;
-
+	private PedidoItemService pedidoItemService;
+	private PedidoDescontoService pedidoDescontoService;
+	
 	@Autowired
-	public PedidoService(PedidoDAO pedidoDAO, ClienteDAO clienteDAO) {
+	public PedidoService(PedidoDAO pedidoDAO, 
+							ClienteDAO clienteDAO, 
+							PedidoItemService pedidoItemService, 
+							PedidoDescontoService pedidoDescontoService) {
 		this.pedidoDAO = pedidoDAO;
 		this.clienteDAO = clienteDAO;
+		this.pedidoItemService = pedidoItemService;
+		this.pedidoDescontoService = pedidoDescontoService;
 	}
 
 	public PedidoDTO buscarPorId(Long id) {
@@ -80,6 +89,15 @@ public class PedidoService {
 		setSituacaoPedido(id, SituacaoPedido.CANCELADO);
 	}
 	
+	public void processandoPedido(Long id){
+		setSituacaoPedido(id, SituacaoPedido.PROCESSANDO);
+	}
+	
+	public void processarPedido(Long id) {
+		processarItensPedido(id);
+		setSituacaoPedido(id, SituacaoPedido.PROCESSADO);
+	}
+	
 	public void retirarPedido(Long id) throws Exception{
 		Pedido entity = pedidoDAO.findById(id);
 		if(entity.getSituacao() == SituacaoPedido.PROCESSADO){
@@ -94,6 +112,39 @@ public class PedidoService {
 		entity.setSituacao(situacao);
 		
 		pedidoDAO.save(entity);
+	}
+	
+	public void atualizarInformacoes(Long id){
+		Pedido pedido = pedidoDAO.findById(id);
+		
+		pedido.setValorBruto(pedidoItemService.obterValorTotalDeItens(pedido));
+		pedido.setDataEntrega(pedidoItemService.calcularDataEntrega(pedido));
+		pedido.setValorDesconto(pedidoDescontoService.calcularDesconto(pedido));
+		pedido.setValorFinal(pedido.getValorBruto().subtract(pedido.getValorDesconto()));
+		pedido = verificarItensProcessados(pedido);
+		
+		pedidoDAO.save(pedido);
+	}
+	
+	private Pedido verificarItensProcessados(Pedido pedido){
+		
+		int itensProcessados = 0;
+		for (Item item : pedido.getItens()) {
+			if(item.getSituacao() == SituacaoItem.PROCESSADO){
+				itensProcessados++;
+			}
+		}
+		pedido.setSituacao(itensProcessados == pedido.getItens().size() ?
+				SituacaoPedido.PROCESSADO : pedido.getSituacao());	
+		return pedido;
+	}
+	
+	private void processarItensPedido(Long id){
+		Pedido pedido = pedidoDAO.findById(id);
+		for (Item item : pedido.getItens()) {
+			item.setSituacao(SituacaoItem.PROCESSADO);
+		}
+		pedidoDAO.save(pedido);
 	}
 
 }

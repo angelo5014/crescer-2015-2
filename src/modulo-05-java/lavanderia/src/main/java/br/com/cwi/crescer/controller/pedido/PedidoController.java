@@ -23,7 +23,7 @@ import br.com.cwi.crescer.dto.ClienteDTO;
 import br.com.cwi.crescer.dto.PedidoDTO;
 import br.com.cwi.crescer.service.ClienteService;
 import br.com.cwi.crescer.service.ItemService;
-import br.com.cwi.crescer.service.PedidoService;
+import br.com.cwi.crescer.service.pedido.PedidoService;
 
 @Controller
 @RequestMapping("/pedidos")
@@ -40,18 +40,44 @@ public class PedidoController {
 		this.clienteService = clienteService;
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")
-	@RequestMapping(path = "/cancelar", method = RequestMethod.POST)
-	public ModelAndView cancelar(@ModelAttribute("pedido") PedidoDTO pedidoDTO){
-		pedidoService.cancelarPedido(pedidoDTO.getId());
-		return new ModelAndView("redirect:/pedidos/editar/" + pedidoDTO.getId());
-	}
-	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView listar(){
 		return new ModelAndView("pedido/lista", "pedidos", pedidoService.listarPedidos());
 	}
 	
+	@RequestMapping(path = "/processado", method = RequestMethod.POST)
+	public ModelAndView processado(@ModelAttribute("pedido") PedidoDTO pedidoDTO){
+		pedidoService.processarPedido(pedidoDTO.getId());
+		return new ModelAndView("redirect:/pedidos/editar/" + pedidoDTO.getId());
+	}
+	
+	
+	@RequestMapping(path = "/processando", method = RequestMethod.POST)
+	public ModelAndView processarItens(@ModelAttribute("pedido") PedidoDTO pedidoDTO){
+		pedidoService.processandoPedido(pedidoDTO.getId());
+		return new ModelAndView("redirect:/pedidos/editar/" + pedidoDTO.getId());
+	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@RequestMapping(path = "/cancelar", method = RequestMethod.POST)
+	public ModelAndView cancelar(@ModelAttribute("pedido") PedidoDTO pedidoDTO){
+		pedidoService.cancelarPedido(pedidoDTO.getId());
+		return new ModelAndView("redirect:/pedidos");
+	}
+	
+	@RequestMapping(path = "/encerrar", method = RequestMethod.POST)
+	public ModelAndView encerrar(@ModelAttribute("pedido") PedidoDTO pedidoDTO,
+									final RedirectAttributes redirectAttributes){
+		try {
+			pedidoService.retirarPedido(pedidoDTO.getId());
+			redirectAttributes.addFlashAttribute("sucesso", "Pedido encerrado com sucesso");
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("sucesso", "O Pedido precisa estar PROCESSADO para ser encerrado");
+		}
+
+		return new ModelAndView("redirect:/pedidos");
+	}
+
 	@RequestMapping(path = "/incluir", method = RequestMethod.GET)
 	public ModelAndView incluir(){
 		return new ModelAndView("pedido/novo", "pedido", new PedidoDTO());
@@ -67,6 +93,7 @@ public class PedidoController {
 	
 	@RequestMapping(path = "/editar/{id}", method = RequestMethod.GET)
 	public ModelAndView editar(@PathVariable("id") Long id){
+		pedidoService.atualizarInformacoes(id);
 		return new ModelAndView("pedido/edita", "pedido", pedidoService.buscarPorId(id));
 	}
 	

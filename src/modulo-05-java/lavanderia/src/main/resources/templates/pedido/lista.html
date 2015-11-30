@@ -46,7 +46,8 @@
                 	<td th:text="${pedido.valorBruto}"></td>
                 	<td th:text="${pedido.situacao}"></td>
                 	<td ><a th:href="@{|/pedidos/exibir/${pedido.id}|}">Vizualizar</a></td>
-                	<td ><a th:if="${pedido.situacao == 'PENDENTE'}" th:href="@{|/pedidos/editar/${pedido.id}|}">editar</a></td>
+                	<td ><a th:if="${pedido.situacao != 'CANCELADO' and pedido.situacao != 'ENCERRADO'}" 
+                	th:href="@{|/pedidos/editar/${pedido.id}|}">editar</a></td>
 				</tr>
 			</thead>
 		</table>
