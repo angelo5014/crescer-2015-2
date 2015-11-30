@@ -6,6 +6,13 @@ import javax.validation.constraints.NotNull;
 
 public class ItemDTO {
 	
+	public ItemDTO() {
+	}
+	
+	public ItemDTO(Long idPedido) {
+		this.idPedido = idPedido;
+	}
+	
 	private Long id;
 
 	@NotNull
@@ -14,8 +21,12 @@ public class ItemDTO {
 	@NotNull
 	private Long idProduto;
 	
+	private Long idServico;
+	
 	private String nomeServico;
 	
+	private Long idMaterial;
+
 	private String nomeMaterial;
 	
 	@NotNull
@@ -56,9 +67,25 @@ public class ItemDTO {
 	public String getNomeServico() {
 		return nomeServico;
 	}
+	
+	public Long getIdServico() {
+		return idServico;
+	}
+
+	public void setIdServico(Long idServico) {
+		this.idServico = idServico;
+	}
 
 	public void setNomeServico(String nomeServico) {
 		this.nomeServico = nomeServico;
+	}
+
+	public Long getIdMaterial() {
+		return idMaterial;
+	}
+
+	public void setIdMaterial(Long idMaterial) {
+		this.idMaterial = idMaterial;
 	}
 
 	public String getNomeMaterial() {

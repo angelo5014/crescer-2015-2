@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="Layout">
+<head>
+<meta charset="UTF-8" />
+<title>Inserir Item</title>
+</head>
+<body>
+	<section layout:fragment = "content">
+	
+		<form th:object="${item}" class="form-inline" method="POST" th:action="@{|/itens/incluir|}">
+		
+			<input type="hidden" th:field="*{idPedido}"></input>
+		
+			<div class="form-group">
+				<select th:field="*{idServico}">
+					<option th:each="s : ${servicos}" th:text="${s.descricao}" th:value="${s.id}" ></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<select th:field="*{idMaterial}">
+					<option th:each="m : ${materiais}" th:text="${m.descricao}" th:value="${m.id}" ></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<input type="text" th:field="*{peso}" placeholder="Digite o peso"></input>
+			</div>
+			
+			<button type="submit">Salvar</button>
+		
+		</form>
+	
+	</section>
+</body>
+</html>

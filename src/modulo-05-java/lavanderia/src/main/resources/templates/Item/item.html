@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 </head>
 <body>
-	<tr layout:fragment = "itens" >
+	<tr layout:fragment = "itens" th:each="item : ${pedido.itens}">
 			<td th:text="${item.id}"></td>
 			<td th:text="${item.nomeServico}"></td>
 			<td th:text="${item.nomeMaterial}"></td>
@@ -12,6 +12,15 @@
 			<td th:text="${item.valorUnitario}"></td>
 			<td th:text="${item.valorTotal}"></td>
 			<td th:text="${item.situacao}"></td>
+			<td >
+			<form th:object="${item}" th:action="@{|/itens/processar/|}" th:if="${pedido.situacao == 'PROCESSANDO'}" method="POST">
+				<input th:field="*{id}" type="text"/>
+				<input th:field="*{idPedido}" type="text"/>
+				<button class="btn btn-default">Processar</button>
+			</form>
+			<!-- <a th:if="${pedido.situacao == 'PROCESSANDO'}" class="btn btn-default" th:href="@{|/itens/processar/${item.id}|}">Processar
+			</a> -->
+			</td>
 	</tr>
 </body>
 </html>

@@ -54,7 +54,7 @@ public class Item {
 	private SituacaoItem situacao;
 	
 	public static enum SituacaoItem{
-		PENDENTE, PROCESSANDO, PROCESSADO;
+		PENDENTE, PROCESSADO;
 	}
 	
 	public Long getIdItem() {

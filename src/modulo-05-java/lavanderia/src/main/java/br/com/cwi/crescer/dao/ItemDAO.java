@@ -2,6 +2,8 @@ package br.com.cwi.crescer.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Repository;
 
 import br.com.cwi.crescer.domain.Item;
@@ -19,5 +21,15 @@ public class ItemDAO extends AbstractDAO{
                 .setParameter("situacao", situacao)
                 .getResultList();
     }
+	
+	@Transactional
+	public Item save(Item item){
+		if(item.getIdItem() == null){
+			em.persist(item);
+			return item;
+		}
+		em.merge(item);
+		return item;
+	}
 	
 }

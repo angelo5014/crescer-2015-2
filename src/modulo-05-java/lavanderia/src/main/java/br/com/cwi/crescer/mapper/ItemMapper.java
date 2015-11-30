@@ -5,6 +5,12 @@ import br.com.cwi.crescer.dto.ItemDTO;
 
 public class ItemMapper {
 
+	public static Item getNewEntity(ItemDTO dto) {
+		Item entity = new Item();
+		entity.setPeso(dto.getPeso());
+		return entity;
+	}
+	
 	public static ItemDTO toDTO(Item entity){
 		ItemDTO dto = new ItemDTO();
 		dto.setId(entity.getIdItem());
