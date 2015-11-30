@@ -27,7 +27,7 @@
 						<span sec:authorize="hasRole('ROLE_USER')">Olá USER</span>
 						<span sec:authorize="hasRole('ROLE_ADMIN')">Olá ADMIN</span>
 						<label sec:authentication="name"></label>
-						<button type="submit" class="btn btn-primary">Deslogar</button>
+						<button type="submit" class="btn btn-primary" sec:authorize="isAuthenticated()">Deslogar</button>
 					</form>
 				</div>
 			</div>
