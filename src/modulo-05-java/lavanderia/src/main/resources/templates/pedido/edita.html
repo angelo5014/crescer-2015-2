@@ -16,31 +16,33 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 			<button class="btn btn-default">Cancelar</button>
 		</form>
 		
-		<form th:action="@{/pedidos/processando}" th:object="${pedido}" method="post">
+		<form th:action="@{/pedidos/processando}" th:object="${pedido}" method="post" th:if="${pedido.situacao == 'PENDENTE'}">
 			<input th:field="*{id}" type="hidden" />
-			<button class="btn btn-default">Iniciar processo</button>
+			<button class="btn btn-default" type="submit">Iniciar pedido</button>
 		</form>
 		
-		<form th:action="@{/pedidos/encerrar}" th:object="${pedido}" method="post">
+		
+		
+		<form th:action="@{/pedidos/encerrar}" th:object="${pedido}" method="post" th:if="${pedido.situacao == 'PROCESSADO'}">
 			<input th:field="*{id}" type="hidden" />
 			<button class="btn btn-default">Encerrar</button>
 		</form>
 	
 		<div class="col-lg-10 col-lg-offset-1">
-			<p th:text="*{id}"></p>
-			<p th:text="*{nomeCliente}"></p>
-			<p th:text="*{cpfCliente}"></p>
-			<p th:text="*{dataInclusao}"></p>
-			<p th:text="*{dataEntrega}"></p>
-			<p th:text="*{valorBruto}"></p>
-			<p th:text="*{valorDesconto}"></p>
-			<p th:text="*{valorFinal}"></p>
-			<p th:text="*{situacao}"></p>
+			<p>ID: <span th:text="*{id}"></span> </p>
+			<p>NOME: <span th:text="*{nomeCliente}"></span></p>
+			<p>CPF: <span th:text="*{cpfCliente}"></span></p>
+			<p>DATA DE INCLUSÃO: <span th:text="*{dataInclusao}"></span></p>
+			<p>DATA DE ENTREGA: <span th:text="*{dataEntrega}"></span></p>
+			<p>VALOR BRUTO: <span th:text="*{valorBruto}"></span></p>
+			<p>DESCONTO: <span th:text="*{valorDesconto}"></span></p>
+			<p>VALOR FINAL: <span th:text="*{valorFinal}"></span></p>
+			<p>SITUAÇÃO: <span th:text="*{situacao}"></span></p>
 		</div>
 		
-		<a th:href="@{|/itens/incluir/| + ${pedido.id}}" class="btn btn-default">Inserir Item</a>
+		<a th:href="@{|/itens/incluir/| + ${pedido.id}}" class="btn btn-default" th:if="${pedido.situacao == 'PENDENTE'}">Inserir Item</a>
 		
-		
+		<div class="col-lg-10 col-lg-offset-1">
 		<table class="table-bordered col-lg-10 col-lg-offset-1">
 			<thead>
 			
@@ -62,17 +64,18 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 						<td th:text="${item.valorUnitario}"></td>
 						<td th:text="${item.valorTotal}"></td>
 						<td th:text="${item.situacao}"></td>
-						<td> <a th:if="${pedido.situacao == 'PROCESSANDO'}" class="btn btn-default" th:href="@{|/itens/processar/${item.id}/${item.idPedido}|}">Processar
+						<td> <a th:if="${pedido.situacao == 'PROCESSANDO' and item.situacao == 'PENDENTE'}" class="btn btn-default" th:href="@{|/itens/processar/${item.id}/${item.idPedido}|}">Processar
 						</a> 
 						</td>
 					</tr>
 				
 			</thead>
 		</table>
-		<form th:object="${pedido}" method="POST" th:action="@{|/pedidos/processado|}">
+		<form th:object="${pedido}" method="POST" th:action="@{|/pedidos/processado|}" class="pull-right" th:if="${pedido.situacao == 'PROCESSANDO'}"> 
 			<input th:field="*{id}" type="hidden"/>
-			<button type="submit">Processar Itens</button>
+			<button class="btn btn-default" type="submit">Processar todos os itens</button>
 		</form>
+		</div>
 		
 	</section>
 </body>

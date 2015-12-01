@@ -12,7 +12,8 @@
 <body>
 
 <section layout:fragment="content">	
-	<div>
+
+	<div class="search">
 		<form th:action="@{/pedidos/buscar}" method="GET" class="form-horizontal col-lg-2">
 			<select id="situacao" name="situacao" onchange="this.form.submit()" class="form-control">
 				<option >---SELECIONE---</option>
@@ -24,6 +25,7 @@
 				<input type="text" name="cpf" class="form-control"></input>
 				<button type="submit" class="btn btn-primary">Buscar</button>
 		</form>
+		
 	</div>
 
 	<div th:if="${not #lists.isEmpty(pedidos)}" class="col-md-7 col-md-offset-2" style="margin-top:100px">
@@ -47,13 +49,10 @@
                 	<td th:text="${pedido.situacao}"></td>
                 	<td ><a th:href="@{|/pedidos/exibir/${pedido.id}|}">Vizualizar</a></td>
                 	<td ><a th:if="${pedido.situacao != 'CANCELADO' and pedido.situacao != 'ENCERRADO'}" 
-                	th:href="@{|/pedidos/editar/${pedido.id}|}">editar</a></td>
+                	th:href="@{|/pedidos/editar/${pedido.id}|}">Editar</a></td>
 				</tr>
 			</thead>
 		</table>
-		
-		<a class="btn btn-default" th:href="@{|/pedidos/incluir|}" role="button">Cadastrar</a>
-		
 	</div>
 	
 	</section>

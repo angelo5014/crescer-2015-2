@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
 	<meta charset="UTF-8" />
-	<title>Lavanderia - Crescer</title>
+	<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Lavanderia</title>
 	<link rel="stylesheet" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/css/style.css" />
 </head>
 
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
 			<div class="navbar-header">
-				<p class="navbar-text">
-					<a th:href="@{/}" class="navbar-link" style="text-decoration: none">Home</a>
-				</p>
+				<a class="navbar-brand" th:href="@{/}">
+					<img class="favicon" th:src="@{/img/favicon.ico}"/>
+				</a>
 			</div>
+			
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li><a th:href="@{/clientes}" class="navbar-link" style="text-decoration: none">Lista de Clientes</a></li>
@@ -32,9 +36,9 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</nav>
 	
-	<div th:if="${(sucesso) != null}" class="alert alert-success fade in alert-dismisable alert-position" style="margin-top:100px;">
+	<div th:if="${(sucesso) != null}" class="alert alert-success fade in alert-dismisable alert-position" style="margin-top:50px;">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>

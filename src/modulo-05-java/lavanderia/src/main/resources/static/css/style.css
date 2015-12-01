@@ -1,21 +1,14 @@
 @CHARSET "ISO-8859-1";
 
-.title{
-	font-size: 200px;
+.favicon{
+	height: 30px;
+	width: 30px;
+	margin-top: -5px;
 }
 
-.responsive-image{
-        max-width: 100%; 
-		display:block; 
-		height: auto;
-    }
-    
-    .container{
-    	margin-left: 16.665%;
-    	width:66.67%;
-    }
-    
-    div img{
-    width:255;
-    height:255;
-    }
+
+.search{
+	padding-top: 20px;
+	text-align: center;
+	padding-bottom: 50px;
+}

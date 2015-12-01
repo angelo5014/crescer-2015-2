@@ -6,31 +6,32 @@
 </head>
 <body>
 	<section layout:fragment = "content">
-	
+	<div class="table-bordered col-lg-4 col-lg-offset-4 search" style="margin-top: 30px;">
 		<form th:object="${item}" class="form-inline" method="POST" th:action="@{|/itens/incluir|}">
 		
 			<input type="hidden" th:field="*{idPedido}"></input>
 		
 			<div class="form-group">
-				<select th:field="*{idServico}">
+				<select th:field="*{idServico}" class="form-control">
 					<option th:each="s : ${servicos}" th:text="${s.descricao}" th:value="${s.id}" ></option>
 				</select>
 			</div>
 			
 			<div class="form-group">
-				<select th:field="*{idMaterial}">
+				<select th:field="*{idMaterial}" class="form-control">
 					<option th:each="m : ${materiais}" th:text="${m.descricao}" th:value="${m.id}" ></option>
 				</select>
 			</div>
 			
 			<div class="form-group">
-				<input type="text" th:field="*{peso}" placeholder="Digite o peso"></input>
+				<input type="text" th:field="*{peso}" placeholder="Digite o peso" class="form-control"></input>
+				<span class="help-inline" th:errors="*{peso}"></span>
 			</div>
 			
-			<button type="submit">Salvar</button>
+			<button class="btn btn-default" type="submit" style="margin-top: 30px;">Salvar</button>
 		
 		</form>
-	
+	</div>
 	</section>
 </body>
 </html>
