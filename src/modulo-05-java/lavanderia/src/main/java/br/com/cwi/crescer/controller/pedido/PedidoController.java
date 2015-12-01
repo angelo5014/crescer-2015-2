@@ -77,19 +77,6 @@ public class PedidoController {
 
 		return new ModelAndView("redirect:/pedidos");
 	}
-
-	@RequestMapping(path = "/incluir", method = RequestMethod.GET)
-	public ModelAndView incluir(){
-		return new ModelAndView("pedido/novo", "pedido", new PedidoDTO());
-	}
-	
-	@RequestMapping(path = "/incluir", method = RequestMethod.POST)
-	public ModelAndView incluir(@Valid @ModelAttribute("pedido") PedidoDTO pedidoDTO,
-											BindingResult result,
-											final RedirectAttributes redirectAttributes){
-		Long id = pedidoService.incluir(pedidoDTO);
-		return new ModelAndView("redirect:/pedidos/editar/" + id);
-	}
 	
 	@RequestMapping(path = "/editar/{id}", method = RequestMethod.GET)
 	public ModelAndView editar(@PathVariable("id") Long id){
