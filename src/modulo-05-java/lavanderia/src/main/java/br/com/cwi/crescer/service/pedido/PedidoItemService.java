@@ -1,6 +1,7 @@
 package br.com.cwi.crescer.service.pedido;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -36,9 +37,17 @@ class PedidoItemService {
 		}
 		Calendar c = Calendar.getInstance();
 		c.setTime(pedido.getDataInclusao());
-		c.add(Calendar.DATE, maiorPrazo);
+		c.add(Calendar.DAY_OF_MONTH, maiorPrazo);
 		SimpleDateFormat dateFormat = new SimpleDateFormat( "dd/MM/yyyy" );
-		return c.getTime();
+		Date dataEntregaFormatada = null;
+		try {
+			String d = dateFormat.format(c.getTime());
+			System.out.println("DATA: " + d);
+			dataEntregaFormatada = dateFormat.parse(d);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return dataEntregaFormatada;
 	}
 	
 	public BigDecimal obterPesoDosItensDoPedido(Pedido entity){

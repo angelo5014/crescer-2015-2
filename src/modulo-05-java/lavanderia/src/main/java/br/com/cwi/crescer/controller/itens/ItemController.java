@@ -49,7 +49,7 @@ public class ItemController {
 			return new ModelAndView("item/novo");
 		}
 		
-		
+		redirectAttributes.addFlashAttribute("sucesso", "Item inserido com sucesso");
 		itemService.inserirItem(itemDTO);
 		return new ModelAndView("redirect:/pedidos/editar/" + itemDTO.getIdPedido());
 	}

@@ -63,9 +63,10 @@ public class ProdutoService {
 	public boolean incluir(ProdutoDTO dto) {
 		if(produtoDAO.findProduct(dto.getIdServico(), dto.getIdMaterial()).isEmpty()){
 		
+			dto.setSituacao("ATIVO");
 		Produto produto = ProdutoMapper.getNewEntity(dto);
-		produto.setMaterial(materialDAO.findById(dto.getId()));
-		produto.setServico(servicoDAO.findById(dto.getId()));
+		produto.setMaterial(materialDAO.findById(dto.getIdMaterial()));
+		produto.setServico(servicoDAO.findById(dto.getIdServico()));
 			produtoDAO.save(produto);
 			return true;
 		}

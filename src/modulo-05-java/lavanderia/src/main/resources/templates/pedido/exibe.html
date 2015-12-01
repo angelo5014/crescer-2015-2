@@ -9,15 +9,15 @@
 	<section layout:fragment="content" class="table-bordered col-lg-10 col-lg-offset-1" th:object="${pedido}">
 	
 		<div class="col-lg-10 col-lg-offset-1">
-			<p th:text="*{id}"></p>
-			<p th:text="*{nomeCliente}"></p>
-			<p th:text="*{cpfCliente}"></p>
-			<p th:text="*{dataInclusao}"></p>
-			<p th:text="*{dataEntrega}"></p>
-			<p th:text="*{valorBruto}"></p>
-			<p th:text="*{valorDesconto}"></p>
-			<p th:text="*{valorFinal}"></p>
-			<p th:text="*{situacao}"></p>
+			<p>ID: <span th:text="*{id}"></span> </p>
+			<p>NOME: <span th:text="*{nomeCliente}"></span></p>
+			<p>CPF: <span th:text="*{cpfCliente}"></span></p>
+			<p>DATA DE INCLUSÃO: <span th:text="${#dates.format(pedido.dataInclusao, 'dd/MM/yyyy')}"></span></p>
+			<p>DATA DE ENTREGA: <span th:text="${#dates.format(pedido.dataEntrega, 'dd/MM/yyyy')}"></span></p>
+			<p>VALOR BRUTO: <span th:text="*{valorBruto}"></span></p>
+			<p>DESCONTO: <span th:text="*{valorDesconto}"></span></p>
+			<p>VALOR FINAL: <span th:text="*{valorFinal}"></span></p>
+			<p>SITUAÇÃO: <span th:text="*{situacao}"></span></p>
 		</div>
 		
 		<table class="table-bordered col-lg-10 col-lg-offset-1">

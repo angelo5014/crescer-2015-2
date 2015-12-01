@@ -28,14 +28,12 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 			<button class="btn btn-default">Encerrar</button>
 		</form>
 		
-
-		
 		<div class="col-lg-10 col-lg-offset-1">
 			<p>ID: <span th:text="*{id}"></span> </p>
 			<p>NOME: <span th:text="*{nomeCliente}"></span></p>
 			<p>CPF: <span th:text="*{cpfCliente}"></span></p>
-			<p>DATA DE INCLUSÃO: <span th:text="*{dataInclusao}"></span></p>
-			<p>DATA DE ENTREGA: <span th:text="*{dataEntrega}"></span></p>
+			<p>DATA DE INCLUSÃO: <span th:text="${#dates.format(pedido.dataInclusao, 'dd/MM/yyyy')}"></span></p>
+			<p>DATA DE ENTREGA: <span th:text="${#dates.format(pedido.dataEntrega, 'dd/MM/yyyy')}"></span></p>
 			<p>VALOR BRUTO: <span th:text="*{valorBruto}"></span></p>
 			<p>DESCONTO: <span th:text="*{valorDesconto}"></span></p>
 			<p>VALOR FINAL: <span th:text="*{valorFinal}"></span></p>

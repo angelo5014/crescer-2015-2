@@ -2,7 +2,6 @@ package br.com.cwi.crescer.service;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,6 @@ import br.com.cwi.crescer.dao.PedidoDAO;
 import br.com.cwi.crescer.dao.ProdutoDAO;
 import br.com.cwi.crescer.domain.Item;
 import br.com.cwi.crescer.domain.Item.SituacaoItem;
-import br.com.cwi.crescer.domain.Produto;
 import br.com.cwi.crescer.dto.ItemDTO;
 import br.com.cwi.crescer.mapper.ItemMapper;
 
@@ -55,7 +53,7 @@ public class ItemService {
 		itemDAO.save(entity);
 	}
 	
-	private BigDecimal getValorTotalItem(Item item){
+	protected BigDecimal getValorTotalItem(Item item){
 		return item.getValorUnitario().multiply(item.getPeso(), MathContext.DECIMAL128);
 	}
 	
