@@ -27,11 +27,15 @@
 				</ul>
 				<div class="navbar-form navbar-right">
 					
-					<form th:action="@{/logout}" method="POST">
+					<form th:action="@{/logout}" method="POST" sec:authorize="isAuthenticated()">
 						<span sec:authorize="hasRole('ROLE_USER')">Olá USER</span>
 						<span sec:authorize="hasRole('ROLE_ADMIN')">Olá ADMIN</span>
-						<label sec:authentication="name"></label>
-						<button type="submit" class="btn btn-primary" sec:authorize="isAuthenticated()">Deslogar</button>
+						<label sec:authentication="name" sec:authorize="isAuthenticated()"></label>
+						<button type="submit" class="btn btn-primary" >Logout</button>
+					</form>
+					
+					<form th:action="@{/login}" method="POST" sec:authorize="!isAuthenticated()">
+						<button type="submit" class="btn btn-primary" >Login</button>
 					</form>
 				</div>
 			</div>
@@ -46,6 +50,12 @@
 	</div>
 	
 	<section layout:fragment="content" style="margin-top:50px"></section>
+	
+	 <footer class="footer text-center">
+      <p>
+        &copy; Copyright 2015 - Alguns direitos reservados.
+      </p>
+    </footer>
 	
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/jquery.min.js"></script>

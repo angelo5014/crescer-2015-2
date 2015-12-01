@@ -5,8 +5,15 @@
 	<title>Erro - </title>
 </head>
 <body>
-<section layout:fragment = "content">
-	<h1>DEU ERRO</h1>
-</section>
+	<section layout:fragment = "content">
+	 	<h2 class = "position-h2">Ocorreu um erro inesperado</h2>
+        <h3>Erro: <span th:text="${error}"></span></h3>
+        <h3>Status: <span th:text="${status}"></span></h3>
+        <div th:if="${ex} or ${exception} or (${message} and ${message.length() != 0})">
+            <blockquote>
+                <i th:text="${message}">message ...</i>
+            </blockquote>
+        </div>
+	</section>
 </body>
 </html>

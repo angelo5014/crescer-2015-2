@@ -1,5 +1,11 @@
 @CHARSET "ISO-8859-1";
 
+.footer{
+	height: 50px;
+	background-color: light-gray;
+	margin-bottom: 0;
+}
+
 .favicon{
 	height: 30px;
 	width: 30px;
