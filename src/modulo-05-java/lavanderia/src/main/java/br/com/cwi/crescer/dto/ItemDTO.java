@@ -15,10 +15,8 @@ public class ItemDTO {
 	
 	private Long id;
 
-	@NotNull
 	private Long idPedido;
 	
-	@NotNull
 	private Long idProduto;
 	
 	private Long idServico;
@@ -32,10 +30,8 @@ public class ItemDTO {
 	@NotNull
 	private BigDecimal peso;
 	
-	@NotNull
 	private BigDecimal valorUnitario;
 	
-	@NotNull
 	private BigDecimal valorTotal;
 	
 	private String situacao;

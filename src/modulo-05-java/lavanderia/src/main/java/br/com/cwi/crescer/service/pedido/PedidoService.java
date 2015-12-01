@@ -121,6 +121,7 @@ public class PedidoService {
 		pedido.setDataEntrega(pedidoItemService.calcularDataEntrega(pedido));
 		pedido.setValorDesconto(pedidoDescontoService.calcularDesconto(pedido));
 		pedido.setValorFinal(pedido.getValorBruto().subtract(pedido.getValorDesconto()));
+		if(!pedido.getItens().isEmpty())
 		pedido = verificarItensProcessados(pedido);
 		
 		pedidoDAO.save(pedido);

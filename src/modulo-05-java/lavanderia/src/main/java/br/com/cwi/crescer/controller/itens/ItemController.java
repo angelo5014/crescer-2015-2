@@ -42,7 +42,14 @@ public class ItemController {
 	}
 	
 	@RequestMapping(path = "/incluir", method = RequestMethod.POST)
-	public ModelAndView incluir(@ModelAttribute("item") ItemDTO itemDTO){
+	public ModelAndView incluir(@Valid @ModelAttribute("item") ItemDTO itemDTO,
+								BindingResult result,
+								final RedirectAttributes redirectAttributes){
+		if(result.hasErrors()){
+			return new ModelAndView("item/novo");
+		}
+		
+		
 		itemService.inserirItem(itemDTO);
 		return new ModelAndView("redirect:/pedidos/editar/" + itemDTO.getIdPedido());
 	}

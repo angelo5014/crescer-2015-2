@@ -1,11 +1,11 @@
 package br.com.cwi.crescer.service.pedido;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.cwi.crescer.domain.Item;
@@ -35,8 +35,9 @@ class PedidoItemService {
 			maiorPrazo = prazoItem > maiorPrazo ? prazoItem : maiorPrazo;
 		}
 		Calendar c = Calendar.getInstance();
-		c.setTime(pedido.getDataInclusao()); // Now use today date.
+		c.setTime(pedido.getDataInclusao());
 		c.add(Calendar.DATE, maiorPrazo);
+		SimpleDateFormat dateFormat = new SimpleDateFormat( "dd/MM/yyyy" );
 		return c.getTime();
 	}
 	
